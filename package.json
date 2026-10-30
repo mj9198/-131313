@@ -1,0 +1,8 @@
+{
+  "name": "albacheck-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "알바체크 AI - 청소년 근로조건 확인 도우미",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=20" }
+}
