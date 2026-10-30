@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>알바체크 AI | 근로조건 확인 도우미</title>
+<style>
+:root{--navy:#172554;--blue:#3157c8;--sky:#eaf1ff;--ink:#202943;--muted:#65708a;--line:#dce3f0;--bg:#f5f7fc;--white:#fff;--green:#087f5b;--yellow:#9a6700;--red:#b42318}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif;line-height:1.6}header{background:linear-gradient(120deg,#172554,#3157c8);color:white;padding:32px 18px 38px}.wrap{width:min(1080px,94%);margin:auto}.topline{font-size:.85rem;opacity:.85;letter-spacing:.08em}.hero{display:flex;gap:22px;align-items:center;justify-content:space-between}.hero h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.15;margin:10px 0}.hero p{max-width:690px;color:#e3eaff;margin:12px 0 0}.heroicon{font-size:4.4rem;filter:drop-shadow(0 8px 10px #14265c55)}main{padding:24px 0 52px}.notice{border:1px solid #f0d79a;background:#fff9e8;border-radius:14px;padding:13px 16px;margin-bottom:20px;font-size:.92rem}.layout{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 6px 22px #26365b08;min-width:0}.panel.full{grid-column:1/-1}.panel h2{font-size:1.25rem;margin:0 0 5px;color:var(--navy)}.sub{color:var(--muted);font-size:.9rem;margin:0 0 15px}label{font-weight:700;display:block;margin:12px 0 6px}input,select{color:var(--ink);background:#fff}textarea{display:block;width:100%;min-height:190px;resize:vertical;padding:13px;border:1px solid #cbd5e5;border-radius:12px;font:inherit;color:var(--ink);background:#fcfdff}textarea:focus{outline:3px solid #dce7ff;border-color:var(--blue)}.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.btn{border:0;border-radius:10px;padding:10px 15px;font:inherit;font-weight:700;cursor:pointer}.primary{background:var(--blue);color:white}.secondary{background:var(--sky);color:var(--navy)}.ghost{background:#eef0f5;color:#3f4b64}.btn:hover{filter:brightness(.97)}.resultgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.item{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}.item h3{margin:0 0 4px;font-size:1rem}.status{display:inline-block;border-radius:99px;padding:2px 9px;font-size:.78rem;font-weight:800;margin:2px 0 7px}.confirmed{background:#d9f7e9;color:#086447}.ambiguous{background:#fff0c2;color:#805600}.missing{background:#ffe2df;color:#9f241b}.item p{font-size:.9rem;margin:4px 0;color:#4b5670;overflow-wrap:anywhere}.questionlist{padding-left:20px;margin:8px 0}.questionlist li{margin:5px 0}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:570px}th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#f0f4ff;color:var(--navy)}td{font-size:.92rem}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}.stat{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fbfcff}.stat strong{display:block;font-size:1.8rem;color:var(--blue)}.stat span{font-size:.88rem;color:var(--muted)}.barrow{display:grid;grid-template-columns:minmax(130px,1fr) 3fr 55px;gap:10px;align-items:center;margin:12px 0}.barbg{height:13px;border-radius:20px;background:#e9edf6;overflow:hidden}.bar{height:100%;background:var(--blue);border-radius:20px}.source{font-size:.85rem;color:var(--muted);margin-top:12px}.source a,.resource a{color:#244fc0;text-decoration-thickness:1px;text-underline-offset:3px}.resources{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}.resource{border:1px solid var(--line);border-radius:12px;padding:14px}.resource h3{margin:0 0 5px;font-size:1rem}.resource p{margin:0 0 8px;color:var(--muted);font-size:.9rem}.tag{display:inline-block;background:#eef2ff;color:#3048a2;border-radius:6px;padding:2px 7px;font-size:.76rem;margin-bottom:5px}.small{font-size:.84rem;color:var(--muted)}.hidden{display:none}footer{text-align:center;color:var(--muted);font-size:.84rem;padding:22px}.empty{color:var(--muted);background:#f8faff;border-radius:10px;padding:13px}.question-output{background:#f8faff;border:1px solid var(--line);border-radius:12px;padding:14px;white-space:pre-wrap;overflow-wrap:anywhere}.evidence-note{border-left:4px solid var(--blue);padding:10px 13px;background:#f4f7ff;border-radius:6px}.result-title{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px}@media(max-width:720px){.layout{grid-template-columns:1fr}.panel .layout{grid-template-columns:1fr!important}.panel.full{grid-column:auto}.heroicon{display:none}.stats{grid-template-columns:1fr}.resources{grid-template-columns:1fr}.resultgrid{grid-template-columns:1fr}.barrow{grid-template-columns:120px 1fr 48px;font-size:.86rem}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="topline">YOUTH WORK CHECK · PROTOTYPE</div><div class="hero"><div><h1>알바체크 AI</h1><p>아르바이트 공고의 근로조건을 한눈에 확인하고, 불명확하거나 빠진 정보를 면접 전에 질문할 수 있도록 돕는 웹앱입니다.</p></div><div class="heroicon" aria-hidden="true">🧾</div></div></div></header>
+<main class="wrap">
+<div class="notice"><strong>프로토타입 안내</strong> 이 페이지는 실제 생성형 AI API에 연결되어 있지 않습니다. 키워드와 규칙으로 공고 문구를 분류하므로 결과를 참고용으로만 사용하고, 최종 조건은 사업주와 근로계약서로 확인하세요. 정보가 없다는 사실만으로 위법이라고 판단하지 않습니다.</div>
+<div class="layout">
+<section class="panel"><h2>① 공고 분석하기</h2><p class="sub">공고 문구를 붙여 넣고 확인이 필요한 항목을 살펴보세요.</p><label for="ad1">아르바이트 공고</label><textarea id="ad1" placeholder="예: 시급 12,000원, 주 3일 근무... 공고 내용을 붙여 넣으세요."></textarea><div class="btnrow"><button class="btn primary" id="analyze1">근로조건 분석하기</button><button class="btn secondary" id="sample1">예시 공고 넣기</button><button class="btn ghost" id="clear1">초기화</button></div><div id="result1" aria-live="polite"></div></section>
+<section class="panel"><h2>② 공고 2개 비교하기</h2><p class="sub">두 공고의 조건별 명시 여부를 나란히 비교합니다. 더 좋은 일자리를 자동 판정하지 않습니다.</p><label for="ad2a">공고 A</label><textarea id="ad2a" placeholder="첫 번째 공고 내용을 입력하세요." style="min-height:135px"></textarea><label for="ad2b">공고 B</label><textarea id="ad2b" placeholder="두 번째 공고 내용을 입력하세요." style="min-height:135px"></textarea><div class="btnrow"><button class="btn primary" id="compare">조건별 비교표 만들기</button><button class="btn secondary" id="sample2">비교 예시 넣기</button></div><div id="compareResult" aria-live="polite"></div></section>
+<section class="panel full" id="interviewQuestions"><h2>③ 면접 전 질문 목록 만들기</h2><p class="sub">공고 분석 결과에서 ‘불명확함’ 또는 ‘정보 없음’인 조건을 골라 질문 목록으로 만들고 복사할 수 있습니다. 분석 결과를 근거로 질문을 만들 뿐, 공고만으로 위법 여부를 판정하지 않습니다.</p><div class="btnrow"><button class="btn primary" id="makeQuestions">현재 공고에서 질문 목록 만들기</button><button class="btn secondary" id="copyQuestions">질문 목록 복사하기</button><button class="btn ghost" id="downloadQuestions">텍스트 파일로 저장</button></div><div id="interviewResult" aria-live="polite"><p class="empty">먼저 ‘① 공고 분석하기’에서 공고를 분석한 뒤 이 버튼을 눌러 주세요.</p></div><p id="copyStatus" class="small" aria-live="polite"></p></section>
+<section class="panel full" id="legalCheck"><h2>③ 법적 기준 간편 점검</h2><p class="sub">공고에 적힌 임금·시간·휴게시간을 기준과 비교해 확인합니다. 입력 정보만으로 위법 여부를 확정하지는 않습니다.</p>
+<div class="layout" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+<div><label for="workerAge">근로자 연령 구분</label><select id="workerAge" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit"><option value="adult">만 18세 이상</option><option value="minor">만 15~17세</option><option value="young">만 15세 미만 또는 연령 확인 필요</option></select>
+<label for="hourlyWage">시급 (원)</label><input id="hourlyWage" type="number" min="0" placeholder="예: 12000" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit">
+<label for="startTime">하루 근무 시작</label><input id="startTime" type="time" value="17:00" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit">
+<label for="endTime">하루 근무 종료</label><input id="endTime" type="time" value="22:00" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit"></div>
+<div><label for="breakMinutes">휴게시간 (분)</label><input id="breakMinutes" type="number" min="0" value="30" placeholder="예: 30" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit">
+<label for="daysWeek">주당 근무일 수</label><input id="daysWeek" type="number" min="0" max="7" value="3" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit">
+<p class="small" style="margin-top:14px">근무시간은 시작~종료에서 휴게시간을 뺀 값으로 추정합니다. 날짜를 넘기는 야간근무는 별도 입력이 필요하므로 결과를 반드시 공식 기준과 대조하세요.</p>
+<button class="btn primary" id="checkLaw" type="button">법적 기준과 비교하기</button></div></div><div id="lawResult" aria-live="polite"></div>
+<p class="source"><strong>공식 기준:</strong> <a href="https://www.minimumwage.go.kr/" target="_blank" rel="noopener noreferrer">최저임금위원회(2026년 시간급 10,320원)</a> · <a href="https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&amp;cciNo=1&amp;cnpClsNo=1&amp;csmSeq=1381" target="_blank" rel="noopener noreferrer">찾기쉬운 생활법령정보: 청소년 근로시간</a> · <a href="https://m.easylaw.go.kr/MOB/CsmInfoRetrieve.laf?ccfNo=3&amp;cciNo=1&amp;cnpClsNo=2&amp;csmSeq=1381" target="_blank" rel="noopener noreferrer">휴게시간·휴일 기준</a></p>
+<p class="small">2026년 기준 간편 점검입니다. 업종·사업장·근로 형태, 실제 휴게시간의 자유로운 이용 여부, 연장근로 합의·인가, 임금 산입 항목 등에 따라 판단이 달라질 수 있습니다. 이 도구는 법률 자문이나 위법 판정이 아닙니다.</p></section>
+<section class="panel full" id="payCalculator"><h2>④ 예상 급여 계산기</h2><p class="sub">시급과 근무 일정을 입력하면 휴게시간을 제외한 유급 근로시간을 기준으로 주급·월평균 급여를 추정합니다. 공고의 급여 조건을 이해하고 비교할 때 사용하세요.</p>
+<div class="layout" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+<div><label for="calcWage">시급 (원)</label><input id="calcWage" type="number" min="0" placeholder="예: 12000" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit">
+<label for="calcStart">하루 근무 시작 시각</label><input id="calcStart" type="time" value="17:00" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit">
+<label for="calcEnd">하루 근무 종료 시각</label><input id="calcEnd" type="time" value="22:00" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit"></div>
+<div><label for="calcBreak">하루 휴게시간 (분)</label><input id="calcBreak" type="number" min="0" value="30" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit">
+<label for="calcDays">주당 근무 일수</label><input id="calcDays" type="number" min="1" max="7" value="3" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit">
+<label for="calcWeeks">월 환산 방식</label><select id="calcWeeks" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit"><option value="4.345">월평균 4.345주로 환산</option><option value="4">간단히 4주로 환산</option></select></div></div>
+<div class="btnrow"><button class="btn primary" id="calcPay">예상 급여 계산하기</button><button class="btn secondary" id="useLawWage">법적 기준 점검의 시급 가져오기</button><button class="btn ghost" id="clearPay">계산기 초기화</button></div><div id="payResult" aria-live="polite"></div>
+<p class="small">계산식: 시급 × (하루 근무시간 − 휴게시간) × 주당 근무일 수. 월평균은 선택한 주 수로 단순 환산합니다. 주휴수당, 연장·야간·휴일근로 가산수당, 세금·공제, 실제 근무일 변동은 포함하지 않으므로 실제 지급액과 다를 수 있습니다. 휴게시간은 실제로 자유롭게 이용할 수 있는 시간만 입력하세요.</p></section>
+<section class="panel full" id="publicDataEvidence"><h2>⑥ 공공데이터·연구 근거 확인</h2><p class="sub">이 통계는 채용공고 전체가 아니라 한국청소년정책연구원이 실시한 전국 청소년 조사 결과입니다. 앱이 어떤 자료를 근거로 안내하는지 조사 범위와 원문 링크를 함께 표시합니다.</p>
+<div class="stats"><div class="stat"><strong>39.6%</strong><span>일할 때 근로계약서를 작성하고 교부받았다고 응답</span><p class="small">출처: NYPI 2024 연구 요약 · <a href="https://www.nypi.re.kr/lib/10120/contents/7139208" target="_blank" rel="noopener noreferrer">원문·결과</a></p></div><div class="stat"><strong>15.2%</strong><span>계약서를 작성했지만 교부받지 못했다고 응답</span><p class="small">출처: NYPI 2024 연구 요약 · <a href="https://www.nypi.re.kr/lib/10120/contents/7139208" target="_blank" rel="noopener noreferrer">원문·결과</a></p></div><div class="stat"><strong>45.2%</strong><span>계약서를 작성하지 않았다고 응답</span><p class="small">출처: NYPI 2024 연구 요약 · <a href="https://www.nypi.re.kr/lib/10120/contents/7139208" target="_blank" rel="noopener noreferrer">원문·결과</a></p></div></div>
+<h3>근로계약서 관련 응답 비율</h3><p class="small">단위: 응답 비율(%) · 조사연도: 2024 · 조사대상: 전국 중1~고3 재학생 중 해당 근로경험·문항에 응답한 대상. 문항별 분모는 원문 표에서 확인하세요. <a href="https://www.nypi.re.kr/repository/handle/2022.oak/6395" target="_blank" rel="noopener noreferrer">보고서 원문 열기</a></p><div class="barrow"><span>작성·교부 받음</span><div class="barbg"><div class="bar" style="width:39.6%"></div></div><strong>39.6%</strong></div><div class="barrow"><span>작성했으나 미교부</span><div class="barbg"><div class="bar" style="width:15.2%"></div></div><strong>15.2%</strong></div><div class="barrow"><span>작성하지 않음</span><div class="barbg"><div class="bar" style="width:45.2%"></div></div><strong>45.2%</strong></div>
+<h3 style="margin-top:24px">연구 요약에 보고된 근로 문제 경험</h3><p class="small">단위: 응답 비율(%) · 조사연도: 2024 · 조사대상 및 문항별 분모: 원문에서 확인 필요. 아래 각 수치는 연구 요약에 제시된 값입니다. <a href="https://www.nypi.re.kr/lib/10120/contents/7139208" target="_blank" rel="noopener noreferrer">해당 연구 결과 확인</a></p><div class="barrow"><span>임금체불 경험</span><div class="barbg"><div class="bar" style="width:17.4%"></div></div><strong>17.4%</strong></div><div class="barrow"><span>휴게시간 미보장 경험</span><div class="barbg"><div class="bar" style="width:17.1%"></div></div><strong>17.1%</strong></div>
+<div class="resource" style="margin-top:18px"><span class="tag">원자료 메타데이터</span><h3>조사 정보</h3><div class="tablewrap"><table><tbody><tr><th>자료명</th><td>「청소년 근로 실태 및 정책방안 연구」</td></tr><tr><th>수행 기관·발행 연도</th><td>한국청소년정책연구원(NYPI), 2024년</td></tr><tr><th>조사 대상</th><td>전국 중학교 1학년~고등학교 3학년 재학생</td></tr><tr><th>조사 기간</th><td>2024년 5월 13일~7월 8일</td></tr><tr><th>표본 규모</th><td>조사 개요 페이지 기준 총 7,500명</td></tr><tr><th>조사 방법</th><td>자기기입식 설문조사</td></tr><tr><th>수치 단위</th><td>응답 비율(%)</td></tr><tr><th>원문에서 찾아볼 부분</th><td>보고서 Ⅴ장 「청소년 근로 실태 설문조사 결과」, 특히 ‘근로 환경’ 절(본문 p.154 이후). 정확한 표 번호·해당 문항별 분모는 원문 PDF에서 다시 확인해야 함.</td></tr></tbody></table></div>
+<p class="source"><strong>원문·조사 개요:</strong> <a href="https://www.nypi.re.kr/repository/handle/2022.oak/6395" target="_blank" rel="noopener noreferrer">연구보고서 원문 및 서지정보</a> · <a href="https://www.nypi.re.kr/lib/10120/contents/7139208" target="_blank" rel="noopener noreferrer">NYPI 연구자료 요약(결과 수치 확인)</a> · <a href="https://www.nypi.re.kr/archive/board?menuId=MENU00502" target="_blank" rel="noopener noreferrer">2024년 조사 개요(대상·기간·표본)</a></p></div>
+<p class="small"><strong>해석 주의:</strong> 위 수치는 연구기관이 공개한 연구 요약에 제시된 값입니다. 조사 문항마다 응답 대상과 분모가 다를 수 있으므로 서로 다른 비율을 합산하거나 같은 응답자 집단의 결과라고 단정하지 마세요. 정확한 원문 표 번호와 분모를 확인하기 전에는 보고서 본문을 직접 인용하는 과제에서 표 번호를 임의로 적지 마세요. 이는 채용공고 자체를 조사한 통계가 아니며, 현재 앱은 공공데이터 API를 실시간 호출하지 않습니다.</p></section>
+<section class="panel full"><h2>⑦ 알아두면 좋은 근로 상식</h2><p class="sub">아래 내용은 기본 확인사항입니다. 개인의 근로조건과 적용 법령에 따라 달라질 수 있으므로 공식 자료에서 최신 내용을 확인하세요.</p><div class="resources"><article class="resource"><span class="tag">계약서</span><h3>근로계약서 내용을 확인하세요</h3><p>임금, 근로시간, 업무, 휴일 등 핵심 조건이 서면에 적혀 있는지 확인하고, 작성한 계약서 사본을 받아 보관하세요.</p><a href="https://www.moel.go.kr/mainpop2.do" target="_blank" rel="noopener noreferrer">고용노동부 근로계약서 안내 ↗</a></article><article class="resource"><span class="tag">최저임금</span><h3>시급과 임금 지급일을 물어보세요</h3><p>시급·급여 계산 방식·지급일을 구체적으로 확인하세요. 연도별 최저임금과 적용 기준은 공식 안내에서 확인할 수 있습니다.</p><a href="https://www.moel.go.kr/" target="_blank" rel="noopener noreferrer">고용노동부 공식 홈페이지 ↗</a></article><article class="resource"><span class="tag">휴게시간</span><h3>쉬는 시간과 실제 근무시간을 확인하세요</h3><p>근무 시작·종료 시각뿐 아니라 휴게시간이 언제인지, 임금 계산에 어떻게 반영되는지 확인하세요.</p><a href="https://www.moel.go.kr/" target="_blank" rel="noopener noreferrer">근로기준 관련 공식 안내 ↗</a></article><article class="resource"><span class="tag">청소년 보호</span><h3>나이별 근로 제한도 확인하세요</h3><p>청소년은 연령에 따라 필요한 서류와 근로시간·야간근로 관련 제한이 적용될 수 있습니다. 본인 상황에 맞는 기준을 공식 자료에서 확인하세요.</p><a href="https://www.moel.go.kr/news/cardinfo/view.do?bbs_seq=20230701364" target="_blank" rel="noopener noreferrer">고용노동부 청소년 근로자 권익보호 ↗</a></article><article class="resource"><span class="tag">상담</span><h3>혼자 판단하기 어려우면 상담하세요</h3><p>임금이나 근로조건 관련 문제가 생기면 공식 상담기관에 상황을 설명하고 도움을 요청할 수 있습니다.</p><a href="https://www.moel.go.kr/" target="_blank" rel="noopener noreferrer">고용노동부 상담·민원 안내 ↗</a></article><article class="resource"><span class="tag">연구 자료</span><h3>통계의 조사 범위를 확인하세요</h3><p>통계를 인용할 때는 조사 연도, 대상, 질문, 비율의 기준을 함께 기록해야 오해를 줄일 수 있습니다.</p><a href="https://www.nypi.re.kr/archive/board?menuId=MENU00502" target="_blank" rel="noopener noreferrer">한국청소년정책연구원 조사 개요 ↗</a></article></div></section>
+
+<section class="panel full" id="livePublicData">
+  <h2>⑧ 공공데이터 API 실시간 조회</h2>
+  <p class="sub">공식 API에서 자료를 직접 요청합니다. API 신청과 서버 환경변수 설정이 끝난 뒤 사용할 수 있습니다. 통계는 갱신 주기가 자료마다 다르며, 조회 성공이 곧 ‘실시간으로 새 조사 결과가 생겼다’는 뜻은 아닙니다.</p>
+  <div class="evidence-note"><strong>보안 안내</strong> 인증키를 이 웹페이지에 입력하지 않습니다. 서버의 <code>.env</code> 파일에 저장하고 서버가 대신 API를 호출합니다. 브라우저 개발자 도구나 HTML 소스에 인증키를 넣지 마세요.</div>
+  <div class="resources">
+    <article class="resource">
+      <span class="tag">API 1 · 청소년 실태</span>
+      <h3>청소년종합실태조사 마이크로데이터</h3>
+      <p>조사 연도·대상 번호·항목 번호를 지정해 조사값을 조회합니다. 실제로 근로 관련 항목이 존재하는지는 응답 항목명을 확인해야 합니다.</p>
+      <label for="apiYouthYear">조사 연도</label><input id="apiYouthYear" type="number" value="2017" min="2000" max="2100" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
+      <label for="apiYouthTarget">대상 일련번호</label><input id="apiYouthTarget" type="number" value="2" min="1" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
+      <label for="apiYouthItem">항목 번호</label><input id="apiYouthItem" type="number" value="204" min="1" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
+      <div class="btnrow"><button class="btn primary" id="fetchYouthApi">청소년 조사 API 조회</button></div>
+      <p class="small"><a href="https://www.data.go.kr/data/15078212/openapi.do" target="_blank" rel="noopener noreferrer">공식 API 명세·활용 신청 ↗</a></p>
+    </article>
+    <article class="resource">
+      <span class="tag">API 2 · 국가통계</span>
+      <h3>KOSIS 통계자료 조회</h3>
+      <p>고용·노동 등 적합한 통계표를 먼저 찾아 표 ID와 기관 ID를 입력해야 합니다. 아래 예시값은 실제 통계표로 확정된 값이 아니므로, 공식 표에서 확인한 값으로 바꿔야 합니다.</p>
+      <label for="apiKosisOrg">기관 ID (orgId)</label><input id="apiKosisOrg" type="text" placeholder="예: 통계표에서 확인" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
+      <label for="apiKosisTable">통계표 ID (tblId)</label><input id="apiKosisTable" type="text" placeholder="공식 KOSIS 표 ID" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
+      <label for="apiKosisItem">항목 ID (itmId)</label><input id="apiKosisItem" type="text" placeholder="공식 표의 항목 ID" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
+      <label for="apiKosisStart">시작 연도</label><input id="apiKosisStart" type="number" value="2020" min="1900" max="2100" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
+      <label for="apiKosisEnd">종료 연도</label><input id="apiKosisEnd" type="number" value="2025" min="1900" max="2100" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
+      <label for="apiKosisObj">분류 ID (objL1, 선택)</label><input id="apiKosisObj" type="text" placeholder="표에서 요구하는 분류 ID (선택)" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
+      <div class="btnrow"><button class="btn primary" id="fetchKosisApi">KOSIS 통계 API 조회</button></div>
+      <p class="small"><a href="https://kosis.kr/openapi/index/index.jsp" target="_blank" rel="noopener noreferrer">KOSIS 공유서비스 안내 ↗</a> · <a href="https://kosis.kr/" target="_blank" rel="noopener noreferrer">통계표 찾기 ↗</a></p>
+    </article>
+  </div>
+  <div class="btnrow"><button class="btn secondary" id="checkApiStatus">API 서버 연결 상태 확인</button></div>
+  <p class="small" id="apiStatus" aria-live="polite">아직 API를 호출하지 않았습니다. 먼저 아래 설정 안내에 따라 API 활용 신청과 서버 설정을 완료하세요.</p>
+  <div id="apiYouthResult" aria-live="polite"></div>
+  <div id="apiKosisResult" aria-live="polite"></div>
+  <p class="small"><strong>주의:</strong> API는 데이터를 조회할 뿐, 이 웹앱의 법적 판단을 대신하지 않습니다. 청소년 실태조사 마이크로데이터는 과거 조사값일 수 있고, KOSIS는 선택한 통계표의 공표 주기에 따라 갱신됩니다. 응답의 조사 연도·항목명·단위·기준일을 확인한 뒤 해석하세요.</p>
+</section>
+
+</div></main><footer>알바체크 AI · 교육용 웹앱 프로토타입 · 법률 판단이나 노무 상담을 대체하지 않습니다.</footer>
+<script>
+
+const moneyFmt=n=>Math.round(n).toLocaleString('ko-KR')+'원';
+function timeMinutes(v){if(!v)return null;const [h,m]=v.split(':').map(Number);return h*60+m}
+function lawItem(kind,title,body){return `<article class="item"><h3>${title}</h3><span class="status ${kind}">${kind==='confirmed'?'기준상 문제 신호 없음':kind==='ambiguous'?'추가 확인 필요':'주의 필요'}</span><p>${body}</p></article>`}
+function parseClock(id){const v=document.getElementById(id).value;if(!v)return null;const [h,m]=v.split(':').map(Number);return h*60+m}
+function calculatePay(){
+ const wage=Number(document.getElementById('calcWage').value),start=parseClock('calcStart'),end0=parseClock('calcEnd'),br=Number(document.getElementById('calcBreak').value),days=Number(document.getElementById('calcDays').value),weeks=Number(document.getElementById('calcWeeks').value),out=document.getElementById('payResult');
+ if(document.getElementById('calcWage').value===''||!Number.isFinite(wage)||wage<=0){out.innerHTML='<p class="empty">0보다 큰 시급을 입력하세요.</p>';return}
+ if(start===null||end0===null){out.innerHTML='<p class="empty">근무 시작·종료 시각을 입력하세요.</p>';return}
+ if(!Number.isFinite(br)||br<0||!Number.isFinite(days)||days<1||days>7||!Number.isInteger(days)){out.innerHTML='<p class="empty">휴게시간은 0분 이상, 주당 근무일은 1~7일의 정수로 입력하세요.</p>';return}
+ let end=end0;if(end<=start)end+=1440;const gross=end-start,paid=gross-br;
+ if(br>gross||paid<=0){out.innerHTML='<p class="empty">휴게시간이 전체 근무시간보다 길거나 유급 근로시간이 0 이하입니다. 입력을 확인하세요.</p>';return}
+ const daily=paid/60,weeklyHours=daily*days,weekly=wage*weeklyHours,monthly=weekly*weeks,minWage=10320;
+ let wageNote=wage<minWage?`<p><span class="status missing">최저임금 확인 필요</span> 입력한 시급은 2026년 최저임금 시간급 ${moneyFmt(minWage)}보다 낮습니다. 임금 항목과 적용 기준을 공식 자료에서 확인하세요.</p>`:`<p><span class="status confirmed">최저임금과 단순 비교</span> 입력 시급은 2026년 시간급 최저임금 ${moneyFmt(minWage)} 이상입니다. 이 비교만으로 모든 수당·임금 요건을 확인한 것은 아닙니다.</p>`;
+ out.innerHTML=`<div class="result-title"><h3>예상 급여 결과</h3><span class="small">세전 단순 추정</span></div><div class="stats"><div class="stat"><span>하루 유급 근로시간</span><strong>${daily.toFixed(2)}시간</strong></div><div class="stat"><span>예상 주급</span><strong>${moneyFmt(weekly)}</strong></div><div class="stat"><span>월평균 예상 급여</span><strong>${moneyFmt(monthly)}</strong></div></div><p>하루 총 체류시간 ${ (gross/60).toFixed(2) }시간 − 휴게시간 ${br}분 = 유급 근로시간 ${daily.toFixed(2)}시간</p><p>주간 추정 근로시간: ${weeklyHours.toFixed(2)}시간 · 월 환산: ${weeks}주</p>${wageNote}<p class="small">주휴수당 적용 여부는 실제 근로시간, 소정근로일 개근 여부 등 추가 조건을 확인해야 하므로 위 금액에 자동으로 더하지 않았습니다.</p>`;
+}
+document.getElementById('calcPay').addEventListener('click',calculatePay);
+document.getElementById('useLawWage').addEventListener('click',()=>{document.getElementById('calcWage').value=document.getElementById('hourlyWage').value;document.getElementById('payCalculator').scrollIntoView({behavior:'smooth',block:'start'});if(document.getElementById('calcWage').value)calculatePay()});
+document.getElementById('clearPay').addEventListener('click',()=>{document.getElementById('calcWage').value='';document.getElementById('calcStart').value='17:00';document.getElementById('calcEnd').value='22:00';document.getElementById('calcBreak').value='30';document.getElementById('calcDays').value='3';document.getElementById('calcWeeks').value='4.345';document.getElementById('payResult').innerHTML=''});
+
+document.getElementById('checkLaw').addEventListener('click',()=>{
+ const age=document.getElementById('workerAge').value,wageRaw=document.getElementById('hourlyWage').value;
+ const start=timeMinutes(document.getElementById('startTime').value),end0=timeMinutes(document.getElementById('endTime').value);
+ const br=Number(document.getElementById('breakMinutes').value),days=Number(document.getElementById('daysWeek').value),out=document.getElementById('lawResult');
+ const items=[]; const minWage=10320;
+ if(wageRaw==='') items.push(lawItem('ambiguous','최저임금','시급을 입력해야 비교할 수 있습니다. 2026년 법정 최저임금은 시간급 10,320원입니다.'));
+ else {const wage=Number(wageRaw);if(wage<minWage)items.push(lawItem('missing','최저임금',`입력 시급 ${moneyFmt(wage)}은 2026년 시간급 최저임금 ${moneyFmt(minWage)}보다 낮습니다. 임금 산입 항목 등 예외·세부사항을 확인하고 고용노동부에 문의하세요.`));else items.push(lawItem('confirmed','최저임금',`입력 시급 ${moneyFmt(wage)}은 2026년 시간급 최저임금 ${moneyFmt(minWage)} 이상입니다. 주휴수당·연장/야간/휴일수당 등 별도 적용 여부는 이 비교에 포함되지 않습니다.`));}
+ let shift=null;if(start!==null&&end0!==null){let end=end0;if(end<=start)end+=1440;shift=end-start-br;if(shift<0){items.push(lawItem('ambiguous','근무·휴게시간','휴게시간이 전체 근무 구간보다 길게 입력되었습니다. 시간을 다시 확인하세요.'));shift=null;}else {const gross=end-start;const net=gross-br;const needed=net>=480?60:net>=240?30:0;if(br<needed)items.push(lawItem('missing','휴게시간',`시작~종료 시간은 ${gross/60}시간이고 휴게시간을 뺀 추정 근로시간은 ${net/60}시간입니다. 근로시간이 4시간이면 30분 이상, 8시간이면 1시간 이상의 휴게시간이 근로 도중 필요합니다. 휴게시간은 자유롭게 이용할 수 있어야 합니다.`));else items.push(lawItem('confirmed','휴게시간',`휴게시간을 제외한 추정 근로시간은 ${net/60}시간입니다. 입력값은 기본 휴게 기준(4시간 근로 시 30분 이상, 8시간 근로 시 1시간 이상)에 부합하는 것으로 보입니다. 휴게시간이 실제로 자유롭게 이용 가능한지도 확인하세요.`));}}
+ else items.push(lawItem('ambiguous','근무·휴게시간','시작·종료 시간을 입력해야 확인할 수 있습니다.'));
+ if(age==='minor'){
+  if(shift!==null){const net=shift/60;if(net>7)items.push(lawItem('missing','청소년 1일 근로시간',`휴게시간을 제외한 추정 근로시간이 하루 ${net.toFixed(2)}시간입니다. 만 15~17세는 원칙적으로 1일 7시간·주 35시간 한도이며, 당사자 합의가 있어도 하루 1시간·주 5시간 범위의 연장 한도가 적용됩니다. 구체적 합의 여부를 확인하세요.`));else items.push(lawItem('confirmed','청소년 1일 근로시간',`휴게시간을 제외한 추정 근로시간은 하루 ${net.toFixed(2)}시간으로 기본 7시간 한도 이내입니다. 주간 합계도 확인해야 합니다.`));
+   const st=start, en=(end0<=start?end0+1440:end0);if(en>1320||st<360)items.push(lawItem('ambiguous','청소년 야간근로','입력한 근무시간이 오후 10시~오전 6시와 겹칠 수 있습니다. 18세 미만의 야간·휴일근로는 원칙적으로 제한되며, 법정 요건과 인가 여부를 확인해야 합니다.'));
+  }
+  if(shift!==null&&days>=0&&days<=7){const weekly=shift/60*days;if(weekly>35)items.push(lawItem('missing','청소년 주간 근로시간',`주 ${days}일 기준 추정 근로시간은 ${weekly.toFixed(2)}시간입니다. 만 15~17세는 원칙적으로 주 35시간 한도(합의 시 최대 40시간)를 확인해야 합니다.`));else items.push(lawItem('confirmed','청소년 주간 근로시간',`주 ${days}일 기준 추정 근로시간은 ${weekly.toFixed(2)}시간입니다. 기본 35시간 한도 이내지만 실제 근무일과 연장근로 합의 여부를 확인하세요.`));}
+ }else if(age==='young') items.push(lawItem('ambiguous','연령·취직인허증','만 15세 미만은 원칙적으로 근로가 제한되고, 예외적으로 취직인허증 등 별도 요건이 필요할 수 있습니다. 연령과 적용 요건을 공식 기관에 확인하세요.'));
+ else items.push(lawItem('ambiguous','성인 근로시간','성인은 원칙적으로 휴게시간을 제외하고 1일 8시간·주 40시간 기준이 적용됩니다. 연장근로 합의, 사업장 규모 및 예외 적용 등을 함께 확인해야 하므로 주간 총시간을 추가 확인하세요.'));
+ out.innerHTML='<div class="result-title"><h3>기준 비교 결과</h3><span class="small">2026년 기준 · 자동 간편 점검</span></div><div class="resultgrid">'+items.join('')+'</div><p class="small">이 결과는 입력한 수치에 따른 안내이며 법적 판단이 아닙니다. 주당 실제 근로시간, 휴게시간의 실질, 사업장 조건과 법정 예외를 모두 확인하지 못합니다. 정확한 상담은 고용노동부 고객상담센터 1350 또는 관할 노동관서에 문의하세요.</p>';
+});
+
+const fields=[
+ {key:'wage',name:'임금·시급',patterns:[/시급\s*[:：]?\s*[\d,]+\s*원/i,/시간당\s*[\d,]+\s*원/i,/월급\s*[:：]?\s*[\d,]+\s*원/i,/일급\s*[:：]?\s*[\d,]+\s*원/i,/급여\s*[:：]?\s*[\d,]+\s*원/i],amb:[/시급.{0,12}(면접|협의|추후|문의|별도)/,/급여.{0,12}(면접|협의|추후|문의|별도)/,/임금.{0,12}(협의|추후|문의|별도)/,/급여\s*협의/,/면접\s*후\s*결정/]},
+ {key:'hours',name:'근무시간',patterns:[/(오전|오후)?\s*\d{1,2}\s*시\s*([~～\-–]\s*(오전|오후)?\s*\d{1,2}\s*시)/,/(\d{1,2}[:：]\d{2})\s*[~～\-–]\s*(\d{1,2}[:：]\d{2})/,/하루\s*\d+\s*시간/,/주\s*\d+\s*시간/],amb:[/근무시간.{0,12}(협의|유동적|추후|면접)/,/시간.{0,8}(협의|유동적|면접\s*시)/,/스케줄\s*협의/]},
+ {key:'days',name:'근무일·요일',patterns:[/(주\s*\d+\s*일)/,/(월|화|수|목|금|토|일)(요일)?([,·\s]*(월|화|수|목|금|토|일)(요일)?)*\s*(근무|출근)/,/주말\s*(근무|출근)/,/평일\s*(근무|출근)/],amb:[/요일.{0,10}(협의|유동적|추후)/,/근무일.{0,10}(협의|면접|추후)/]},
+ {key:'duties',name:'업무 내용',patterns:[/(담당업무|업무내용|업무는|업무\s*[:：]|주요업무)/,/서빙|주방보조|계산|캐셔|매장정리|청소|포장|배달|음료제조|고객응대|재고정리/],amb:[/업무.{0,10}(면접|협의|추후|상황에 따라)/,/기타\s*업무/,/전반적인\s*업무/]},
+ {key:'break',name:'휴게시간',patterns:[/휴게시간\s*[:：]?\s*\d+\s*분/,/휴게시간\s*[:：]?\s*\d+\s*시간/,/휴식\s*시간\s*[:：]?\s*\d+/,/휴게시간.{0,12}(제공|보장|\d+시)/],amb:[/휴게시간.{0,12}(면접|협의|추후|별도)/,/휴식.{0,8}협의/]},
+ {key:'contract',name:'근로계약서',patterns:[/근로계약서.{0,15}(작성|교부|제공|지급)/,/계약서.{0,15}(작성|교부|제공|지급)/,/첫\s*출근.{0,10}계약서/],amb:[/계약서.{0,12}(추후|협의|면접|필요시)/]},
+ {key:'payday',name:'급여 지급일',patterns:[/매월\s*\d{1,2}\s*일.{0,10}(지급|급여)/,/급여.{0,10}\d{1,2}\s*일.{0,10}(지급|입금)/,/매주\s*(월|화|수|목|금|토|일)요일.{0,8}(지급|입금)/,/익월\s*\d{1,2}\s*일/],amb:[/급여.{0,12}(면접|협의|추후|별도)/,/지급일.{0,10}(협의|추후|면접)/]}
+];
+function classify(text,f){let relevant=text.match(new RegExp(f.name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i'));let found=f.patterns.some(p=>p.test(text));let unclear=f.amb.some(p=>p.test(text));if(found)return {status:'confirmed',label:'확인됨',detail:'구체적인 조건을 나타내는 문구가 발견되었습니다. 계약서와 실제 조건을 다시 확인하세요.'};if(unclear||relevant)return {status:'ambiguous',label:'불명확함',detail:'관련 표현은 있으나 조건이 구체적이지 않을 수 있습니다. 정확한 금액·시간·방법을 질문하세요.'};return {status:'missing',label:'정보 없음',detail:'입력한 문구에서 관련 조건을 찾지 못했습니다. 공고에 없다는 뜻일 수 있으니 사업주에게 확인하세요.'}}
+function escapeHTML(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function analyze(text,target){if(!text.trim()){target.innerHTML='<p class="empty">먼저 공고 내용을 입력하세요.</p>';latestAnalysisData=null;return null}let data=fields.map(f=>({...f,...classify(text,f)}));latestAnalysisData=data;target.innerHTML='<div class="result-title"><h3>근로조건 체크리스트</h3><span class="small">총 '+fields.length+'개 항목</span></div><div class="resultgrid">'+data.map(d=>`<article class="item"><h3>${d.name}</h3><span class="status ${d.status}">${d.label}</span><p>${d.detail}</p></article>`).join('')+'</div><h3 style="margin-top:18px">사업주에게 물어볼 질문</h3><ul class="questionlist">'+data.filter(d=>d.status!=='confirmed').map(d=>`<li><strong>${d.name}:</strong> ${questionFor(d.key)}</li>`).join('')+'</ul><p class="small">이 분류는 입력 문구의 표현을 기준으로 한 자동 점검입니다. 조건의 적법성이나 실제 제공 여부를 판정하지 않습니다.</p>';return data}
+function questionFor(k){return {wage:'정확한 시급 또는 급여 계산 방식은 어떻게 되나요?',hours:'정확한 출퇴근 시각과 하루·주간 근무시간은 어떻게 되나요?',days:'근무 요일과 주당 근무일은 어떻게 정해지나요?',duties:'주요 업무와 추가로 맡게 될 업무는 무엇인가요?',break:'휴게시간은 언제이며 얼마나 제공되나요?',contract:'근로계약서는 언제 작성하고 사본을 받을 수 있나요?',payday:'급여 지급일과 지급 방법은 어떻게 되나요?'}[k]}
+const sample='카페 아르바이트 모집\n시급 12,000원\n주 3일 근무, 오후 5시~10시\n업무: 음료 제조, 고객 응대, 매장 정리\n휴게시간 및 급여 지급일은 면접 시 협의\n근로계약서는 첫 출근 때 작성';
+document.getElementById('analyze1').addEventListener('click',()=>analyze(document.getElementById('ad1').value,document.getElementById('result1')));document.getElementById('sample1').addEventListener('click',()=>{document.getElementById('ad1').value=sample;analyze(sample,document.getElementById('result1'))});document.getElementById('clear1').addEventListener('click',()=>{document.getElementById('ad1').value='';document.getElementById('result1').innerHTML=''});
+document.getElementById('sample2').addEventListener('click',()=>{document.getElementById('ad2a').value=sample;document.getElementById('ad2b').value='편의점 아르바이트 모집\n시급은 면접 시 안내\n주말 근무, 근무시간은 협의\n업무: 계산 및 매장 정리\n근로계약서 작성\n급여 지급일은 매월 10일';});
+document.getElementById('compare').addEventListener('click',()=>{let a=document.getElementById('ad2a').value,b=document.getElementById('ad2b').value,out=document.getElementById('compareResult');if(!a.trim()||!b.trim()){out.innerHTML='<p class="empty">공고 A와 공고 B를 모두 입력하세요.</p>';return}let da=fields.map(f=>({...f,...classify(a,f)})),db=fields.map(f=>({...f,...classify(b,f)}));out.innerHTML='<div class="result-title"><h3>조건별 비교표</h3></div><div class="tablewrap"><table><thead><tr><th>확인 항목</th><th>공고 A</th><th>공고 B</th></tr></thead><tbody>'+fields.map((f,i)=>`<tr><th>${f.name}</th><td><span class="status ${da[i].status}">${da[i].label}</span><br>${da[i].status==='confirmed'?'구체적인 문구 발견':da[i].status==='ambiguous'?'추가 확인 필요':'문구를 찾지 못함'}</td><td><span class="status ${db[i].status}">${db[i].label}</span><br>${db[i].status==='confirmed'?'구체적인 문구 발견':db[i].status==='ambiguous'?'추가 확인 필요':'문구를 찾지 못함'}</td></tr>`).join('')+'</tbody></table></div><p class="small">비교 결과는 공고에 쓰인 표현만 확인합니다. 정보가 적다고 일자리 자체가 나쁘거나 위법하다고 단정할 수 없습니다. 지원 전에 두 공고 모두 정확한 조건을 확인하세요.</p>'});
+
+// 면접 전 질문 목록: 현재 공고 분석 결과에서 확인이 필요한 항목만 추립니다.
+let latestAnalysisData = null;
+let latestQuestionText = '';
+const interviewResult = document.getElementById('interviewResult');
+const copyStatus = document.getElementById('copyStatus');
+const questionIntro = '안녕하세요. 지원 전에 근로조건을 정확히 확인하고 싶어 몇 가지 질문드립니다.';
+function buildQuestionText(data){
+ const pending = data.filter(d => d.status !== 'confirmed');
+ if(!pending.length) return questionIntro + '\n공고에서 주요 조건을 확인했습니다. 실제 근로계약서에 아래 조건들이 동일하게 기재되는지 확인 부탁드립니다.\n- 임금, 근무시간·요일, 업무 내용, 휴게시간, 계약서 교부, 급여 지급일';
+ return questionIntro + '\n' + pending.map(d => '• ' + d.name + ': ' + questionFor(d.key)).join('\n') + '\n• 근로계약서에 합의한 임금·근무시간·업무·휴게시간·급여 지급일이 모두 적히고, 계약서 사본을 받을 수 있을까요?';
+}
+document.getElementById('makeQuestions').addEventListener('click',()=>{
+ const ad = document.getElementById('ad1').value;
+ if(!ad.trim()){interviewResult.innerHTML='<p class="empty">먼저 공고 내용을 입력하고 분석해 주세요.</p>';copyStatus.textContent='';return;}
+ latestAnalysisData = analyze(ad, document.getElementById('result1'));
+ latestQuestionText = buildQuestionText(latestAnalysisData || []);
+ interviewResult.innerHTML = '<div class="question-output" id="questionOutput"></div><p class="small">질문은 예시입니다. 실제 상황에 맞게 수정해서 사용하세요.</p>';
+ document.getElementById('questionOutput').textContent = latestQuestionText;
+ copyStatus.textContent='질문 목록이 만들어졌습니다.';
+});
+async function copyTextSafe(text){
+ if(!text){copyStatus.textContent='먼저 질문 목록을 만들어 주세요.';return;}
+ try { if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(text);copyStatus.textContent='질문 목록을 복사했습니다.';return;} } catch(e) {}
+ const box=document.createElement('textarea');box.value=text;box.setAttribute('readonly','');box.style.position='fixed';box.style.opacity='0';document.body.appendChild(box);box.select();
+ let ok=false;try{ok=document.execCommand('copy');}catch(e){}box.remove();
+ copyStatus.textContent=ok?'질문 목록을 복사했습니다.':'자동 복사가 제한되어 있어요. 아래 텍스트를 선택해 직접 복사해 주세요.';
+ if(!ok){interviewResult.innerHTML='<label for="manualQuestionCopy">복사용 질문 목록</label><textarea id="manualQuestionCopy" style="min-height:180px"></textarea>';document.getElementById('manualQuestionCopy').value=text;document.getElementById('manualQuestionCopy').focus();document.getElementById('manualQuestionCopy').select();}
+}
+document.getElementById('copyQuestions').addEventListener('click',()=>copyTextSafe(latestQuestionText));
+document.getElementById('downloadQuestions').addEventListener('click',()=>{
+ if(!latestQuestionText){copyStatus.textContent='먼저 질문 목록을 만들어 주세요.';return;}
+ const blob=new Blob(['\ufeff'+latestQuestionText],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='albacheck_면접전_질문목록.txt';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);copyStatus.textContent='질문 목록 텍스트 파일을 저장했습니다.';
+});
+
+
+// Public API proxy integration. API keys remain on the server, never in this HTML.
+async function apiFetchJson(url) {
+  const response = await fetch(url, { headers: { "Accept": "application/json" } });
+  const raw = await response.text();
+  let data;
+  try { data = JSON.parse(raw); } catch { data = { rawText: raw.slice(0, 5000) }; }
+  if (!response.ok) {
+    const msg = data?.error || data?.message || `HTTP ${response.status}`;
+    throw new Error(msg);
+  }
+  return data;
+}
+function safePretty(data) {
+  const pre = document.createElement('pre');
+  pre.style.cssText = 'white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow:auto;background:#f8faff;border:1px solid var(--line);padding:12px;border-radius:10px;font-size:.82rem';
+  pre.textContent = JSON.stringify(data, null, 2);
+  return pre;
+}
+function showApiData(targetId, title, data) {
+  const box = document.getElementById(targetId);
+  box.replaceChildren();
+  const heading = document.createElement('h3');
+  heading.textContent = title;
+  box.appendChild(heading);
+  box.appendChild(safePretty(data));
+}
+document.getElementById('checkApiStatus')?.addEventListener('click', async () => {
+  const status = document.getElementById('apiStatus');
+  status.textContent = '서버 상태 확인 중…';
+  try {
+    const data = await apiFetchJson('/api/health');
+    status.textContent = `서버 연결됨 · 청소년 API 키: ${data.dataGoKrConfigured ? '설정됨' : '미설정'} · KOSIS 키: ${data.kosisConfigured ? '설정됨' : '미설정'}`;
+  } catch (err) {
+    status.textContent = `API 서버에 연결할 수 없습니다. HTML 파일을 더블클릭(file://)해서 열지 말고, 안내에 따라 서버를 실행한 뒤 http://localhost:3000 으로 접속하세요. (${err.message})`;
+  }
+});
+document.getElementById('fetchYouthApi')?.addEventListener('click', async () => {
+  const out = document.getElementById('apiYouthResult');
+  out.textContent = '청소년 조사 API 조회 중…';
+  const params = new URLSearchParams({
+    year: document.getElementById('apiYouthYear').value,
+    targetSn: document.getElementById('apiYouthTarget').value,
+    itemSn: document.getElementById('apiYouthItem').value
+  });
+  try {
+    const data = await apiFetchJson('/api/youth-survey?' + params.toString());
+    showApiData('apiYouthResult', '청소년종합실태조사 API 응답', data);
+  } catch (err) {
+    out.textContent = `조회 실패: ${err.message} 확인 사항: 활용 신청 승인, 인증키 환경변수, 조사 연도·대상 번호·항목 번호를 확인하세요.`;
+  }
+});
+document.getElementById('fetchKosisApi')?.addEventListener('click', async () => {
+  const out = document.getElementById('apiKosisResult');
+  const orgId = document.getElementById('apiKosisOrg').value.trim();
+  const tblId = document.getElementById('apiKosisTable').value.trim();
+  const itmId = document.getElementById('apiKosisItem').value.trim();
+  const start = document.getElementById('apiKosisStart').value;
+  const end = document.getElementById('apiKosisEnd').value;
+  const objL1 = document.getElementById('apiKosisObj').value.trim();
+  if (!orgId || !tblId || !itmId) {
+    out.textContent = '기관 ID, 통계표 ID, 항목 ID를 입력하세요. 이 값은 KOSIS에서 실제로 선택한 통계표의 메타데이터에서 확인해야 합니다.';
+    return;
+  }
+  if (Number(start) > Number(end)) { out.textContent = '시작 연도는 종료 연도보다 클 수 없습니다.'; return; }
+  out.textContent = 'KOSIS 통계 API 조회 중…';
+  const params = new URLSearchParams({ orgId, tblId, itmId, startPrdDe: start, endPrdDe: end, prdSe: 'Y' });
+  if (objL1) params.set('objL1', objL1);
+  try {
+    const data = await apiFetchJson('/api/kosis-statistics?' + params.toString());
+    showApiData('apiKosisResult', 'KOSIS 통계 API 응답', data);
+  } catch (err) {
+    out.textContent = `조회 실패: ${err.message} 확인 사항: KOSIS 공유서비스 키, 표 ID·기관 ID·항목 ID, 분류 ID와 주기를 확인하세요.`;
+  }
+});
+
+</script>
+</body></html>
