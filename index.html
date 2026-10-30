@@ -4,11 +4,90 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>알바체크 AI | 근로조건 확인 도우미</title>
 <style>
-:root{--navy:#172554;--blue:#3157c8;--sky:#eaf1ff;--ink:#202943;--muted:#65708a;--line:#dce3f0;--bg:#f5f7fc;--white:#fff;--green:#087f5b;--yellow:#9a6700;--red:#b42318}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"궁서","궁서체",serif;line-height:1.6}header{background:linear-gradient(120deg,#172554,#3157c8);color:white;padding:32px 18px 38px}.wrap{width:min(1080px,94%);margin:auto}.topline{font-size:.85rem;opacity:.85;letter-spacing:.08em}.hero{display:flex;gap:22px;align-items:center;justify-content:space-between}.hero h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.15;margin:10px 0}.hero p{max-width:690px;color:#e3eaff;margin:12px 0 0}.heroicon{font-size:4.4rem;filter:drop-shadow(0 8px 10px #14265c55)}main{padding:24px 0 52px}.notice{border:1px solid #f0d79a;background:#fff9e8;border-radius:14px;padding:13px 16px;margin-bottom:20px;font-size:.92rem}.layout{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 6px 22px #26365b08;min-width:0}.panel.full{grid-column:1/-1}.panel h2{font-size:1.25rem;margin:0 0 5px;color:var(--navy)}.sub{color:var(--muted);font-size:.9rem;margin:0 0 15px}label{font-weight:700;display:block;margin:12px 0 6px}input,select{color:var(--ink);background:#fff}textarea{display:block;width:100%;min-height:190px;resize:vertical;padding:13px;border:1px solid #cbd5e5;border-radius:12px;font:inherit;color:var(--ink);background:#fcfdff}textarea:focus{outline:3px solid #dce7ff;border-color:var(--blue)}.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.btn{border:0;border-radius:10px;padding:10px 15px;font:inherit;font-weight:700;cursor:pointer}.primary{background:var(--blue);color:white}.secondary{background:var(--sky);color:var(--navy)}.ghost{background:#eef0f5;color:#3f4b64}.btn:hover{filter:brightness(.97)}.resultgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.item{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}.item h3{margin:0 0 4px;font-size:1rem}.status{display:inline-block;border-radius:99px;padding:2px 9px;font-size:.78rem;font-weight:800;margin:2px 0 7px}.confirmed{background:#d9f7e9;color:#086447}.ambiguous{background:#fff0c2;color:#805600}.missing{background:#ffe2df;color:#9f241b}.item p{font-size:.9rem;margin:4px 0;color:#4b5670;overflow-wrap:anywhere}.questionlist{padding-left:20px;margin:8px 0}.questionlist li{margin:5px 0}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:570px}th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#f0f4ff;color:var(--navy)}td{font-size:.92rem}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}.stat{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fbfcff}.stat strong{display:block;font-size:1.8rem;color:var(--blue)}.stat span{font-size:.88rem;color:var(--muted)}.barrow{display:grid;grid-template-columns:minmax(130px,1fr) 3fr 55px;gap:10px;align-items:center;margin:12px 0}.barbg{height:13px;border-radius:20px;background:#e9edf6;overflow:hidden}.bar{height:100%;background:var(--blue);border-radius:20px}.source{font-size:.85rem;color:var(--muted);margin-top:12px}.source a,.resource a{color:#244fc0;text-decoration-thickness:1px;text-underline-offset:3px}.resources{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}.resource{border:1px solid var(--line);border-radius:12px;padding:14px}.resource h3{margin:0 0 5px;font-size:1rem}.resource p{margin:0 0 8px;color:var(--muted);font-size:.9rem}.tag{display:inline-block;background:#eef2ff;color:#3048a2;border-radius:6px;padding:2px 7px;font-size:.76rem;margin-bottom:5px}.small{font-size:.84rem;color:var(--muted)}.hidden{display:none}footer{text-align:center;color:var(--muted);font-size:.84rem;padding:22px}.empty{color:var(--muted);background:#f8faff;border-radius:10px;padding:13px}.question-output{background:#f8faff;border:1px solid var(--line);border-radius:12px;padding:14px;white-space:pre-wrap;overflow-wrap:anywhere}.evidence-note{border-left:4px solid var(--blue);padding:10px 13px;background:#f4f7ff;border-radius:6px}.result-title{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px}@media(max-width:720px){.layout{grid-template-columns:1fr}.panel .layout{grid-template-columns:1fr!important}.panel.full{grid-column:auto}.heroicon{display:none}.stats{grid-template-columns:1fr}.resources{grid-template-columns:1fr}.resultgrid{grid-template-columns:1fr}.barrow{grid-template-columns:120px 1fr 48px;font-size:.86rem}}
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Jua&display=swap');
+:root{
+ --navy:#765044;--blue:#c98568;--sky:#fff0e8;--ink:#684b42;--muted:#9a7c70;
+ --line:#f0d9cc;--bg:#fff8f0;--white:#fffdf9;--green:#7d9b70;--yellow:#d49b4f;--red:#c87569;
+ --peach:#f7c8ad;--pink:#f7dce0;--cream:#fff4df;--brown:#8b604c
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 12% 12%,#fff0e4 0,transparent 34%),radial-gradient(ellipse at 88% 30%,#fce8eb 0,transparent 30%),var(--bg);color:var(--ink);font-family:'Jua','Gaegu',sans-serif;line-height:1.7;position:relative;overflow-x:hidden}
+body:before,body:after{content:"";position:fixed;z-index:-1;pointer-events:none;border-radius:50%;border:2px solid #fff9;box-shadow:inset 5px 5px 12px #fff9, inset -5px -6px 12px #e9cbd955,0 8px 24px #d9b7a522;background:radial-gradient(circle at 30% 25%,#fff 0 4%,#ffffff80 5% 13%,#f7dce055 45%,#d9e8f055 100%)}
+body:before{width:150px;height:150px;left:-55px;top:25%;animation:floatBubble 9s ease-in-out infinite}
+body:after{width:105px;height:105px;right:-35px;top:68%;animation:floatBubble 11s ease-in-out infinite reverse}
+@keyframes floatBubble{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+header{position:relative;overflow:hidden;background:linear-gradient(125deg,#fff0dc 0%,#f9dfd2 48%,#f8e5e8 100%);color:var(--brown);padding:34px 18px 48px;border-bottom:3px solid #f2d8c6}
+header:before,header:after{content:"";position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 32% 25%,#fff 0 5%,#ffffffa8 6% 13%,#f5d9e866 48%,#d8e8ef66 100%);border:2px solid #fff9;box-shadow:inset 4px 4px 10px #fff9,0 5px 20px #cba9a533}
+header:before{width:110px;height:110px;left:5%;top:18px}
+header:after{width:72px;height:72px;right:8%;top:100px}
+.wrap{width:min(1080px,94%);margin:auto;position:relative;z-index:1}
+.topline{font-size:.9rem;color:#a67c68;letter-spacing:.12em}
+.hero{display:flex;gap:22px;align-items:center;justify-content:space-between;position:relative;z-index:1}
+.hero h1{font-size:clamp(2.4rem,6vw,4rem);line-height:1.15;margin:10px 0;color:#805541;text-shadow:2px 3px 0 #fff6}
+.hero p{max-width:690px;color:#9b7161;margin:12px 0 0;font-family:'Gaegu','Jua',sans-serif;font-size:1.3rem}
+.heroicon{font-size:4.8rem;filter:drop-shadow(0 8px 10px #9e735544);background:#fff8;border:2px solid #fff;border-radius:28px;padding:8px 18px;transform:rotate(3deg)}
+.hero-brand{display:flex;align-items:center;gap:14px}
+.hero-mascots{display:flex;align-items:center;gap:8px;font-size:3.5rem;filter:drop-shadow(0 5px 7px #a77b6044)}
+main{padding:30px 0 58px}
+.notice{border:1px solid #f0d6a8;background:#fff6df;border-radius:20px;padding:15px 19px;margin-bottom:20px;font-size:.98rem;box-shadow:0 5px 16px #c89b6b12}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.panel{background:#fffdf9eF;border:2px solid #f2dfd2;border-radius:24px;padding:22px;box-shadow:0 9px 24px #9d735414;min-width:0;position:relative;overflow:hidden}
+.panel:before{content:"";position:absolute;width:78px;height:78px;right:-32px;top:-34px;border-radius:50%;background:#fbe5e4;opacity:.55}
+.panel.full{grid-column:1/-1}
+.panel h2{font-size:1.45rem;margin:0 0 5px;color:#875b48;position:relative}
+.sub{color:var(--muted);font-family:'Gaegu','Jua',sans-serif;font-size:1.12rem;margin:0 0 15px}
+label{font-weight:700;display:block;margin:12px 0 6px;color:#805b4b}
+input,select{color:var(--ink);background:#fff}
+input,select,textarea{border:1.5px solid #ead5c8!important;border-radius:14px!important}
+input:focus,select:focus,textarea:focus{outline:3px solid #f8e2d6;border-color:#d69c80!important}
+textarea{display:block;width:100%;min-height:190px;resize:vertical;padding:13px;font:inherit;color:var(--ink);background:#fffaf6}
+textarea:focus{outline:3px solid #f8e2d6}
+.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+.btn{border:0;border-radius:999px;padding:11px 18px;font:inherit;font-weight:700;cursor:pointer;transition:transform .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 5px 12px #a77b6026;filter:brightness(1.02)}
+.primary{background:linear-gradient(135deg,#e9ae83,#d98d73);color:white}
+.secondary{background:#fbe8dc;color:#8a5e4c;border:1px solid #f0d4c3}
+.ghost{background:#f4eeee;color:#856d65}
+.resultgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.item{border:1px solid var(--line);border-radius:16px;padding:13px;background:#fffaf6}
+.item h3{margin:0 0 4px;font-size:1.05rem;color:#805b4b}
+.status{display:inline-block;border-radius:99px;padding:3px 10px;font-size:.82rem;font-weight:800;margin:2px 0 7px}
+.confirmed{background:#e4f0df;color:#52784a}.ambiguous{background:#fff0cc;color:#946c25}.missing{background:#fbe1df;color:#a4544c}
+.item p{font-size:.94rem;margin:4px 0;color:#806c63;overflow-wrap:anywhere}
+.questionlist{padding-left:20px;margin:8px 0}.questionlist li{margin:5px 0}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:570px}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#fff0e6;color:#805b4b}td{font-size:.94rem}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.stat{border:1px solid var(--line);border-radius:17px;padding:14px;background:#fff8f2}
+.stat strong{display:block;font-size:1.8rem;color:#c98568}.stat span{font-size:.92rem;color:var(--muted)}
+.barrow{display:grid;grid-template-columns:minmax(130px,1fr) 3fr 55px;gap:10px;align-items:center;margin:12px 0}
+.barbg{height:13px;border-radius:20px;background:#f4e9e2;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,#e9b17f,#d98d83);border-radius:20px}
+.source{font-size:.88rem;color:var(--muted);margin-top:12px}
+.source a,.resource a{color:#b8755d;text-decoration-thickness:1px;text-underline-offset:3px}
+.resources{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+.resource{border:1px solid var(--line);border-radius:17px;padding:15px;background:#fffaf6}
+.resource h3{margin:0 0 5px;font-size:1.05rem;color:#805b4b}.resource p{margin:0 0 8px;color:var(--muted);font-size:.93rem}
+.tag{display:inline-block;background:#fbe8dc;color:#9a6954;border-radius:99px;padding:3px 9px;font-size:.8rem;margin-bottom:5px}
+.small{font-size:.88rem;color:var(--muted)}.hidden{display:none}
+footer{text-align:center;color:#a17e70;font-size:.9rem;padding:28px 18px;background:linear-gradient(120deg,#fff0dc,#f9e4e5);border-top:2px solid #f1d9ca}
+.empty{color:var(--muted);background:#fff5ee;border-radius:14px;padding:14px}
+.question-output{background:#fff8f2;border:1px solid var(--line);border-radius:15px;padding:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+.evidence-note{border-left:4px solid #d99a7c;padding:10px 13px;background:#fff4eb;border-radius:8px}
+.result-title{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+.bubble-decor{position:fixed;z-index:0;pointer-events:none;border-radius:50%;border:2px solid #fff9;background:radial-gradient(circle at 30% 25%,#fff 0 5%,#ffffffa8 6% 15%,#f4dce866 48%,#dcecf266 100%);box-shadow:inset 4px 4px 10px #fff9,0 7px 20px #cba9a522;opacity:.45}
+.bubble-one{width:64px;height:64px;top:42%;left:3%;animation:floatBubble 8s ease-in-out infinite}
+.bubble-two{width:92px;height:92px;top:76%;right:4%;animation:floatBubble 10s ease-in-out infinite reverse}
+.malang-bubble{position:fixed;z-index:0;pointer-events:none;right:4%;top:28%;width:94px;height:84px;border-radius:48% 52% 45% 55%;background:radial-gradient(circle at 32% 25%,#fff 0 7%,#fff9 8% 18%,#f7e5e9a8 60%,#e4eaf0a8 100%);border:2px solid #fff;box-shadow:inset 4px 4px 12px #fff,0 7px 20px #cba9a522;opacity:.42;display:grid;place-items:center;color:#b88c89;font-size:1.1rem;transform:rotate(-8deg)}
+.malang-bubble:after{content:"•ᴗ•";font-family:Arial,sans-serif;font-size:1rem}
+@media(max-width:720px){.layout{grid-template-columns:1fr}.panel .layout{grid-template-columns:1fr!important}.panel.full{grid-column:auto}.heroicon{display:none}.hero-mascots{font-size:2.7rem}.stats{grid-template-columns:1fr}.resources{grid-template-columns:1fr}.resultgrid{grid-template-columns:1fr}.barrow{grid-template-columns:120px 1fr 48px;font-size:.86rem}.malang-bubble{right:2%;top:17%;width:65px;height:60px;opacity:.25}.bubble-two{display:none}}
 </style>
 </head>
 <body>
-<header><div class="wrap"><div class="topline">YOUTH WORK CHECK · PROTOTYPE</div><div class="hero"><div><h1>알바체크 AI</h1><p>아르바이트 공고의 근로조건을 한눈에 확인하고, 불명확하거나 빠진 정보를 면접 전에 질문할 수 있도록 돕는 웹앱입니다.</p></div><div class="heroicon" aria-hidden="true">🧾</div></div></div></header>
+<header><div class="wrap"><div class="topline">GORANI HOUSE MALANG · YOUTH WORK CHECK</div><div class="hero"><div><div class="hero-brand"><h1>고라니집말랑</h1></div><p>고라니와 말랑이가 함께 만드는, 청소년을 위한 포근한 근로조건 안내소</p></div><div class="hero-mascots" aria-hidden="true"><span>🦌</span><span>🏡</span><span>🫧</span></div></div></div></header>
+<div class="bubble-decor bubble-one" aria-hidden="true"></div><div class="bubble-decor bubble-two" aria-hidden="true"></div><div class="malang-bubble" aria-hidden="true">말랑이</div>
 <main class="wrap">
 <div class="notice"><strong>프로토타입 안내</strong> 이 페이지는 실제 생성형 AI API에 연결되어 있지 않습니다. 키워드와 규칙으로 공고 문구를 분류하므로 결과를 참고용으로만 사용하고, 최종 조건은 사업주와 근로계약서로 확인하세요. 정보가 없다는 사실만으로 위법이라고 판단하지 않습니다.</div>
 <div class="layout">
@@ -68,7 +147,7 @@
   <p class="small"><strong>주의:</strong> API는 데이터를 조회할 뿐, 이 웹앱의 법적 판단을 대신하지 않습니다. 청소년 실태조사 마이크로데이터는 과거 조사값일 수 있습니다. 응답의 조사 연도·항목명·단위·기준일을 확인한 뒤 해석하세요.</p>
 </section>
 
-</div></main><footer>알바체크 AI · 교육용 웹앱 프로토타입 · 법률 판단이나 노무 상담을 대체하지 않습니다.</footer>
+</div></main><footer>🦌 고라니집말랑 🏡 · 말랑이와 함께 꼼꼼하게 근로조건 확인하기 · 교육용 웹앱 프로토타입</footer>
 <script>
 
 const moneyFmt=n=>Math.round(n).toLocaleString('ko-KR')+'원';
