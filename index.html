@@ -70,7 +70,7 @@
       <label for="apiKosisItem">항목 ID (itmId)</label><input id="apiKosisItem" type="text" placeholder="공식 표의 항목 ID" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
       <label for="apiKosisStart">시작 연도</label><input id="apiKosisStart" type="number" value="2020" min="1900" max="2100" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
       <label for="apiKosisEnd">종료 연도</label><input id="apiKosisEnd" type="number" value="2025" min="1900" max="2100" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
-      <label for="apiKosisObj">분류 ID (objL1, 선택)</label><input id="apiKosisObj" type="text" placeholder="표에서 요구하는 분류 ID (선택)" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
+      <label for="apiKosisObj">분류 ID (objL1, 필수)</label><input id="apiKosisObj" type="text" required placeholder="KOSIS 표의 분류코드(objL1)" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
       <div class="btnrow"><button class="btn primary" id="fetchKosisApi">KOSIS 통계 API 조회</button></div>
       <p class="small"><a href="https://kosis.kr/openapi/index/index.jsp" target="_blank" rel="noopener noreferrer">KOSIS 공유서비스 안내 ↗</a> · <a href="https://kosis.kr/" target="_blank" rel="noopener noreferrer">통계표 찾기 ↗</a></p>
     </article>
@@ -235,8 +235,8 @@ document.getElementById('fetchKosisApi')?.addEventListener('click', async () => 
   const start = document.getElementById('apiKosisStart').value;
   const end = document.getElementById('apiKosisEnd').value;
   const objL1 = document.getElementById('apiKosisObj').value.trim();
-  if (!orgId || !tblId || !itmId) {
-    out.textContent = '기관 ID, 통계표 ID, 항목 ID를 입력하세요. 이 값은 KOSIS에서 실제로 선택한 통계표의 메타데이터에서 확인해야 합니다.';
+  if (!orgId || !tblId || !itmId || !objL1) {
+    out.textContent = '기관 ID, 통계표 ID, 항목 ID, 분류 ID(objL1)를 모두 입력하세요. KOSIS 공식 통계표의 메타데이터에서 확인해야 합니다.';
     return;
   }
   if (Number(start) > Number(end)) { out.textContent = '시작 연도는 종료 연도보다 클 수 없습니다.'; return; }
