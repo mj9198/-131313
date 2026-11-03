@@ -269,13 +269,75 @@ footer{
  .bubble-two{top:72%;right:2%;width:52px;height:52px}
  .malang-bubble{top:48%;right:6%;width:35px;height:35px}
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+html,body{margin:0;min-height:100%;font-family:'Gowun Dodum',sans-serif;color:#514333;background:#e9dfca}
+body{background:linear-gradient(180deg,#344b3e 0,#60704e 360px,#8c8b63 540px,#e8dfcc 760px,#eee5d3 100%);background-attachment:fixed;overflow-x:hidden}
+body:before,body:after{display:none!important}
+.storybook-header{padding:0!important;margin:0;background:transparent!important;border:0!important;overflow:hidden;position:relative}
+.storybook-header:before,.storybook-header:after{display:none!important}
+.forest-art{height:clamp(330px,37vw,480px);width:100%;overflow:hidden;background:#30483b;position:relative}
+.forest-art:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#152a2b18,transparent 55%,#24382b66);pointer-events:none}
+.forest-art svg{display:block;width:100%;height:100%}
+.forest-brand{position:absolute;top:25px;left:50%;transform:translateX(-50%);width:min(600px,90%);text-align:center}
+.sign{display:inline-block;padding:12px 38px;background:repeating-linear-gradient(0deg,#c69b68 0 9px,#d5ad7b 10px 17px);border:5px solid #6a472d;border-radius:9px;box-shadow:inset 0 0 0 2px #edcf9d,0 7px #4a3526,0 12px 22px #17261e66;transform:rotate(-1deg)}
+.sign h1{font:800 clamp(2rem,4.5vw,3.2rem)/1.15 'Nanum Myeongjo',serif;color:#63452e;margin:0}
+.sign span{display:block;font-size:.88rem;color:#6d4c30;margin-top:5px}
+.forest-brand>p{font:700 1rem 'Nanum Myeongjo',serif;color:#fff0ce;text-shadow:0 2px 5px #1c2b20;margin:18px 0}
+.deer-hop{transform-box:fill-box;transform-origin:center;animation:deerHop 4.8s ease-in-out infinite}
+.mouse-dash{transform-box:fill-box;transform-origin:center;animation:mouseDash 3.7s ease-in-out infinite}
+@keyframes deerHop{0%,100%{translate:0 0}50%{translate:14px -8px}}
+@keyframes mouseDash{0%,100%{translate:0 0}50%{translate:-17px -4px}}
+.wrap{width:min(1160px,94%);margin-inline:auto;position:relative;z-index:1}
+main{padding:30px 0 76px}
+.notice{background:linear-gradient(#fff4dc,#efdfbd);color:#624a32;border:3px solid #956b43;border-radius:13px;padding:17px 22px;margin:0 0 24px;box-shadow:0 5px #67482f,0 12px 22px #2f34251f,inset 0 2px #fff9;font-size:1rem;line-height:1.8}
+.layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:start}
+.panel{position:relative;isolation:isolate;overflow:hidden;min-width:0;padding:17px;border:3px solid #714c30;border-radius:11px;background:repeating-linear-gradient(1deg,transparent 0 12px,#ffffff12 13px,#51351b12 15px),linear-gradient(90deg,#a8784d,#d0a171 10%,#b98758 50%,#d1a272 92%,#986941);box-shadow:0 5px #5c402a,0 12px 24px #2e30251f,inset 0 2px #f1d5a8,inset 0 -3px #7a5437}
+.panel:before{content:"";position:absolute;z-index:-1;inset:9px;border-radius:6px;background:repeating-linear-gradient(0deg,transparent 0 28px,#9a75401a 29px,#fff9 30px,#fff0 32px),linear-gradient(145deg,#fff5dc,#f6e6c5 55%,#eedab4);border:1px solid #c9a779;box-shadow:inset 0 0 0 2px #fff9}
+.panel>*{position:relative;z-index:1}
+.panel h2{display:table;max-width:100%;margin:0 0 12px;padding:9px 22px;color:#fff0cf;font:800 clamp(1.15rem,2vw,1.45rem)/1.35 'Nanum Myeongjo',serif;text-shadow:0 1px 1px #52351f;background:repeating-linear-gradient(0deg,transparent 0 9px,#ffffff13 10px,#51341b18 11px),linear-gradient(#9b7049,#70492f);border:2px solid #5d3e29;border-radius:6px;box-shadow:inset 0 2px #d5b083,0 3px #593c28,0 5px 10px #5a3d2722}
+.panel h2:before{content:"✦ ";color:#e9cb91;font-size:.8em}
+.panel h3{font-family:'Nanum Myeongjo',serif;color:#68492f;font-weight:800}
+.sub{font:1rem/1.75 'Gowun Dodum',sans-serif;color:#796348;margin:0 0 16px}
+label{font:700 1rem 'Gowun Dodum',sans-serif;color:#654a31;display:block;margin:13px 0 7px}
+input,select,textarea{font:1rem/1.65 'Gowun Dodum',sans-serif!important;color:#4e4032!important;background:#fffaf0!important;border:1.5px solid #c9ae83!important;border-radius:8px!important;box-shadow:inset 0 1px 3px #6b4c2610}
+input,select{min-height:44px}textarea{padding:13px 15px!important}
+input:focus,select:focus,textarea:focus{outline:3px solid #d7bd8d!important;border-color:#946a43!important}
+.btn{font:700 1rem 'Gowun Dodum',sans-serif!important;border-radius:7px!important;padding:11px 17px!important;border:1.5px solid #765034!important;box-shadow:0 3px #62452e}
+.primary{background:linear-gradient(#9d744b,#765034)!important;color:#fff4d9!important}
+.secondary{background:linear-gradient(#f5e5c5,#dfc49a)!important;color:#65492e!important}
+.ghost{background:linear-gradient(#fff8e9,#eadfc9)!important;color:#725a3c!important}
+.item,.resource,.stat,.question-output{background:#fff8e9!important;border:1px solid #d4bd94!important;border-radius:9px!important}
+.item h3,.resource h3{color:#65492f}
+.item p,.resource p,.small,.source{font-family:'Gowun Dodum',sans-serif;color:#806d55;line-height:1.7;font-size:.96rem}
+th{background:#e7d5ae!important;color:#5f472f!important}td{background:#fff8e9}
+.barbg{background:#e5d7b8}.bar{background:linear-gradient(90deg,#9e754a,#c19b62)}.stat strong{color:#8a5e37}
+.empty{background:#fff6e4;border:1px dashed #c8a97c;border-radius:9px;padding:16px;color:#8a7455}
+.evidence-note{background:#f7e9cc;border-left-color:#a77b4f;color:#6e5437}
+footer{background:linear-gradient(#52634a,#30473a)!important;color:#f6e9c9!important;border:0!important;padding:28px 18px}
+.bubble-decor,.malang-bubble{position:fixed;z-index:12;cursor:pointer;pointer-events:auto;border:1px solid #fff;background:radial-gradient(circle at 28% 24%,#fff 0 4%,#ffffffd9 5% 11%,#e7edf0a8 25%,#e8d9e880 55%,#d5e5df80 78%,#ffffff30 100%);box-shadow:inset 2px 2px 9px #fff,inset -3px -4px 8px #9eb5ad44,0 5px 15px #514a3730;opacity:.65;backdrop-filter:blur(1px)}
+.bubble-one{width:46px;height:46px;top:30%;left:3%;animation:floatBubble 7s ease-in-out infinite}
+.bubble-two{width:64px;height:64px;top:70%;right:3%;animation:floatBubble 9s ease-in-out infinite reverse}
+.malang-bubble{right:12%;top:52%;width:48px;height:48px;border-radius:50%;font-size:0}
+.bubble-pop{animation:bubblePop .36s ease-out forwards!important}
+@media(max-width:760px){.forest-art{height:310px}.forest-brand{top:18px}.sign{padding:10px 22px}.layout{grid-template-columns:1fr;gap:17px}main{padding:20px 0 48px}.panel{padding:13px}.panel:before{inset:7px}.panel h2{font-size:1.1rem;padding:8px 13px}.notice{padding:14px 16px;font-size:.94rem}.bubble-one{top:34%;left:2%;width:35px;height:35px}.bubble-two{top:77%;right:2%;width:48px;height:48px}.malang-bubble{top:55%;right:5%;width:37px;height:37px}.stats,.resources,.resultgrid{grid-template-columns:1fr}.barrow{grid-template-columns:110px 1fr 48px}}
+@media(prefers-reduced-motion:reduce){.deer-hop,.mouse-dash,.bubble-one,.bubble-two,.malang-bubble{animation:none!important}}
 </style>
 </head>
 <body>
-<header class="storybook-header">
-  <img class="storybook-art" src="./assets/woodland-header.webp" alt="달빛이 비치는 숲속의 작은 오두막과 꽃, 고라니와 생쥐가 있는 동화책 풍경">
-  <h1 class="sr-only">일하쥐, made by 고라니집말랑이</h1>
-</header>
+<header class="storybook-header"><div class="forest-art" aria-hidden="true">
+<svg viewBox="0 0 1600 460" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="s" x2="0" y2="1"><stop stop-color="#263d3b"/><stop offset=".65" stop-color="#687657"/><stop offset="1" stop-color="#a69a70"/></linearGradient><linearGradient id="w" x2="0" y2="1"><stop stop-color="#f6e5b8"/><stop offset="1" stop-color="#d6bb83"/></linearGradient><linearGradient id="b"><stop stop-color="#47382c"/><stop offset=".5" stop-color="#99734d"/><stop offset="1" stop-color="#40372b"/></linearGradient></defs>
+<rect width="1600" height="460" fill="url(#s)"/><circle cx="260" cy="90" r="47" fill="#fff0c3"/><circle cx="283" cy="72" r="45" fill="#31483e"/>
+<g fill="#263e37"><path d="M0 400L90 70 180 400ZM150 400L260 30 370 400ZM1220 400L1330 35 1440 400ZM1400 400L1500 70 1600 400Z"/></g>
+<g fill="#52694b"><circle cx="50" cy="30" r="100"/><circle cx="170" cy="20" r="100"/><circle cx="1420" cy="15" r="115"/><circle cx="1550" cy="45" r="110"/><circle cx="300" cy="5" r="70"/></g>
+<g fill="url(#b)"><path d="M-25 0Q75 160 40 460H-25Z"/><path d="M100 0Q55 180 120 460H180Q130 220 170 0Z"/><path d="M1430 0Q1480 160 1400 460H1330Q1380 220 1360 0Z"/><path d="M1550 0Q1500 170 1570 460H1620V0Z"/></g>
+<path d="M0 340Q350 280 620 340T1150 335T1600 340V460H0Z" fill="#526747"/><path d="M770 460Q720 390 790 335Q830 290 820 260Q900 340 875 390Q850 425 930 460Z" fill="#b4a078"/>
+<g><path d="M590 245L810 95 1030 245V380H590Z" fill="url(#w)" stroke="#674c35" stroke-width="8"/><path d="M545 250L805 65 1065 250L1030 270L805 115L580 270Z" fill="#80583c" stroke="#4e3a2b" stroke-width="8"/><path d="M950 155V80H1000V205Z" fill="#936c4d" stroke="#513d2e" stroke-width="7"/><rect x="660" y="270" width="68" height="75" rx="4" fill="#f0c76f" stroke="#6c5037" stroke-width="8"/><path d="M694 270V345M660 307H728" stroke="#6c5037" stroke-width="7"/><rect x="880" y="270" width="68" height="75" rx="4" fill="#f0c76f" stroke="#6c5037" stroke-width="8"/><path d="M914 270V345M880 307H948" stroke="#6c5037" stroke-width="7"/><path d="M770 380V320Q770 275 815 275Q860 275 860 320V380Z" fill="#985c43" stroke="#684531" stroke-width="8"/></g>
+<g class="deer-hop" transform="translate(1130 285)"><path d="M-55 40Q-45 0 10 0Q55 0 62 32L45 60Q-15 72-55 40Z" fill="#bd8956" stroke="#694c35" stroke-width="6"/><path d="M40 15Q60-15 82-25L100-12Q88 12 62 28Z" fill="#c99461" stroke="#694c35" stroke-width="5"/><path d="M76-24Q80-53 62-66M83-24Q108-50 108-65M62-66L55-75M108-65L116-74" fill="none" stroke="#96714c" stroke-width="6" stroke-linecap="round"/><path d="M-35 45L-45 95M-8 52L-5 98M35 48L48 94M55 42L68 83" stroke="#76543a" stroke-width="9" stroke-linecap="round"/><circle cx="83" cy="-5" r="4" fill="#30271f"/><g fill="#f4dfb7"><circle cx="-25" cy="20" r="5"/><circle cx="0" cy="12" r="5"/><circle cx="23" cy="25" r="5"/></g></g>
+<g class="mouse-dash" transform="translate(470 380)"><path d="M-25 15Q-65 8-80 35Q-90 50-108 40" fill="none" stroke="#8c6b58" stroke-width="5" stroke-linecap="round"/><ellipse cx="0" cy="18" rx="30" ry="22" fill="#b99a83" stroke="#705745" stroke-width="5"/><circle cx="24" cy="0" r="19" fill="#c6a48c" stroke="#705745" stroke-width="5"/><circle cx="12" cy="-16" r="10" fill="#d4b2a0" stroke="#705745" stroke-width="4"/><circle cx="31" cy="-3" r="3" fill="#30271f"/><path d="M-8 35l-8 16m26-13l6 14" stroke="#705745" stroke-width="5" stroke-linecap="round"/></g>
+<g stroke="#9b9c6a" stroke-width="5" fill="none"><path d="M80 460q-12-80 20-125m20 125q22-85 5-120m1370 120q-12-80 20-125m20 125q22-85 5-120M300 460q-5-55 24-85m980 85q-5-55 24-85"/></g><g fill="#e4c58e"><circle cx="520" cy="375" r="11"/><circle cx="550" cy="405" r="8"/><circle cx="1080" cy="375" r="12"/><circle cx="1120" cy="405" r="9"/><circle cx="380" cy="410" r="9"/><circle cx="1230" cy="410" r="11"/></g>
+</svg></div><div class="forest-brand"><div class="sign"><h1>일하쥐 🐭</h1><span>made by 고라니집말랑이</span></div><p>달빛 숲속 오두막에서 시작하는 안전한 아르바이트 길잡이</p></div></header>
 <button class="bubble-decor bubble-one" type="button" aria-label="비눗방울 터뜨리기"></button><button class="bubble-decor bubble-two" type="button" aria-label="비눗방울 터뜨리기"></button><button class="malang-bubble" type="button" aria-label="말랑이 비눗방울 터뜨리기">말랑이</button>
 <main class="wrap">
 <div class="notice"><strong>프로토타입 안내</strong> 이 페이지는 실제 생성형 AI API에 연결되어 있지 않습니다. 키워드와 규칙으로 공고 문구를 분류하므로 결과를 참고용으로만 사용하고, 최종 조건은 사업주와 근로계약서로 확인하세요. 정보가 없다는 사실만으로 위법이라고 판단하지 않습니다.</div>
