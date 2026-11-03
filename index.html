@@ -136,10 +136,110 @@ footer{background:linear-gradient(180deg,#354f40,#243e35);color:#f1e6cd;border:0
 @keyframes bubblePop{0%{transform:scale(1);opacity:.65}35%{transform:scale(1.45);opacity:.95}100%{transform:scale(.05);opacity:0}}
 @keyframes floatBubble{0%,100%{translate:0 0}50%{translate:8px -22px}}
 @media(max-width:720px){.hero-mascots{display:none}.forest-scene{height:105px;margin-top:14px}.forest-scene span{font-size:2.2rem}.forest-scene .cottage{font-size:3.7rem}.bubble-two{display:none}.malang-bubble{right:5%;top:210px;width:60px;height:56px}.bubble-one{left:2%;top:350px;width:48px;height:48px}}
+
+/* Painted picture-book woodland: no emoji scenery, no flat green banner */
+header{padding:0 0 24px;background:#eee4cf;color:#514536;border:0;overflow:hidden}
+header:before,header:after{display:none}
+header .wrap{width:100%;max-width:none}
+.hero{width:min(1080px,94%);margin:0 auto;padding:34px 0 20px;align-items:center}
+.hero h1{font-family:'Jua',sans-serif;color:#5b4735;text-shadow:1px 2px 0 #fff8;font-size:clamp(2.7rem,6vw,4.4rem)}
+.hero p{font-family:'Gowun Dodum',sans-serif;color:#6e604d;font-size:1.08rem;line-height:1.75}
+.topline{font-family:'Gowun Dodum',sans-serif;color:#8a7659;letter-spacing:.02em;font-size:.92rem}
+.madeby{color:#8b7960;font-size:.88rem}
+.hero-mascots{display:none}
+.forest-scene{width:100%;max-width:none;height:auto;aspect-ratio:1200/410;margin:0;display:block;padding:0;border-radius:0;overflow:hidden;background:#d9d0b5;box-shadow:inset 0 -18px 30px #443d2920}
+.forest-scene svg{display:block;width:100%;height:100%}
+.forest-scene .scene-caption{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);padding:5px 15px;border-radius:99px;background:#fff8e8d9;color:#6f6049;font: .86rem 'Gowun Dodum',sans-serif;white-space:nowrap;box-shadow:0 3px 12px #392f1e22}
+body{background:#f4eedf;color:#51483b}
+main{padding-top:28px}
+.notice,.panel{background:#fffaf0}
+.panel{border-color:#e5dac2;box-shadow:0 8px 24px #6b553016}
+.panel h2{color:#53664d}
+.bubble-decor,.malang-bubble{position:fixed;z-index:8;cursor:pointer;border:1px solid #fff;background:radial-gradient(circle at 28% 25%,#fff 0 4%,#ffffffd9 5% 11%,#e7edf0a8 25%,#e8d9e880 55%,#d5e5df80 78%,#ffffff30 100%);box-shadow:inset 2px 2px 9px #fff, inset -3px -4px 8px #9eb5ad44,0 5px 15px #514a3730;opacity:.7;backdrop-filter:blur(1px);padding:0;appearance:none}
+.bubble-one{width:44px;height:44px;top:28%;left:3%;animation:floatBubble 7s ease-in-out infinite}
+.bubble-two{width:62px;height:62px;top:66%;right:3%;animation:floatBubble 9s ease-in-out infinite reverse}
+.malang-bubble{position:fixed;right:10%;top:40%;width:54px;height:54px;border-radius:50%;font-size:0;transform:none;animation:floatBubble 8s ease-in-out infinite}
+.malang-bubble:after{content:"";position:absolute;top:18%;left:23%;width:13px;height:8px;border-radius:50%;background:#fff;filter:blur(1px)}
+.bubble-pop{animation:bubblePop .36s ease-out forwards!important}
+@keyframes floatBubble{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(9px,-17px,0)}}
+@keyframes bubblePop{0%{transform:scale(1);opacity:.75}45%{transform:scale(1.5);opacity:.9}100%{transform:scale(.05);opacity:0}}
+@media(max-width:720px){.hero{padding:25px 0 16px}.forest-scene{aspect-ratio:800/430}.forest-scene .scene-caption{font-size:.72rem;bottom:7px}.bubble-one{top:36%;left:2%}.bubble-two{top:72%;right:2%}.malang-bubble{top:48%;right:5%}}
 </style>
 </head>
 <body>
-<header><div class="wrap"><div class="topline">청소년을 위한 포근한 근로조건 안내소</div><div class="hero"><div><div class="hero-brand"><h1>일하쥐🐭</h1></div><p>숲속 작은 집에서 고라니와 쥐가 함께 알려주는 똑똑한 알바 체크!</p><span class="madeby">made by 고라니집말랑이</span></div><div class="hero-mascots" aria-hidden="true"><span>🌲</span><span>🏡</span><span>🦌</span><span>🐭</span></div></div><div class="forest-scene" aria-label="숲속 작은 집과 동물들"><span>🌲</span><span>🍄</span><span class="cottage">🏡</span><span class="deer">🦌</span><span class="mouse">🐭</span><span>🌼</span><span>🌳</span></div></div></header>
+<header>
+<div class="wrap">
+ <div class="hero"><div><div class="topline">숲속 작은 집에서 시작하는 똑똑한 알바생활</div><div class="hero-brand"><h1>일하쥐🐭</h1></div><p>고라니와 작은 친구들이 함께 살펴보는 청소년 근로조건 안내소</p><span class="madeby">made by 고라니집말랑이</span></div></div>
+ <div class="forest-scene" role="img" aria-label="달빛 아래 버섯과 꽃이 핀 숲속 작은 집, 고라니와 생쥐가 함께 있는 동화책 풍경">
+ <svg viewBox="0 0 1200 410" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+ <defs>
+  <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#536b78"/><stop offset=".55" stop-color="#a8a58a"/><stop offset="1" stop-color="#d8c99d"/></linearGradient>
+  <linearGradient id="hill" x2="0" y2="1"><stop stop-color="#718064"/><stop offset="1" stop-color="#354f3c"/></linearGradient>
+  <linearGradient id="roof" x2="0" y2="1"><stop stop-color="#9b6848"/><stop offset="1" stop-color="#63432f"/></linearGradient>
+  <linearGradient id="wall" x2="0" y2="1"><stop stop-color="#f7e7c6"/><stop offset="1" stop-color="#d8bd8e"/></linearGradient>
+  <radialGradient id="moon"><stop stop-color="#fff5c8"/><stop offset="1" stop-color="#e8d59a"/></radialGradient>
+  <filter id="soft"><feGaussianBlur stdDeviation="8"/></filter>
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="8"/><feColorMatrix values="0 0 0 0 .45 0 0 0 0 .39 0 0 0 0 .28 0 0 0 .11 0"/></filter>
+ </defs>
+ <rect width="1200" height="410" fill="url(#sky)"/>
+ <circle cx="990" cy="72" r="48" fill="#f7e8b7" opacity=".24" filter="url(#soft)"/><circle cx="990" cy="72" r="31" fill="url(#moon)"/>
+ <g fill="#e9e2c9" opacity=".45"><path d="M0 85Q90 20 180 72T360 62T540 70T720 45T900 72T1200 45V0H0Z"/><path d="M0 126Q120 76 250 116T510 106T760 120T1000 95T1200 110V75Q1050 52 900 90T600 86T300 94T0 102Z" opacity=".4"/></g>
+ <path d="M0 230Q130 150 280 224T570 210T850 205T1200 185V410H0Z" fill="#5c6d51"/>
+ <path d="M0 270Q170 205 330 266T660 245T940 250T1200 220V410H0Z" fill="url(#hill)"/>
+ <!-- distant fir trees -->
+ <g fill="#344f45" opacity=".9">
+  <path d="M15 270L78 95L141 270Z M80 270L145 112L210 270Z M990 260L1050 90L1110 260Z M1060 260L1125 115L1190 260Z"/>
+  <path d="M-25 310L40 150L105 310Z M180 290L238 130L296 290Z M890 290L950 125L1010 290Z"/>
+ </g>
+ <g stroke="#71806a" stroke-width="4" opacity=".7"><path d="M78 150V285M145 160V285M1050 135V280M1125 150V280M40 190V320M238 170V300M950 165V300"/></g>
+ <!-- old broad trees framing the cottage -->
+ <g>
+  <path d="M75 410Q112 300 94 190Q70 95 135 45Q154 130 177 175Q190 250 162 410Z" fill="#6b523c"/>
+  <path d="M108 410Q130 300 120 190Q111 105 137 67" fill="none" stroke="#a17b56" stroke-width="12" opacity=".6"/>
+  <path d="M1100 410Q1065 300 1090 190Q1110 95 1055 38Q1030 120 1005 175Q990 250 1020 410Z" fill="#6b523c"/>
+  <path d="M1070 410Q1040 280 1060 170Q1070 100 1055 65" fill="none" stroke="#a17b56" stroke-width="12" opacity=".55"/>
+  <g fill="#667d59"><circle cx="80" cy="82" r="72"/><circle cx="160" cy="72" r="74"/><circle cx="35" cy="150" r="68"/><circle cx="1130" cy="80" r="82"/><circle cx="1040" cy="66" r="80"/><circle cx="1170" cy="160" r="70"/></g>
+  <g fill="#9a9c70" opacity=".75"><circle cx="68" cy="58" r="28"/><circle cx="143" cy="43" r="32"/><circle cx="1080" cy="50" r="34"/><circle cx="1150" cy="120" r="30"/></g>
+ </g>
+ <!-- cottage shadow -->
+ <ellipse cx="615" cy="340" rx="210" ry="28" fill="#273c2c" opacity=".35"/>
+ <!-- cottage -->
+ <g>
+  <path d="M445 222Q455 160 520 145H715Q770 158 786 220V338H445Z" fill="url(#wall)" stroke="#a7835e" stroke-width="5"/>
+  <path d="M414 226Q470 120 605 116Q738 117 814 226Q799 239 780 236L744 199Q700 169 605 168Q500 170 456 237Z" fill="url(#roof)" stroke="#5f4431" stroke-width="6"/>
+  <path d="M468 220Q540 177 611 178Q712 174 766 222" fill="none" stroke="#c18b5b" stroke-width="7" opacity=".6"/>
+  <path d="M740 155V105Q741 91 756 91H778V180" fill="#a98a6a" stroke="#70553e" stroke-width="5"/>
+  <path d="M746 109H775" stroke="#e8d8b6" stroke-width="5"/>
+  <rect x="500" y="244" width="57" height="63" rx="6" fill="#6c533b"/><rect x="506" y="250" width="45" height="51" fill="#f3c96d"/><path d="M528 250V301M506 276H551" stroke="#805d3c" stroke-width="5"/>
+  <rect x="668" y="244" width="57" height="63" rx="6" fill="#6c533b"/><rect x="674" y="250" width="45" height="51" fill="#f3c96d"/><path d="M696 250V301M674 276H719" stroke="#805d3c" stroke-width="5"/>
+  <path d="M590 338V278Q590 252 620 252Q650 252 650 278V338Z" fill="#9b5a43" stroke="#754533" stroke-width="4"/><circle cx="638" cy="302" r="4" fill="#f2d99e"/>
+  <path d="M430 230Q445 215 458 234" fill="none" stroke="#ead3aa" stroke-width="9"/>
+ </g>
+ <!-- flower beds and grasses -->
+ <g stroke-linecap="round" fill="none"><path d="M0 380Q90 330 180 380T360 370T540 380T720 370T900 380T1200 365" stroke="#a3a36d" stroke-width="7"/><path d="M230 400l-8-45m8 45l14-36m530 35l-6-48m6 48l17-39m250 40l-8-50" stroke="#657b4f" stroke-width="5"/></g>
+ <g fill="#e7b5a5"><circle cx="210" cy="344" r="7"/><circle cx="225" cy="355" r="6"/><circle cx="965" cy="335" r="7"/><circle cx="980" cy="348" r="6"/></g><g fill="#f3d98e"><circle cx="210" cy="344" r="2"/><circle cx="965" cy="335" r="2"/></g>
+ <!-- deer, hand-drawn silhouette -->
+ <g transform="translate(820 260)" stroke="#704c37" stroke-width="3" stroke-linejoin="round">
+  <path d="M-45 35Q-53 2 -22 -6Q16 -22 48 4Q63 17 48 35L35 44H-35Z" fill="#b98558"/>
+  <path d="M35 7Q50 -14 62 -22L78 -18L85 -2Q75 10 57 11L47 24Z" fill="#bd8c61"/>
+  <path d="M69 -19Q77 -38 69 -48M72 -33Q57 -43 54 -52M70 -33Q85 -44 91 -54" fill="none" stroke="#76543b" stroke-width="5" stroke-linecap="round"/>
+  <path d="M-28 38L-33 75M-5 38L-2 75M27 38L33 74M43 35L49 69" fill="none" stroke="#76543b" stroke-width="7" stroke-linecap="round"/>
+  <path d="M-43 4Q-60 -7 -55 -20" fill="none" stroke="#76543b" stroke-width="4"/>
+  <circle cx="70" cy="-8" r="3.5" fill="#2d2923" stroke="none"/>
+  <g fill="#f0d9b4" stroke="none"><circle cx="-20" cy="8" r="4"/><circle cx="0" cy="2" r="4"/><circle cx="20" cy="10" r="4"/><circle cx="35" cy="22" r="3.5"/></g>
+ </g>
+ <!-- little mouse -->
+ <g transform="translate(390 337)" stroke="#765b4b" stroke-width="2.5">
+  <ellipse cx="0" cy="0" rx="23" ry="15" fill="#a88c79"/><circle cx="19" cy="-10" r="11" fill="#b99a83"/><circle cx="13" cy="-20" r="7" fill="#c99f96"/><circle cx="26" cy="-21" r="6" fill="#c99f96"/><circle cx="23" cy="-12" r="2.5" fill="#302b27" stroke="none"/><path d="M-20 4Q-48 5 -47 20" fill="none" stroke="#9c7566" stroke-width="3" stroke-linecap="round"/>
+ </g>
+ <!-- mushrooms -->
+ <g><path d="M280 355V385" stroke="#f0dfc3" stroke-width="9"/><path d="M248 358Q253 324 281 322Q311 324 315 358Z" fill="#a95d48" stroke="#784a39" stroke-width="3"/><g fill="#f5e3c7"><circle cx="270" cy="342" r="4"/><circle cx="291" cy="333" r="4"/><circle cx="302" cy="349" r="3"/></g></g>
+ <g><path d="M1030 360V390" stroke="#f0dfc3" stroke-width="8"/><path d="M1004 362Q1008 334 1031 332Q1058 335 1060 362Z" fill="#a95d48" stroke="#784a39" stroke-width="3"/><circle cx="1022" cy="347" r="4" fill="#f5e3c7"/><circle cx="1042" cy="354" r="3" fill="#f5e3c7"/></g>
+ <!-- tiny stars / fireflies -->
+ <g fill="#fff0bd"><circle cx="330" cy="110" r="3"/><circle cx="390" cy="80" r="2"/><circle cx="860" cy="100" r="3"/><circle cx="920" cy="160" r="2"/><circle cx="260" cy="205" r="2"/><circle cx="745" cy="70" r="2"/></g>
+ <rect width="1200" height="410" filter="url(#grain)" opacity=".18"/>
+ </svg><span class="scene-caption">달빛 아래, 숲속 작은 집에 놀러 와요</span></div>
+</div></header>
 <button class="bubble-decor bubble-one" type="button" aria-label="비눗방울 터뜨리기"></button><button class="bubble-decor bubble-two" type="button" aria-label="비눗방울 터뜨리기"></button><button class="malang-bubble" type="button" aria-label="말랑이 비눗방울 터뜨리기">말랑이</button>
 <main class="wrap">
 <div class="notice"><strong>프로토타입 안내</strong> 이 페이지는 실제 생성형 AI API에 연결되어 있지 않습니다. 키워드와 규칙으로 공고 문구를 분류하므로 결과를 참고용으로만 사용하고, 최종 조건은 사업주와 근로계약서로 확인하세요. 정보가 없다는 사실만으로 위법이라고 판단하지 않습니다.</div>
