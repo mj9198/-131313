@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>알바체크 AI | 근로조건 확인 도우미</title>
+<title>일하쥐🐭 | 청소년 근로조건 확인 도우미</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Jua&display=swap');
 :root{
@@ -83,11 +83,65 @@ footer{text-align:center;color:#a17e70;font-size:.9rem;padding:28px 18px;backgro
 .malang-bubble{position:fixed;z-index:0;pointer-events:none;right:4%;top:28%;width:94px;height:84px;border-radius:48% 52% 45% 55%;background:radial-gradient(circle at 32% 25%,#fff 0 7%,#fff9 8% 18%,#f7e5e9a8 60%,#e4eaf0a8 100%);border:2px solid #fff;box-shadow:inset 4px 4px 12px #fff,0 7px 20px #cba9a522;opacity:.42;display:grid;place-items:center;color:#b88c89;font-size:1.1rem;transform:rotate(-8deg)}
 .malang-bubble:after{content:"•ᴗ•";font-family:Arial,sans-serif;font-size:1rem}
 @media(max-width:720px){.layout{grid-template-columns:1fr}.panel .layout{grid-template-columns:1fr!important}.panel.full{grid-column:auto}.heroicon{display:none}.hero-mascots{font-size:2.7rem}.stats{grid-template-columns:1fr}.resources{grid-template-columns:1fr}.resultgrid{grid-template-columns:1fr}.barrow{grid-template-columns:120px 1fr 48px;font-size:.86rem}.malang-bubble{right:2%;top:17%;width:65px;height:60px;opacity:.25}.bubble-two{display:none}}
+
+/* Storybook woodland refresh */
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap');
+:root{--ink:#51483b;--muted:#796f60;--line:#e6ddc8;--bg:#f7f2e6;--white:#fffaf0;--navy:#365849;--blue:#8a9b75;--brown:#77533d;--peach:#e6b58e;--pink:#ead3c7}
+body{font-family:'Gowun Dodum',sans-serif;font-size:16px;letter-spacing:0;word-spacing:0;line-height:1.68;color:#51483b;background:linear-gradient(180deg,#f3ead7 0,#f8f4e9 35%,#f6f0e2 100%)}
+body:before,body:after{display:none}
+h1,h2,h3,.btn,.topline,.tag,.status{font-family:'Jua','Gowun Dodum',sans-serif;letter-spacing:0}
+p,label,small,td,th,li,textarea,input,select{font-family:'Gowun Dodum',sans-serif;letter-spacing:0;word-spacing:0}
+p,.sub,.small,.notice,.source,.resource p,.item p{font-size:1rem;line-height:1.7;letter-spacing:0}
+header{background:linear-gradient(180deg,#243f38 0%,#3c5a48 55%,#6d7954 100%);color:#fff7e7;padding:32px 18px 26px;border:0;position:relative}
+header:before{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(0deg,#293f34aa,transparent);pointer-events:none}
+.topline{color:#e6d9bd;font-size:.9rem;letter-spacing:.04em}
+.hero{align-items:center;gap:24px}
+.hero h1{font-family:'Jua',sans-serif;font-size:clamp(2.5rem,6vw,4rem);color:#fff4d9;text-shadow:0 3px 0 #1f392c66;margin:8px 0}
+.hero p{font-family:'Gowun Dodum',sans-serif;color:#f2e8d3;font-size:1.1rem;max-width:600px}
+.heroicon{display:none}
+.hero-mascots{font-size:clamp(2.5rem,5vw,4.2rem);gap:12px;filter:drop-shadow(0 5px 4px #172a2455);padding:12px 18px;border-radius:28px;background:#ffffff18;border:1px solid #ffffff35}
+.madeby{display:block;font-family:'Gowun Dodum',sans-serif;font-size:.86rem;color:#e6d8bd;margin-top:2px;letter-spacing:0}
+.forest-scene{height:128px;max-width:1080px;margin:18px auto 0;position:relative;display:flex;align-items:flex-end;justify-content:center;gap:clamp(8px,3vw,30px);padding:0 12px 10px;overflow:hidden;border-radius:24px;background:linear-gradient(180deg,#526b5d 0%,#7d8c69 58%,#b1a77b 100%);box-shadow:inset 0 0 35px #233d3044,0 8px 20px #1c302522}
+.forest-scene:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 20%,#f7e5b477 0 2px,transparent 3px),radial-gradient(circle at 72% 30%,#fff0c866 0 2px,transparent 3px),radial-gradient(circle at 42% 12%,#fff 0 1px,transparent 2px);background-size:80px 70px,110px 80px,55px 50px;opacity:.75}
+.forest-scene span{position:relative;z-index:1;filter:drop-shadow(0 3px 3px #20372c66);font-size:clamp(2rem,4vw,3.5rem);line-height:1}
+.forest-scene .cottage{font-size:clamp(3.4rem,7vw,5.5rem);margin:0 4px 2px}
+.forest-scene .deer{font-size:clamp(2.3rem,5vw,4rem)}
+.forest-scene .mouse{font-size:clamp(1.8rem,3vw,2.7rem)}
+main{padding-top:25px}
+.notice{background:#fff7e8;border:1px solid #e8d8b8;color:#6b5b43;border-radius:18px}
+.panel{background:#fffaf0;border:1.5px solid #e7dcc5;border-radius:22px;box-shadow:0 8px 22px #5a4a2b12}
+.panel h2{font-family:'Jua',sans-serif;color:#49634d;font-size:1.35rem}
+.sub{color:#786e5d}
+label{color:#5c6146;font-weight:700}
+textarea,input,select{background:#fffdf7!important;border-color:#ded4bd!important;color:#51483b!important;font-size:1rem!important}
+textarea::placeholder,input::placeholder{color:#a69a83}
+textarea:focus,input:focus,select:focus{outline:3px solid #e8ddc4!important;border-color:#9da47b!important}
+.btn{font-size:1rem}
+.primary{background:linear-gradient(135deg,#748b65,#4f7259);color:#fff8e8}
+.secondary{background:#f1e5cf;color:#5d674b;border:1px solid #ded1b5}
+.ghost{background:#eee9df;color:#766a59}
+.item,.resource,.stat{background:#fffdf7;border-color:#e6ddc8}
+.item h3,.resource h3{color:#52664c}
+th{background:#e9eddd;color:#52664c}
+.tag{background:#e9eddd;color:#53664c}
+.source a,.resource a{color:#5e8065}
+footer{background:linear-gradient(180deg,#354f40,#243e35);color:#f1e6cd;border:0}
+.bubble-decor,.malang-bubble{position:absolute;z-index:3;pointer-events:auto;cursor:pointer;border:1.5px solid #fff9;background:radial-gradient(circle at 28% 24%,#fff 0 5%,#ffffffa8 8% 17%,#d9e8d588 54%,#d6cbe388 100%);box-shadow:inset 4px 4px 12px #fff9,0 7px 20px #263f2b22;opacity:.58;display:grid;place-items:center;transition:opacity .2s}
+.bubble-decor:after{content:"";width:18%;height:18%;position:absolute;top:18%;left:22%;border-radius:50%;background:#fff9;filter:blur(1px)}
+.bubble-one{width:64px;height:64px;top:300px;left:7%;animation:floatBubble 7s ease-in-out infinite}
+.bubble-two{width:84px;height:84px;top:620px;right:8%;animation:floatBubble 9s ease-in-out infinite reverse}
+.malang-bubble{position:absolute;right:17%;top:250px;width:88px;height:82px;border-radius:48% 52% 45% 55%;color:#6e8068;font: .85rem 'Jua',sans-serif;opacity:.45;transform:rotate(-8deg);animation:floatBubble 8s ease-in-out infinite}
+.malang-bubble:after{content:"•ᴗ•";font:1rem Arial,sans-serif;position:absolute;top:53%;left:38%}
+.bubble-decor:hover,.malang-bubble:hover{opacity:.9;filter:brightness(1.04)}
+.bubble-pop{animation:bubblePop .38s ease-out forwards!important;pointer-events:none!important}
+@keyframes bubblePop{0%{transform:scale(1);opacity:.65}35%{transform:scale(1.45);opacity:.95}100%{transform:scale(.05);opacity:0}}
+@keyframes floatBubble{0%,100%{translate:0 0}50%{translate:8px -22px}}
+@media(max-width:720px){.hero-mascots{display:none}.forest-scene{height:105px;margin-top:14px}.forest-scene span{font-size:2.2rem}.forest-scene .cottage{font-size:3.7rem}.bubble-two{display:none}.malang-bubble{right:5%;top:210px;width:60px;height:56px}.bubble-one{left:2%;top:350px;width:48px;height:48px}}
 </style>
 </head>
 <body>
-<header><div class="wrap"><div class="topline">GORANI HOUSE MALANG · YOUTH WORK CHECK</div><div class="hero"><div><div class="hero-brand"><h1>고라니집말랑</h1></div><p>고라니와 말랑이가 함께 만드는, 청소년을 위한 포근한 근로조건 안내소</p></div><div class="hero-mascots" aria-hidden="true"><span>🦌</span><span>🏡</span><span>🫧</span></div></div></div></header>
-<div class="bubble-decor bubble-one" aria-hidden="true"></div><div class="bubble-decor bubble-two" aria-hidden="true"></div><div class="malang-bubble" aria-hidden="true">말랑이</div>
+<header><div class="wrap"><div class="topline">청소년을 위한 포근한 근로조건 안내소</div><div class="hero"><div><div class="hero-brand"><h1>일하쥐🐭</h1></div><p>숲속 작은 집에서 고라니와 쥐가 함께 알려주는 똑똑한 알바 체크!</p><span class="madeby">made by 고라니집말랑이</span></div><div class="hero-mascots" aria-hidden="true"><span>🌲</span><span>🏡</span><span>🦌</span><span>🐭</span></div></div><div class="forest-scene" aria-label="숲속 작은 집과 동물들"><span>🌲</span><span>🍄</span><span class="cottage">🏡</span><span class="deer">🦌</span><span class="mouse">🐭</span><span>🌼</span><span>🌳</span></div></div></header>
+<button class="bubble-decor bubble-one" type="button" aria-label="비눗방울 터뜨리기"></button><button class="bubble-decor bubble-two" type="button" aria-label="비눗방울 터뜨리기"></button><button class="malang-bubble" type="button" aria-label="말랑이 비눗방울 터뜨리기">말랑이</button>
 <main class="wrap">
 <div class="notice"><strong>프로토타입 안내</strong> 이 페이지는 실제 생성형 AI API에 연결되어 있지 않습니다. 키워드와 규칙으로 공고 문구를 분류하므로 결과를 참고용으로만 사용하고, 최종 조건은 사업주와 근로계약서로 확인하세요. 정보가 없다는 사실만으로 위법이라고 판단하지 않습니다.</div>
 <div class="layout">
@@ -147,7 +201,20 @@ footer{text-align:center;color:#a17e70;font-size:.9rem;padding:28px 18px;backgro
   <p class="small"><strong>주의:</strong> API는 데이터를 조회할 뿐, 이 웹앱의 법적 판단을 대신하지 않습니다. 청소년 실태조사 마이크로데이터는 과거 조사값일 수 있습니다. 응답의 조사 연도·항목명·단위·기준일을 확인한 뒤 해석하세요.</p>
 </section>
 
-</div></main><footer>🦌 고라니집말랑 🏡 · 말랑이와 함께 꼼꼼하게 근로조건 확인하기 · 교육용 웹앱 프로토타입</footer>
+</div></main><footer>🐭 일하쥐 · made by 고라니집말랑이 · 교육용 웹앱 프로토타입</footer>
+<script>
+document.querySelectorAll('.bubble-decor,.malang-bubble').forEach((bubble)=>{
+ bubble.addEventListener('click',()=>{
+  if(bubble.classList.contains('bubble-pop')) return;
+  bubble.classList.add('bubble-pop');
+  window.setTimeout(()=>{
+   bubble.classList.remove('bubble-pop');
+   bubble.style.display='none';
+   window.setTimeout(()=>{bubble.style.display='grid';},1200);
+  },380);
+ });
+});
+</script>
 <script>
 
 const moneyFmt=n=>Math.round(n).toLocaleString('ko-KR')+'원';
