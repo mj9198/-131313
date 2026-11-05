@@ -392,6 +392,36 @@ footer{background:linear-gradient(180deg,#52644c,#344b3d)!important;color:#f3e7c
  .malang-bubble{top:52%;right:5%;width:34px;height:34px}
 }
 @media(prefers-reduced-motion:reduce){.storybook-fawn,.storybook-mouse,.bubble-one,.bubble-two,.malang-bubble{animation:none!important}}
+
+/* Uploaded high-resolution woodland illustration as the real hero background */
+.storybook-header{
+  height:auto!important;
+  aspect-ratio:3/2;
+  min-height:0;
+  background:#263b38!important;
+}
+.storybook-landscape{
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(180deg,rgba(22,35,35,.12) 0%,rgba(22,35,35,0) 48%,rgba(28,39,31,.18) 100%),
+    url("./assets/forest-hero.png");
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-size:100% 100%;
+}
+.storybook-landscape svg{display:none!important}
+.storybook-sign{z-index:2}
+.storybook-plaque{backdrop-filter:blur(1px)}
+@media(max-width:760px){
+  .storybook-header{height:auto!important;aspect-ratio:3/2}
+  .storybook-sign{top:12px;width:94%}
+  .storybook-plaque{width:min(280px,88vw);padding:8px 14px}
+  .storybook-plaque h1{font-size:clamp(1.7rem,8vw,2.4rem)}
+  .storybook-plaque p{font-size:.75rem;margin-top:3px}
+  .storybook-tagline{font-size:.76rem;margin-top:8px;line-height:1.5}
+}
+
 </style>
 </head>
 <body>
