@@ -753,27 +753,7 @@ input::placeholder,textarea::placeholder{font-family:'Jua',sans-serif!important;
 <p class="small"><strong>해석 주의:</strong> 위 수치는 연구기관이 공개한 연구 요약에 제시된 값입니다. 조사 문항마다 응답 대상과 분모가 다를 수 있으므로 서로 다른 비율을 합산하거나 같은 응답자 집단의 결과라고 단정하지 마세요. 정확한 원문 표 번호와 분모를 확인하기 전에는 보고서 본문을 직접 인용하는 과제에서 표 번호를 임의로 적지 마세요. 이는 채용공고 자체를 조사한 통계가 아니며, 현재 앱은 공공데이터 API를 실시간 호출하지 않습니다.</p></section>
 <section class="panel full"><h2>⑦ 알아두면 좋은 근로 상식</h2><p class="sub">아래 내용은 기본 확인사항입니다. 개인의 근로조건과 적용 법령에 따라 달라질 수 있으므로 공식 자료에서 최신 내용을 확인하세요.</p><div class="resources"><article class="resource"><span class="tag">계약서</span><h3>근로계약서 내용을 확인하세요</h3><p>임금, 근로시간, 업무, 휴일 등 핵심 조건이 서면에 적혀 있는지 확인하고, 작성한 계약서 사본을 받아 보관하세요.</p><a href="https://www.moel.go.kr/mainpop2.do" target="_blank" rel="noopener noreferrer">고용노동부 근로계약서 안내 ↗</a></article><article class="resource"><span class="tag">최저임금</span><h3>시급과 임금 지급일을 물어보세요</h3><p>시급·급여 계산 방식·지급일을 구체적으로 확인하세요. 연도별 최저임금과 적용 기준은 공식 안내에서 확인할 수 있습니다.</p><a href="https://www.moel.go.kr/" target="_blank" rel="noopener noreferrer">고용노동부 공식 홈페이지 ↗</a></article><article class="resource"><span class="tag">휴게시간</span><h3>쉬는 시간과 실제 근무시간을 확인하세요</h3><p>근무 시작·종료 시각뿐 아니라 휴게시간이 언제인지, 임금 계산에 어떻게 반영되는지 확인하세요.</p><a href="https://www.moel.go.kr/" target="_blank" rel="noopener noreferrer">근로기준 관련 공식 안내 ↗</a></article><article class="resource"><span class="tag">청소년 보호</span><h3>나이별 근로 제한도 확인하세요</h3><p>청소년은 연령에 따라 필요한 서류와 근로시간·야간근로 관련 제한이 적용될 수 있습니다. 본인 상황에 맞는 기준을 공식 자료에서 확인하세요.</p><a href="https://www.moel.go.kr/news/cardinfo/view.do?bbs_seq=20230701364" target="_blank" rel="noopener noreferrer">고용노동부 청소년 근로자 권익보호 ↗</a></article><article class="resource"><span class="tag">상담</span><h3>혼자 판단하기 어려우면 상담하세요</h3><p>임금이나 근로조건 관련 문제가 생기면 공식 상담기관에 상황을 설명하고 도움을 요청할 수 있습니다.</p><a href="https://www.moel.go.kr/" target="_blank" rel="noopener noreferrer">고용노동부 상담·민원 안내 ↗</a></article><article class="resource"><span class="tag">연구 자료</span><h3>통계의 조사 범위를 확인하세요</h3><p>통계를 인용할 때는 조사 연도, 대상, 질문, 비율의 기준을 함께 기록해야 오해를 줄일 수 있습니다.</p><a href="https://www.nypi.re.kr/archive/board?menuId=MENU00502" target="_blank" rel="noopener noreferrer">한국청소년정책연구원 조사 개요 ↗</a></article></div></section>
 
-<section class="panel full" id="livePublicData">
-  <h2>⑧ 공공데이터 API 실시간 조회</h2>
-  <p class="sub">공식 API에서 자료를 직접 요청합니다. API 신청과 서버 환경변수 설정이 끝난 뒤 사용할 수 있습니다. 통계는 갱신 주기가 자료마다 다르며, 조회 성공이 곧 ‘실시간으로 새 조사 결과가 생겼다’는 뜻은 아닙니다.</p>
-  <div class="evidence-note"><strong>보안 안내</strong> 인증키를 이 웹페이지에 입력하지 않습니다. 서버의 <code>.env</code> 파일에 저장하고 서버가 대신 API를 호출합니다. 브라우저 개발자 도구나 HTML 소스에 인증키를 넣지 마세요.</div>
-  <div class="resources">
-    <article class="resource">
-      <span class="tag">공공데이터 API</span>
-      <h3>청소년종합실태조사 마이크로데이터</h3>
-      <p>조사 연도·대상 번호·항목 번호를 지정해 조사값을 조회합니다. 실제로 근로 관련 항목이 존재하는지는 응답 항목명을 확인해야 합니다.</p>
-      <label for="apiYouthYear">조사 연도</label><input id="apiYouthYear" type="number" value="2017" min="2000" max="2100" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
-      <label for="apiYouthTarget">대상 일련번호</label><input id="apiYouthTarget" type="number" value="2" min="1" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
-      <label for="apiYouthItem">항목 번호</label><input id="apiYouthItem" type="number" value="204" min="1" style="width:100%;padding:10px;border:1px solid #cbd5e5;border-radius:9px;font:inherit">
-      <div class="btnrow"><button class="btn primary" id="fetchYouthApi">청소년 조사 API 조회</button></div>
-      <p class="small"><a href="https://www.data.go.kr/data/15078212/openapi.do" target="_blank" rel="noopener noreferrer">공식 API 명세·활용 신청 ↗</a></p>
-    </article>
-  </div>
-  <div class="btnrow"><button class="btn secondary" id="checkApiStatus">API 서버 연결 상태 확인</button></div>
-  <p class="small" id="apiStatus" aria-live="polite">아직 API를 호출하지 않았습니다. 먼저 아래 설정 안내에 따라 API 활용 신청과 서버 설정을 완료하세요.</p>
-  <div id="apiYouthResult" aria-live="polite"></div>
-  <p class="small"><strong>주의:</strong> API는 데이터를 조회할 뿐, 이 웹앱의 법적 판단을 대신하지 않습니다. 청소년 실태조사 마이크로데이터는 과거 조사값일 수 있습니다. 응답의 조사 연도·항목명·단위·기준일을 확인한 뒤 해석하세요.</p>
-</section>
+
 
 </div></main><footer>알바쥐 🐭 · 알바체크 AI · 청소년 근로조건 확인 도우미</footer>
 <script>
@@ -883,56 +863,7 @@ document.getElementById('downloadQuestions').addEventListener('click',()=>{
 
 
 // Public API proxy integration. API keys remain on the server, never in this HTML.
-async function apiFetchJson(url) {
-  const response = await fetch(url, { headers: { "Accept": "application/json" } });
-  const raw = await response.text();
-  let data;
-  try { data = JSON.parse(raw); } catch { data = { rawText: raw.slice(0, 5000) }; }
-  if (!response.ok) {
-    const msg = data?.error || data?.message || `HTTP ${response.status}`;
-    throw new Error(msg);
-  }
-  return data;
-}
-function safePretty(data) {
-  const pre = document.createElement('pre');
-  pre.style.cssText = 'white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow:auto;background:#f8faff;border:1px solid var(--line);padding:12px;border-radius:10px;font-size:.82rem';
-  pre.textContent = JSON.stringify(data, null, 2);
-  return pre;
-}
-function showApiData(targetId, title, data) {
-  const box = document.getElementById(targetId);
-  box.replaceChildren();
-  const heading = document.createElement('h3');
-  heading.textContent = title;
-  box.appendChild(heading);
-  box.appendChild(safePretty(data));
-}
-document.getElementById('checkApiStatus')?.addEventListener('click', async () => {
-  const status = document.getElementById('apiStatus');
-  status.textContent = '서버 상태 확인 중…';
-  try {
-    const data = await apiFetchJson('/api/health');
-    status.textContent = `서버 연결됨 · 청소년 조사 API 키: ${data.dataGoKrConfigured ? '설정됨' : '미설정'}`;
-  } catch (err) {
-    status.textContent = `API 서버에 연결할 수 없습니다. HTML 파일을 더블클릭(file://)해서 열지 말고, 안내에 따라 서버를 실행한 뒤 http://localhost:3000 으로 접속하세요. (${err.message})`;
-  }
-});
-document.getElementById('fetchYouthApi')?.addEventListener('click', async () => {
-  const out = document.getElementById('apiYouthResult');
-  out.textContent = '청소년 조사 API 조회 중…';
-  const params = new URLSearchParams({
-    year: document.getElementById('apiYouthYear').value,
-    targetSn: document.getElementById('apiYouthTarget').value,
-    itemSn: document.getElementById('apiYouthItem').value
-  });
-  try {
-    const data = await apiFetchJson('/api/youth-survey?' + params.toString());
-    showApiData('apiYouthResult', '청소년종합실태조사 API 응답', data);
-  } catch (err) {
-    out.textContent = `조회 실패: ${err.message} 확인 사항: 활용 신청 승인, 인증키 환경변수, 조사 연도·대상 번호·항목 번호를 확인하세요.`;
-  }
-});
+
 
 
 </script>
