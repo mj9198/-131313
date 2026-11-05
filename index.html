@@ -322,22 +322,164 @@ footer{background:linear-gradient(#52634a,#30473a)!important;color:#f6e9c9!impor
 .bubble-pop{animation:bubblePop .36s ease-out forwards!important}
 @media(max-width:760px){.forest-art{height:310px}.forest-brand{top:18px}.sign{padding:10px 22px}.layout{grid-template-columns:1fr;gap:17px}main{padding:20px 0 48px}.panel{padding:13px}.panel:before{inset:7px}.panel h2{font-size:1.1rem;padding:8px 13px}.notice{padding:14px 16px;font-size:.94rem}.bubble-one{top:34%;left:2%;width:35px;height:35px}.bubble-two{top:77%;right:2%;width:48px;height:48px}.malang-bubble{top:55%;right:5%;width:37px;height:37px}.stats,.resources,.resultgrid{grid-template-columns:1fr}.barrow{grid-template-columns:110px 1fr 48px}}
 @media(prefers-reduced-motion:reduce){.deer-hop,.mouse-dash,.bubble-one,.bubble-two,.malang-bubble{animation:none!important}}
+
+/* Refined picture-book design: high-resolution SVG landscape + real HTML interface */
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Myeongjo:wght@400;700;800&family=Jua&display=swap');
+:root{--ink:#594635;--muted:#89745d;--line:#ddc9a6;--bg:#f1e8d6;--white:#fff8e9;--brown:#775239;--green:#647957}
+html,body{min-height:100%;background:#eee5d4}
+body{font-family:'Gowun Dodum',sans-serif;color:var(--ink);font-size:16px;line-height:1.72;letter-spacing:0;background:radial-gradient(ellipse at 50% 0,#f8f1e4 0,transparent 54%),linear-gradient(180deg,#e9dfcb,#f3ecdf 70%,#e9dfcb);background-attachment:fixed}
+.storybook-header{height:clamp(300px,34vw,470px);padding:0!important;margin:0;position:relative;overflow:hidden;border:0!important;background:#3d5144!important;box-shadow:0 9px 28px #43372335}
+.storybook-landscape{position:absolute;inset:0}
+.storybook-landscape svg{display:block;width:100%;height:100%}
+.storybook-sign{position:absolute;top:28px;left:clamp(18px,7vw,110px);width:min(440px,82vw);text-align:center}
+.storybook-plaque{display:inline-block;min-width:min(340px,80vw);padding:13px 28px 11px;background:linear-gradient(180deg,#e4c18b,#c69a66 50%,#d7b27f);border:5px solid #755035;border-radius:13px 10px 13px 10px;box-shadow:inset 0 0 0 2px #f4d9a9,inset 0 -7px 0 #9b7048,0 8px 0 #493629,0 13px 24px #17251f77;transform:rotate(-1deg);position:relative}
+.storybook-plaque:before,.storybook-plaque:after{content:"✿";position:absolute;color:#f7e6bd;font-size:20px;text-shadow:0 1px #87623e}
+.storybook-plaque:before{left:10px;top:7px}.storybook-plaque:after{right:10px;bottom:5px}
+.storybook-plaque h1{font:800 clamp(2.25rem,4.5vw,3.35rem)/1.1 'Nanum Myeongjo',serif;color:#60452f;margin:0;text-shadow:0 1px #f8dfb3}
+.storybook-plaque h1 span{font-family:'Gowun Dodum',sans-serif;font-size:.72em}
+.storybook-plaque p{margin:7px 0 0;font:700 .9rem 'Gowun Dodum',sans-serif;color:#674b33}
+.storybook-tagline{margin:19px 0 0;color:#fff1d1;font:700 1rem 'Nanum Myeongjo',serif;text-shadow:0 2px 5px #1d2b22,0 1px 1px #1d2b22;line-height:1.7}
+.storybook-fawn{transform-box:fill-box;transform-origin:center;animation:fawnIdle 5s ease-in-out infinite}
+.storybook-mouse{transform-box:fill-box;transform-origin:center;animation:mouseIdle 4s ease-in-out infinite}
+@keyframes fawnIdle{0%,100%{translate:0 0}50%{translate:9px -5px}}
+@keyframes mouseIdle{0%,100%{translate:0 0}50%{translate:-7px -3px}}
+main.wrap{width:min(1160px,94%);margin:0 auto;padding:30px 0 70px;position:relative;z-index:2}
+.notice{background:linear-gradient(135deg,#fff8e8,#f4e7cb);border:1px solid #d9c39d;border-left:5px solid #a47b4e;border-radius:13px;color:#6c563e;padding:15px 20px;box-shadow:0 5px 16px #5e47201a;line-height:1.75}
+.layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+.panel{position:relative;isolation:isolate;min-width:0;overflow:hidden;padding:23px;border:1px solid #d8c19a;border-radius:20px;background:linear-gradient(145deg,#fff9eb 0%,#f7ebd1 100%);box-shadow:0 8px 22px #5a47251a,inset 0 0 0 4px #fff9e9a6}
+.panel:before{content:"";position:absolute;inset:8px;z-index:-1;border:1px dashed #d8c29c;border-radius:14px;opacity:.5;pointer-events:none}
+.panel h2{font:800 1.42rem/1.4 'Nanum Myeongjo',serif;color:#654a32;margin:0 0 7px;letter-spacing:0}
+.panel h2:before{content:"✦";font: .9em 'Gowun Dodum',sans-serif;color:#87956a;margin-right:9px}
+.panel h3{font-family:'Nanum Myeongjo',serif;color:#725136}
+.sub{font:1rem/1.7 'Gowun Dodum',sans-serif;color:#88745b;margin:0 0 16px}
+label{font:700 1rem 'Gowun Dodum',sans-serif;color:#6c5038;margin:13px 0 7px}
+input,select,textarea{font:1rem/1.65 'Gowun Dodum',sans-serif!important;color:#584635!important;background:#fffdf6!important;border:1.5px solid #d8c39e!important;border-radius:11px!important;box-shadow:inset 0 1px 3px #6b4c2610}
+input,select{min-height:44px}
+textarea{padding:13px 15px!important}
+input:focus,select:focus,textarea:focus{outline:3px solid #e9d7b4!important;border-color:#a9875d!important}
+.btn,button{font:700 1rem 'Gowun Dodum',sans-serif!important;border-radius:999px!important;letter-spacing:0}
+.btn.primary{background:linear-gradient(135deg,#8d6846,#6f4e34)!important;color:#fff7e8!important;border:1px solid #68472e!important;box-shadow:0 3px 0 #523a29}
+.btn.secondary{background:linear-gradient(135deg,#f0dfbd,#e4d0a9)!important;color:#674c32!important;border:1px solid #d1b88d!important}
+.btn.ghost{background:#fff9ed!important;color:#80684e!important;border:1px solid #d9c7a6!important}
+.btn:hover,button:hover{filter:brightness(1.04);transform:translateY(-1px)}
+.item,.resource,.stat,.question-output{background:#fffaf0!important;border:1px solid #dfcba9!important;border-radius:12px!important}
+.item h3,.resource h3{color:#6c5138}
+.item p,.resource p,.small,.source{font-family:'Gowun Dodum',sans-serif;color:#83705a;line-height:1.7}
+th{background:#eee1c3!important;color:#654a32!important}td{background:#fffaf0!important}
+.empty{background:#fff8e8;border:1px dashed #d6c19a;border-radius:13px;padding:18px;color:#8d795e}
+.stats{gap:12px}.stat strong{color:#8b6844}
+.barbg{background:#e7dcc5}.bar{background:linear-gradient(90deg,#84956a,#c2a16d)}
+.source a,.resource a{color:#6e815e}
+footer{background:linear-gradient(180deg,#52644c,#344b3d)!important;color:#f3e7ca!important;border:0!important;padding:27px 18px}
+.bubble-decor,.malang-bubble{position:fixed;z-index:15;cursor:pointer;pointer-events:auto;border:1px solid #fff;background:radial-gradient(circle at 28% 24%,#fff 0 4%,#ffffffd9 5% 11%,#e7edf0a8 25%,#e8d9e880 55%,#d5e5df80 78%,#ffffff30 100%);box-shadow:inset 2px 2px 9px #fff,inset -3px -4px 8px #9eb5ad44,0 5px 15px #514a3730;opacity:.7;backdrop-filter:blur(1px)}
+.bubble-one{width:48px;height:48px;top:30%;left:3%;animation:storybookFloat 7.5s ease-in-out infinite}
+.bubble-two{width:68px;height:68px;top:68%;right:3%;animation:storybookFloat 9s ease-in-out infinite reverse}
+.malang-bubble{right:14%;top:48%;width:46px;height:46px;border-radius:50%;font-size:0}
+.malang-bubble:after{content:"";position:absolute;top:18%;left:23%;width:13px;height:8px;border-radius:50%;background:#fff;filter:blur(1px)}
+@keyframes storybookFloat{0%,100%{transform:translateY(0)}50%{transform:translate(8px,-17px)}}
+.bubble-pop{animation:bubblePop .36s ease-out forwards!important}
+@media(max-width:760px){
+ .storybook-header{height:330px}
+ .storybook-sign{top:17px;left:50%;transform:translateX(-50%);width:92%}
+ .storybook-plaque{min-width:0;width:min(320px,90vw);padding:11px 20px}
+ .storybook-tagline{font-size:.9rem;margin-top:13px}
+ main.wrap{padding:19px 0 48px}
+ .layout{grid-template-columns:1fr;gap:15px}
+ .panel{padding:19px;border-radius:17px}
+ .panel.full{grid-column:auto}
+ .bubble-one{top:35%;left:2%;width:36px;height:36px}
+ .bubble-two{top:75%;right:2%;width:48px;height:48px}
+ .malang-bubble{top:52%;right:5%;width:34px;height:34px}
+}
+@media(prefers-reduced-motion:reduce){.storybook-fawn,.storybook-mouse,.bubble-one,.bubble-two,.malang-bubble{animation:none!important}}
 </style>
 </head>
 <body>
-<header class="storybook-header"><div class="forest-art" aria-hidden="true">
-<svg viewBox="0 0 1600 460" preserveAspectRatio="xMidYMid slice">
-<defs><linearGradient id="s" x2="0" y2="1"><stop stop-color="#263d3b"/><stop offset=".65" stop-color="#687657"/><stop offset="1" stop-color="#a69a70"/></linearGradient><linearGradient id="w" x2="0" y2="1"><stop stop-color="#f6e5b8"/><stop offset="1" stop-color="#d6bb83"/></linearGradient><linearGradient id="b"><stop stop-color="#47382c"/><stop offset=".5" stop-color="#99734d"/><stop offset="1" stop-color="#40372b"/></linearGradient></defs>
-<rect width="1600" height="460" fill="url(#s)"/><circle cx="260" cy="90" r="47" fill="#fff0c3"/><circle cx="283" cy="72" r="45" fill="#31483e"/>
-<g fill="#263e37"><path d="M0 400L90 70 180 400ZM150 400L260 30 370 400ZM1220 400L1330 35 1440 400ZM1400 400L1500 70 1600 400Z"/></g>
-<g fill="#52694b"><circle cx="50" cy="30" r="100"/><circle cx="170" cy="20" r="100"/><circle cx="1420" cy="15" r="115"/><circle cx="1550" cy="45" r="110"/><circle cx="300" cy="5" r="70"/></g>
-<g fill="url(#b)"><path d="M-25 0Q75 160 40 460H-25Z"/><path d="M100 0Q55 180 120 460H180Q130 220 170 0Z"/><path d="M1430 0Q1480 160 1400 460H1330Q1380 220 1360 0Z"/><path d="M1550 0Q1500 170 1570 460H1620V0Z"/></g>
-<path d="M0 340Q350 280 620 340T1150 335T1600 340V460H0Z" fill="#526747"/><path d="M770 460Q720 390 790 335Q830 290 820 260Q900 340 875 390Q850 425 930 460Z" fill="#b4a078"/>
-<g><path d="M590 245L810 95 1030 245V380H590Z" fill="url(#w)" stroke="#674c35" stroke-width="8"/><path d="M545 250L805 65 1065 250L1030 270L805 115L580 270Z" fill="#80583c" stroke="#4e3a2b" stroke-width="8"/><path d="M950 155V80H1000V205Z" fill="#936c4d" stroke="#513d2e" stroke-width="7"/><rect x="660" y="270" width="68" height="75" rx="4" fill="#f0c76f" stroke="#6c5037" stroke-width="8"/><path d="M694 270V345M660 307H728" stroke="#6c5037" stroke-width="7"/><rect x="880" y="270" width="68" height="75" rx="4" fill="#f0c76f" stroke="#6c5037" stroke-width="8"/><path d="M914 270V345M880 307H948" stroke="#6c5037" stroke-width="7"/><path d="M770 380V320Q770 275 815 275Q860 275 860 320V380Z" fill="#985c43" stroke="#684531" stroke-width="8"/></g>
-<g class="deer-hop" transform="translate(1130 285)"><path d="M-55 40Q-45 0 10 0Q55 0 62 32L45 60Q-15 72-55 40Z" fill="#bd8956" stroke="#694c35" stroke-width="6"/><path d="M40 15Q60-15 82-25L100-12Q88 12 62 28Z" fill="#c99461" stroke="#694c35" stroke-width="5"/><path d="M76-24Q80-53 62-66M83-24Q108-50 108-65M62-66L55-75M108-65L116-74" fill="none" stroke="#96714c" stroke-width="6" stroke-linecap="round"/><path d="M-35 45L-45 95M-8 52L-5 98M35 48L48 94M55 42L68 83" stroke="#76543a" stroke-width="9" stroke-linecap="round"/><circle cx="83" cy="-5" r="4" fill="#30271f"/><g fill="#f4dfb7"><circle cx="-25" cy="20" r="5"/><circle cx="0" cy="12" r="5"/><circle cx="23" cy="25" r="5"/></g></g>
-<g class="mouse-dash" transform="translate(470 380)"><path d="M-25 15Q-65 8-80 35Q-90 50-108 40" fill="none" stroke="#8c6b58" stroke-width="5" stroke-linecap="round"/><ellipse cx="0" cy="18" rx="30" ry="22" fill="#b99a83" stroke="#705745" stroke-width="5"/><circle cx="24" cy="0" r="19" fill="#c6a48c" stroke="#705745" stroke-width="5"/><circle cx="12" cy="-16" r="10" fill="#d4b2a0" stroke="#705745" stroke-width="4"/><circle cx="31" cy="-3" r="3" fill="#30271f"/><path d="M-8 35l-8 16m26-13l6 14" stroke="#705745" stroke-width="5" stroke-linecap="round"/></g>
-<g stroke="#9b9c6a" stroke-width="5" fill="none"><path d="M80 460q-12-80 20-125m20 125q22-85 5-120m1370 120q-12-80 20-125m20 125q22-85 5-120M300 460q-5-55 24-85m980 85q-5-55 24-85"/></g><g fill="#e4c58e"><circle cx="520" cy="375" r="11"/><circle cx="550" cy="405" r="8"/><circle cx="1080" cy="375" r="12"/><circle cx="1120" cy="405" r="9"/><circle cx="380" cy="410" r="9"/><circle cx="1230" cy="410" r="11"/></g>
-</svg></div><div class="forest-brand"><div class="sign"><h1>일하쥐 🐭</h1><span>made by 고라니집말랑이</span></div><p>달빛 숲속 오두막에서 시작하는 안전한 아르바이트 길잡이</p></div></header>
+<header class="storybook-header">
+<div class="storybook-landscape" aria-hidden="true">
+<svg viewBox="0 0 1600 470" preserveAspectRatio="xMidYMid slice" role="presentation">
+<defs>
+ <linearGradient id="nightSky" x2="0" y2="1"><stop stop-color="#263d45"/><stop offset=".55" stop-color="#536657"/><stop offset="1" stop-color="#b0a17b"/></linearGradient>
+ <linearGradient id="forestFloor" x2="0" y2="1"><stop stop-color="#78845c"/><stop offset="1" stop-color="#344d3d"/></linearGradient>
+ <linearGradient id="cottageWall" x2=".2" y2="1"><stop stop-color="#fff0c9"/><stop offset="1" stop-color="#d8b77d"/></linearGradient>
+ <linearGradient id="cottageRoof" x2="0" y2="1"><stop stop-color="#b17a4f"/><stop offset="1" stop-color="#684832"/></linearGradient>
+ <linearGradient id="windowGlow" x2="0" y2="1"><stop stop-color="#fff4b0"/><stop offset="1" stop-color="#e8a84e"/></linearGradient>
+ <linearGradient id="treeBark" x2="1"><stop stop-color="#382f28"/><stop offset=".45" stop-color="#806044"/><stop offset=".72" stop-color="#a17b52"/><stop offset="1" stop-color="#3d392c"/></linearGradient>
+ <radialGradient id="bubbleGlass" cx=".28" cy=".22" r=".8"><stop stop-color="#fff" stop-opacity=".92"/><stop offset=".12" stop-color="#fff" stop-opacity=".4"/><stop offset=".42" stop-color="#d6e9df" stop-opacity=".1"/><stop offset=".68" stop-color="#d5bfe4" stop-opacity=".38"/><stop offset=".88" stop-color="#b8dce0" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity=".7"/></radialGradient>
+ <filter id="softTexture" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="8" result="noise"/><feColorMatrix in="noise" type="saturate" values="0" result="mono"/><feComponentTransfer><feFuncA type="table" tableValues="0 .12"/></feComponentTransfer><feBlend in="SourceGraphic" mode="soft-light"/></filter>
+ <filter id="glow"><feGaussianBlur stdDeviation="8"/></filter>
+</defs>
+<rect width="1600" height="470" fill="url(#nightSky)"/>
+<path d="M0 180Q170 95 350 160T720 155T1110 140T1600 170V470H0Z" fill="#344c45" opacity=".65"/>
+<path d="M0 255Q180 165 360 225T760 205T1180 225T1600 195V470H0Z" fill="#50644d"/>
+<path d="M0 330Q260 255 480 310T900 290T1280 315T1600 280V470H0Z" fill="url(#forestFloor)"/>
+<g fill="#263e38" opacity=".95">
+ <path d="M20 360L105 78 190 360ZM130 360L245 35 360 360ZM270 360L355 112 440 360ZM1130 355L1220 55 1310 355ZM1260 355L1380 22 1500 355ZM1430 360L1520 95 1610 360Z"/>
+ <path d="M430 350L500 150 570 350ZM970 350L1050 120 1130 350Z" opacity=".8"/>
+</g>
+<g fill="#71815a" opacity=".9">
+ <circle cx="50" cy="28" r="115"/><circle cx="168" cy="20" r="108"/><circle cx="285" cy="42" r="82"/>
+ <circle cx="1320" cy="22" r="125"/><circle cx="1450" cy="30" r="120"/><circle cx="1570" cy="54" r="100"/>
+</g>
+<g fill="#87936a" opacity=".68">
+ <circle cx="35" cy="85" r="45"/><circle cx="125" cy="35" r="42"/><circle cx="225" cy="82" r="34"/><circle cx="1370" cy="74" r="50"/><circle cx="1515" cy="80" r="48"/>
+</g>
+<g fill="none" stroke="#b2a27a" stroke-width="5" opacity=".65">
+ <path d="M0 22Q115 70 205 8M35 72Q155 122 250 55M1370 12Q1460 80 1590 22M1320 65Q1440 125 1560 85"/>
+</g>
+<path d="M0 0Q95 100 55 470H-20Z" fill="url(#treeBark)"/><path d="M105 0Q50 170 125 470H195Q130 230 175 0Z" fill="url(#treeBark)"/>
+<path d="M1490 0Q1540 170 1475 470H1405Q1470 230 1440 0Z" fill="url(#treeBark)"/><path d="M1600 0Q1510 140 1570 470H1630V0Z" fill="url(#treeBark)"/>
+<g fill="none" stroke="#c19a68" stroke-width="5" opacity=".35"><path d="M75 15Q120 180 83 430M145 0Q110 170 154 410M1500 15Q1460 180 1495 430M1560 0Q1520 170 1555 410"/></g>
+<path d="M0 390Q210 320 430 365T850 350T1230 370T1600 335V470H0Z" fill="#485c40"/>
+<path d="M660 470Q735 398 785 375Q840 352 895 380Q960 414 1015 470Z" fill="#a5a07a" opacity=".9"/>
+<path d="M700 470Q790 420 845 403Q910 400 980 470" fill="none" stroke="#d4c39a" stroke-width="7" opacity=".5"/>
+<!-- moon and stars -->
+<path d="M445 38A57 57 0 1 0 500 125A47 47 0 1 1 445 38Z" fill="#f7e6b5"/>
+<g fill="#fff1cb" opacity=".85"><circle cx="365" cy="72" r="3"/><circle cx="555" cy="45" r="2.5"/><circle cx="635" cy="105" r="2"/><circle cx="1080" cy="60" r="2.5"/><circle cx="1180" cy="105" r="3"/><circle cx="960" cy="35" r="2"/></g>
+<!-- cottage -->
+<ellipse cx="1195" cy="315" rx="255" ry="26" fill="#26392c" opacity=".35"/>
+<path d="M1010 225L1195 105 1390 225V374H1010Z" fill="url(#cottageWall)" stroke="#654b36" stroke-width="7"/>
+<path d="M975 232L1192 76 1424 232L1395 252L1195 115L1003 252Z" fill="url(#cottageRoof)" stroke="#503b2d" stroke-width="8"/>
+<path d="M1305 147V90Q1305 70 1327 70H1350V190Z" fill="#a57a54" stroke="#563f2d" stroke-width="7"/>
+<path d="M1321 75Q1340 49 1362 66Q1380 77 1374 96Q1350 80 1321 92Z" fill="#d5d0bb" opacity=".65"/>
+<g fill="#6f4e35" opacity=".6"><path d="M1030 214l30-22 22 16-27 18ZM1100 164l28-19 20 15-28 20ZM1235 157l30-20 22 18-30 19ZM1350 213l28-18 19 17-29 17Z"/></g>
+<g stroke="#79583a" stroke-width="7"><rect x="1065" y="254" width="61" height="69" rx="5" fill="url(#windowGlow)"/><path d="M1095 255V322M1066 288H1125"/><rect x="1238" y="254" width="61" height="69" rx="5" fill="url(#windowGlow)"/><path d="M1268 255V322M1239 288H1299"/></g>
+<path d="M1332 374V285Q1332 245 1372 245Q1412 245 1412 285V374Z" fill="#985c43" stroke="#65452f" stroke-width="7"/>
+<circle cx="1390" cy="314" r="5" fill="#f5d58d"/>
+<g fill="none" stroke="#8a6948" stroke-width="6" stroke-linecap="round"><path d="M990 335h-90m20-18h-60m70 37h-90"/><path d="M920 310v57m-30-57v57m90-57v57"/></g>
+<!-- flower meadow -->
+<g stroke="#526b42" stroke-width="3" fill="none"><path d="M80 445q-5-40 8-68m38 78q8-48 27-66m250 72q-4-45 18-70m1040 63q-5-42 17-69m65 69q7-48 28-64"/></g>
+<g fill="#f4d88e"><circle cx="89" cy="372" r="8"/><circle cx="82" cy="360" r="5"/><circle cx="99" cy="360" r="5"/><circle cx="139" cy="397" r="7"/><circle cx="132" cy="386" r="4"/><circle cx="147" cy="385" r="4"/><circle cx="435" cy="397" r="8"/><circle cx="427" cy="385" r="4"/><circle cx="446" cy="385" r="4"/><circle cx="1500" cy="385" r="8"/><circle cx="1492" cy="373" r="4"/><circle cx="1508" cy="373" r="4"/></g>
+<g fill="#b86e59"><circle cx="210" cy="421" r="8"/><circle cx="202" cy="409" r="4"/><circle cx="218" cy="409" r="4"/><circle cx="1440" cy="422" r="9"/><circle cx="1431" cy="408" r="4"/><circle cx="1449" cy="408" r="4"/></g>
+<!-- fawn, painted silhouette -->
+<g class="storybook-fawn" transform="translate(685 285)">
+ <path d="M-68 36Q-54 -8 8 -10Q63 -7 75 28L57 63Q-13 78-68 36Z" fill="#b98050" stroke="#684a35" stroke-width="6"/>
+ <path d="M40 8Q56 -27 84 -38L110 -22Q99 9 70 29Z" fill="#c58d5a" stroke="#684a35" stroke-width="5"/>
+ <path d="M81 -38Q83 -68 65 -83M89 -38Q114 -65 112 -83M65 -83L56 -95M112 -83L122 -93" fill="none" stroke="#92704b" stroke-width="6" stroke-linecap="round"/>
+ <path d="M-45 51L-55 112M-12 58L-9 115M34 55L45 111M60 43L73 97" fill="none" stroke="#765238" stroke-width="9" stroke-linecap="round"/>
+ <path d="M98 -23q12-13 23-6" fill="none" stroke="#e4c49a" stroke-width="7" stroke-linecap="round"/>
+ <circle cx="94" cy="-19" r="4.5" fill="#29251f"/>
+ <g fill="#f2dfbd"><ellipse cx="-34" cy="17" rx="6" ry="8"/><ellipse cx="-7" cy="6" rx="6" ry="8"/><ellipse cx="21" cy="18" rx="6" ry="8"/><ellipse cx="42" cy="37" rx="5" ry="7"/></g>
+</g>
+<!-- mouse on mossy stump -->
+<g class="storybook-mouse" transform="translate(310 392)">
+ <path d="M-20 20Q-80 15-87 48Q-89 60-108 54" fill="none" stroke="#8d6c55" stroke-width="5" stroke-linecap="round"/>
+ <ellipse cx="0" cy="18" rx="31" ry="23" fill="#bda18b" stroke="#705745" stroke-width="5"/>
+ <circle cx="26" cy="-1" r="19" fill="#c7a78f" stroke="#705745" stroke-width="5"/>
+ <circle cx="12" cy="-17" r="10" fill="#d9b9a3" stroke="#705745" stroke-width="4"/>
+ <circle cx="34" cy="-4" r="3.5" fill="#30271f"/>
+ <path d="M-12 36l-8 17m31-14l7 15" stroke="#705745" stroke-width="5" stroke-linecap="round"/>
+ <path d="M45 5q15 1 23 9m-22-3q15 5 20 14" stroke="#e8d8c7" stroke-width="2" fill="none"/>
+</g>
+<g fill="url(#bubbleGlass)" stroke="#f9f7e8" stroke-width="2" opacity=".82"><circle cx="590" cy="125" r="24"/><circle cx="900" cy="205" r="32"/><circle cx="1510" cy="180" r="26"/></g>
+<rect width="1600" height="470" filter="url(#softTexture)" opacity=".18"/>
+</svg>
+</div>
+<div class="storybook-sign">
+<div class="storybook-plaque"><h1>일하쥐 <span>🐭</span></h1><p>made by 고라니집말랑이</p></div>
+<p class="storybook-tagline">숲속 작은 오두막에서 시작하는, 똑똑하고 안전한 아르바이트 준비</p>
+</div>
+</header>
 <button class="bubble-decor bubble-one" type="button" aria-label="비눗방울 터뜨리기"></button><button class="bubble-decor bubble-two" type="button" aria-label="비눗방울 터뜨리기"></button><button class="malang-bubble" type="button" aria-label="말랑이 비눗방울 터뜨리기">말랑이</button>
 <main class="wrap">
 <div class="notice"><strong>프로토타입 안내</strong> 이 페이지는 실제 생성형 AI API에 연결되어 있지 않습니다. 키워드와 규칙으로 공고 문구를 분류하므로 결과를 참고용으로만 사용하고, 최종 조건은 사업주와 근로계약서로 확인하세요. 정보가 없다는 사실만으로 위법이라고 판단하지 않습니다.</div>
