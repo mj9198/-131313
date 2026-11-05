@@ -5,6 +5,7 @@
 <title>알바쥐🐭 | 청소년 근로조건 확인 도우미</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Jua&display=swap');
 :root{
  --navy:#765044;--blue:#c98568;--sky:#fff0e8;--ink:#684b42;--muted:#9a7c70;
  --line:#f0d9cc;--bg:#fff8f0;--white:#fffdf9;--green:#7d9b70;--yellow:#d49b4f;--red:#c87569;
@@ -564,6 +565,68 @@ footer{background:repeating-linear-gradient(90deg,#a7b77a 0 54px,#f2d8df 54px 10
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
+
+
+/* ===== Rounded candy typography + pink/mint fabric title tabs ===== */
+
+html,body,body *{
+  font-family:'Jua',sans-serif!important;
+  letter-spacing:0!important;
+}
+body{font-size:17px!important;line-height:1.72!important}
+h1,h2,h3,h4,.panel h2,.panel h3,.hero h1,.storybook-plaque h1{
+  font-family:'Bagel Fat One','Jua',sans-serif!important;
+  font-weight:400!important;
+  letter-spacing:.01em!important;
+}
+.panel h2{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:11px!important;
+  min-height:58px!important;
+  padding:10px 22px 10px 13px!important;
+  margin:0 0 14px!important;
+  color:#71804d!important;
+  font:1.42rem/1.35 'Bagel Fat One','Jua',sans-serif!important;
+  background:
+    radial-gradient(circle,#fff9 0 1.5px,transparent 2px) 8px 7px/13px 13px,
+    linear-gradient(135deg,#fbe5e9 0%,#f8dce3 52%,#f4e9dc 100%)!important;
+  border:2px solid #d995a8!important;
+  border-radius:19px 22px 18px 22px!important;
+  box-shadow:inset 0 0 0 3px #fff8,0 4px 0 #c98298,0 7px 13px #a8757a22!important;
+  text-shadow:0 1px #fff!important;
+}
+.panel h2:before{
+  content:"★"!important;
+  display:inline-grid!important;
+  place-items:center!important;
+  flex:0 0 36px!important;
+  width:36px!important;height:36px!important;
+  color:#fff!important;
+  background:linear-gradient(145deg,#b7c98b,#8fa56a)!important;
+  border:2px solid #fff!important;
+  border-radius:12px 15px 12px 15px!important;
+  box-shadow:0 3px 0 #7e925b!important;
+  font:19px 'Jua',sans-serif!important;
+  transform:rotate(-7deg)!important;
+}
+.sub,label,.notice,.small,.source,.item p,.resource p,
+input,select,textarea,button,.btn,th,td,footer,.status,
+.tag,.empty,.evidence-note,.storybook-plaque p,.storybook-tagline{
+  font-family:'Jua',sans-serif!important;
+  font-weight:400!important;
+}
+.sub,label,.notice,.small,.source,.item p,.resource p,
+input,select,textarea,th,td,.empty,.evidence-note{
+  font-size:1rem!important;
+  line-height:1.75!important;
+}
+input::placeholder,textarea::placeholder{font-family:'Jua',sans-serif!important;opacity:.72}
+.storybook-plaque p{font-size:1.05rem!important}
+@media(max-width:760px){
+  .panel h2{font-size:1.22rem!important;min-height:52px!important;padding:8px 15px 8px 10px!important}
+  .panel h2:before{flex-basis:32px!important;width:32px!important;height:32px!important}
+}
 </style>
 </head>
 <body>
@@ -874,66 +937,3 @@ document.getElementById('fetchYouthApi')?.addEventListener('click', async () => 
 
 </script>
 </body></html>
-
-
-/* ===== Rounded candy typography + pink/mint fabric title tabs ===== */
-@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Jua&display=swap');
-html,body,body *{
-  font-family:'Jua',sans-serif!important;
-  letter-spacing:0!important;
-}
-body{font-size:17px!important;line-height:1.72!important}
-h1,h2,h3,h4,.panel h2,.panel h3,.hero h1,.storybook-plaque h1{
-  font-family:'Bagel Fat One','Jua',sans-serif!important;
-  font-weight:400!important;
-  letter-spacing:.01em!important;
-}
-.panel h2{
-  display:inline-flex!important;
-  align-items:center!important;
-  gap:11px!important;
-  min-height:58px!important;
-  padding:10px 22px 10px 13px!important;
-  margin:0 0 14px!important;
-  color:#71804d!important;
-  font:1.42rem/1.35 'Bagel Fat One','Jua',sans-serif!important;
-  background:
-    radial-gradient(circle,#fff9 0 1.5px,transparent 2px) 8px 7px/13px 13px,
-    linear-gradient(135deg,#fbe5e9 0%,#f8dce3 52%,#f4e9dc 100%)!important;
-  border:2px solid #d995a8!important;
-  border-radius:19px 22px 18px 22px!important;
-  box-shadow:inset 0 0 0 3px #fff8,0 4px 0 #c98298,0 7px 13px #a8757a22!important;
-  text-shadow:0 1px #fff!important;
-}
-.panel h2:before{
-  content:"★"!important;
-  display:inline-grid!important;
-  place-items:center!important;
-  flex:0 0 36px!important;
-  width:36px!important;height:36px!important;
-  color:#fff!important;
-  background:linear-gradient(145deg,#b7c98b,#8fa56a)!important;
-  border:2px solid #fff!important;
-  border-radius:12px 15px 12px 15px!important;
-  box-shadow:0 3px 0 #7e925b!important;
-  font:19px 'Jua',sans-serif!important;
-  transform:rotate(-7deg)!important;
-}
-.sub,label,.notice,.small,.source,.item p,.resource p,
-input,select,textarea,button,.btn,th,td,footer,.status,
-.tag,.empty,.evidence-note,.storybook-plaque p,.storybook-tagline{
-  font-family:'Jua',sans-serif!important;
-  font-weight:400!important;
-}
-.sub,label,.notice,.small,.source,.item p,.resource p,
-input,select,textarea,th,td,.empty,.evidence-note{
-  font-size:1rem!important;
-  line-height:1.75!important;
-}
-input::placeholder,textarea::placeholder{font-family:'Jua',sans-serif!important;opacity:.72}
-.storybook-plaque p{font-size:1.05rem!important}
-@media(max-width:760px){
-  .panel h2{font-size:1.22rem!important;min-height:52px!important;padding:8px 15px 8px 10px!important}
-  .panel h2:before{flex-basis:32px!important;width:32px!important;height:32px!important}
-}
-
