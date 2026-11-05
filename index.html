@@ -422,6 +422,148 @@ footer{background:linear-gradient(180deg,#52644c,#344b3d)!important;color:#f3e7c
   .storybook-tagline{font-size:.76rem;margin-top:8px;line-height:1.5}
 }
 
+
+/* ===== Albacheck AI: pink & sage button-patch theme ===== */
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap');
+:root{
+ --ink:#596047;--muted:#85866f;--line:#e7c8ce;--bg:#f8edf0;--white:#fffaf8;
+ --pink:#e8a9b5;--pink-deep:#cf7895;--pink-pale:#f9e2e6;
+ --green:#a7b77a;--green-deep:#7f9258;--green-pale:#e8efd6;
+ --cream:#fff7ef;--shadow:#a8757a24;
+}
+html,body{min-height:100%;background:var(--bg);color:var(--ink)}
+body{
+ font-family:'Gowun Dodum',sans-serif;line-height:1.72;letter-spacing:0;
+ background:
+  radial-gradient(circle at 18px 18px,#f4cbd2 0 4px,transparent 4.8px) 0 0/38px 38px,
+  linear-gradient(90deg,#f8e4e8 0 50%,#e8efd9 50% 100%) 0 0/100% 8px,
+  #fff8f4;
+ background-attachment:fixed;
+}
+body:before,body:after{display:none!important}
+.storybook-header{
+ height:auto!important;min-height:0!important;aspect-ratio:auto!important;
+ padding:38px 18px 34px!important;margin:0!important;overflow:hidden;
+ background:
+  radial-gradient(circle at 18px 18px,#f7d3d9 0 4px,transparent 5px) 0 0/34px 34px,
+  repeating-linear-gradient(90deg,#a9b77c 0 54px,#f5d9df 54px 108px)!important;
+ border:0!important;box-shadow:0 5px 0 #d8c6a0;
+}
+.storybook-header:after{
+ content:"✦  ·  ✧  ·  ✦";display:block!important;position:absolute;
+ right:5%;bottom:13px;left:auto;top:auto;width:auto;height:auto;
+ color:#fff9e9;background:none;box-shadow:none;border:0;border-radius:0;
+ font:24px 'Jua',sans-serif;letter-spacing:12px;opacity:.9;
+}
+.storybook-landscape{display:none!important}
+.storybook-sign{position:relative!important;inset:auto!important;transform:none!important;
+ width:min(760px,94%)!important;margin:0 auto!important;text-align:center}
+.storybook-plaque{
+ min-width:0!important;width:fit-content;max-width:100%;
+ padding:20px 42px 17px!important;
+ background:linear-gradient(145deg,#fffaf7,#f9e8e9)!important;
+ border:3px solid #d98fa2!important;border-radius:28px!important;
+ box-shadow:inset 0 0 0 4px #fff,inset 0 -5px 0 #f1cbd2,0 6px 0 #c47d91,0 12px 24px #79535a20!important;
+ transform:rotate(-1deg)!important;
+}
+.storybook-plaque:before,.storybook-plaque:after{content:"★"!important;color:#a2b477!important;text-shadow:0 1px #fff;font:20px 'Jua',sans-serif}
+.storybook-plaque h1{
+ font:clamp(2.6rem,6vw,4.4rem)/1.1 'Jua',sans-serif!important;
+ color:#71834f!important;text-shadow:2px 2px 0 #f3d1d8!important;letter-spacing:.01em
+}
+.storybook-plaque h1 span{font-family:'Jua',sans-serif!important;color:#d27f98}
+.storybook-plaque p{margin:7px 0 0!important;font:1rem 'Gowun Dodum',sans-serif!important;color:#a66d7d!important}
+.storybook-tagline{margin:22px auto 0!important;max-width:720px;color:#fffaf4!important;
+ font:1.12rem 'Jua',sans-serif!important;text-shadow:0 1px 3px #71834f88!important;line-height:1.6}
+.wrap{width:min(1160px,94%);margin-inline:auto}
+main.wrap{padding:34px 0 70px!important}
+.notice{
+ background:linear-gradient(135deg,#fff8f3,#f8e8e9)!important;color:#765967!important;
+ border:2px dashed #dca3b0!important;border-left:7px solid var(--pink-deep)!important;
+ border-radius:22px!important;box-shadow:0 5px 0 #efdae0,0 10px 20px var(--shadow)!important;
+}
+.layout{gap:20px!important}
+.panel{
+ background:linear-gradient(145deg,#fffdf9,#fff5f3)!important;
+ border:2px solid #e9c9cf!important;border-radius:25px!important;
+ box-shadow:0 6px 0 #e5c2cb,0 12px 24px var(--shadow),inset 0 0 0 4px #fff!important;
+ padding:24px!important;
+}
+.panel:before{
+ content:"";position:absolute;z-index:0;inset:9px;border:1.5px dashed #e8c5cc;
+ border-radius:17px;opacity:.65;pointer-events:none;background:
+ radial-gradient(circle,#e8a9b5 0 2px,transparent 2.8px) right 18px top 18px/14px 14px no-repeat;
+}
+.panel>*{position:relative;z-index:1}
+.panel h2{
+ display:flex!important;align-items:center;gap:10px;
+ font:1.45rem/1.35 'Jua',sans-serif!important;color:#66784b!important;
+ margin:0 0 10px!important;letter-spacing:0!important;
+}
+.panel h2:before{
+ content:"★";display:inline-grid;place-items:center;flex:0 0 34px;height:34px;
+ color:#fffaf7;background:linear-gradient(145deg,#eab5bf,#d9859d);
+ border:2px solid #fff;border-radius:11px;box-shadow:0 3px 0 #c77991;
+ font:17px 'Jua',sans-serif!important;transform:rotate(-8deg)
+}
+.panel h3{font-family:'Jua',sans-serif!important;color:#748452!important}
+.sub{font:1rem/1.7 'Gowun Dodum',sans-serif!important;color:#8c7d70!important}
+label{font:700 1rem 'Gowun Dodum',sans-serif!important;color:#68774e!important}
+input,select,textarea{
+ font:1rem/1.65 'Gowun Dodum',sans-serif!important;color:#596047!important;
+ background:#fffdf9!important;border:1.8px solid #d9cba9!important;border-radius:16px!important;
+ box-shadow:inset 0 2px 4px #8c775010!important;
+}
+input:focus,select:focus,textarea:focus{outline:3px solid #f4dce1!important;border-color:#d58da0!important}
+.btn,button{font:700 1rem 'Jua',sans-serif!important;letter-spacing:0!important;transition:transform .16s,box-shadow .16s,filter .16s}
+.btn{border-radius:16px!important;padding:11px 18px!important}
+.btn.primary{
+ color:#fff!important;background:linear-gradient(145deg,#d989a0,#c96f8c)!important;
+ border:2px solid #fff!important;box-shadow:0 4px 0 #ad5f7a,0 6px 12px #b46c8428!important;
+}
+.btn.secondary{
+ color:#617447!important;background:linear-gradient(145deg,#eef3d9,#dce7bd)!important;
+ border:2px solid #fff!important;box-shadow:0 4px 0 #a5b47b,0 6px 12px #788a4b22!important;
+}
+.btn.ghost{
+ color:#8d6870!important;background:#fff8f5!important;
+ border:1.8px dashed #d99baa!important;box-shadow:0 3px 0 #eccfd4!important;
+}
+.btn:hover,button:hover{transform:translateY(-2px);filter:saturate(1.05)}
+.btn:active,button:active{transform:translateY(2px);box-shadow:none!important}
+.item,.resource,.stat,.question-output{
+ background:linear-gradient(145deg,#fffdf9,#fff4f4)!important;
+ border:1.5px solid #e7cbd0!important;border-radius:18px!important;
+ box-shadow:0 3px 0 #f0dfe2!important;
+}
+.item h3,.resource h3{color:#71814f!important}
+.status{font-family:'Jua',sans-serif!important}
+.confirmed{background:#e8efd7!important;color:#637849!important}
+.ambiguous{background:#fff0d5!important;color:#98743d!important}
+.missing{background:#f8e0e5!important;color:#a75d76!important}
+th{background:#e9efd9!important;color:#64764b!important}
+td{background:#fffaf7!important}
+.stat strong{color:#ce7892!important}
+.barbg{background:#f4dfe3!important}
+.bar{background:linear-gradient(90deg,#d9859d,#a7b77a)!important}
+.tag{background:#e9efd9!important;color:#687c4c!important;border-radius:10px!important}
+.source a,.resource a{color:#b96983!important}
+.empty{background:#fdf1f2!important;border:1.5px dashed #ddaab6!important;border-radius:16px!important;color:#926b76!important}
+.evidence-note{background:#f3f0df!important;border-left-color:#9cab70!important;color:#68734f!important}
+footer{background:repeating-linear-gradient(90deg,#a7b77a 0 54px,#f2d8df 54px 108px)!important;color:#5d6846!important;border:0!important}
+.bubble-decor,.malang-bubble{display:none!important}
+@media(max-width:760px){
+ .storybook-header{padding:28px 12px 30px!important}
+ .storybook-plaque{padding:15px 20px 13px!important}
+ .storybook-tagline{font-size:.96rem!important;margin-top:16px!important}
+ main.wrap{padding:22px 0 48px!important}
+ .layout{grid-template-columns:1fr!important;gap:16px!important}
+ .panel{padding:20px!important}
+ .panel h2{font-size:1.28rem!important}
+ .panel.full{grid-column:auto}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -506,8 +648,8 @@ footer{background:linear-gradient(180deg,#52644c,#344b3d)!important;color:#f3e7c
 </svg>
 </div>
 <div class="storybook-sign">
-<div class="storybook-plaque"><h1>일하쥐 <span>🐭</span></h1><p>made by 고라니집말랑이</p></div>
-<p class="storybook-tagline">숲속 작은 오두막에서 시작하는, 똑똑하고 안전한 아르바이트 준비</p>
+<div class="storybook-plaque"><h1>알바쥐 <span>🐭</span></h1><p>알바체크 AI · 청소년 근로조건 도우미</p></div>
+<p class="storybook-tagline">공고부터 급여까지, 내 근로조건을 귀엽고 똑똑하게 확인해요!</p>
 </div>
 </header>
 <button class="bubble-decor bubble-one" type="button" aria-label="비눗방울 터뜨리기"></button><button class="bubble-decor bubble-two" type="button" aria-label="비눗방울 터뜨리기"></button><button class="malang-bubble" type="button" aria-label="말랑이 비눗방울 터뜨리기">말랑이</button>
