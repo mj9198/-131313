@@ -722,7 +722,7 @@ input::placeholder,textarea::placeholder{font-family:'Jua',sans-serif!important;
 <section class="panel"><h2>① 공고 분석하기</h2><p class="sub">공고 문구를 붙여 넣고 확인이 필요한 항목을 살펴보세요.</p><label for="ad1">아르바이트 공고</label><textarea id="ad1" placeholder="예: 시급 12,000원, 주 3일 근무... 공고 내용을 붙여 넣으세요."></textarea><div class="btnrow"><button class="btn primary" id="analyze1">근로조건 분석하기</button><button class="btn secondary" id="sample1">예시 공고 넣기</button><button class="btn ghost" id="clear1">초기화</button></div><div id="result1" aria-live="polite"></div></section>
 <section class="panel"><h2>② 공고 2개 비교하기</h2><p class="sub">두 공고의 조건별 명시 여부를 나란히 비교합니다. 더 좋은 일자리를 자동 판정하지 않습니다.</p><label for="ad2a">공고 A</label><textarea id="ad2a" placeholder="첫 번째 공고 내용을 입력하세요." style="min-height:135px"></textarea><label for="ad2b">공고 B</label><textarea id="ad2b" placeholder="두 번째 공고 내용을 입력하세요." style="min-height:135px"></textarea><div class="btnrow"><button class="btn primary" id="compare">조건별 비교표 만들기</button><button class="btn secondary" id="sample2">비교 예시 넣기</button></div><div id="compareResult" aria-live="polite"></div></section>
 <section class="panel full" id="interviewQuestions"><h2>③ 면접 전 질문 목록 만들기</h2><p class="sub">공고 분석 결과에서 ‘불명확함’ 또는 ‘정보 없음’인 조건을 골라 질문 목록으로 만들고 복사할 수 있습니다. 분석 결과를 근거로 질문을 만들 뿐, 공고만으로 위법 여부를 판정하지 않습니다.</p><div class="btnrow"><button class="btn primary" id="makeQuestions">현재 공고에서 질문 목록 만들기</button><button class="btn secondary" id="copyQuestions">질문 목록 복사하기</button><button class="btn ghost" id="downloadQuestions">텍스트 파일로 저장</button></div><div id="interviewResult" aria-live="polite"><p class="empty">먼저 ‘① 공고 분석하기’에서 공고를 분석한 뒤 이 버튼을 눌러 주세요.</p></div><p id="copyStatus" class="small" aria-live="polite"></p></section>
-<section class="panel full" id="legalCheck"><h2>③ 법적 기준 간편 점검</h2><p class="sub">공고에 적힌 임금·시간·휴게시간을 기준과 비교해 확인합니다. 입력 정보만으로 위법 여부를 확정하지는 않습니다.</p>
+<section class="panel full" id="legalCheck"><h2>④ 법적 기준 간편 점검</h2><p class="sub">공고에 적힌 임금·시간·휴게시간을 기준과 비교해 확인합니다. 입력 정보만으로 위법 여부를 확정하지는 않습니다.</p>
 <div class="layout" style="grid-template-columns:repeat(2,minmax(0,1fr))">
 <div><label for="workerAge">근로자 연령 구분</label><select id="workerAge" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit"><option value="adult">만 18세 이상</option><option value="minor">만 15~17세</option><option value="young">만 15세 미만 또는 연령 확인 필요</option></select>
 <label for="hourlyWage">시급 (원)</label><input id="hourlyWage" type="number" min="0" placeholder="예: 12000" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit">
@@ -731,27 +731,51 @@ input::placeholder,textarea::placeholder{font-family:'Jua',sans-serif!important;
 <div><label for="breakMinutes">휴게시간 (분)</label><input id="breakMinutes" type="number" min="0" value="30" placeholder="예: 30" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit">
 <label for="daysWeek">주당 근무일 수</label><input id="daysWeek" type="number" min="0" max="7" value="3" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit">
 <p class="small" style="margin-top:14px">근무시간은 시작~종료에서 휴게시간을 뺀 값으로 추정합니다. 날짜를 넘기는 야간근무는 별도 입력이 필요하므로 결과를 반드시 공식 기준과 대조하세요.</p>
-<button class="btn primary" id="checkLaw" type="button">법적 기준과 비교하기</button></div></div><div id="lawResult" aria-live="polite"></div>
+<div class="btnrow"><button class="btn secondary" id="importAdToLaw" type="button">① 공고 분석 내용 가져오기</button><button class="btn primary" id="checkLaw" type="button">법적 기준과 비교하기</button></div><p id="lawImportStatus" class="small" aria-live="polite"></p></div></div><div id="lawResult" aria-live="polite"></div>
 <p class="source"><strong>공식 기준:</strong> <a href="https://www.minimumwage.go.kr/" target="_blank" rel="noopener noreferrer">최저임금위원회(2026년 시간급 10,320원)</a> · <a href="https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&amp;cciNo=1&amp;cnpClsNo=1&amp;csmSeq=1381" target="_blank" rel="noopener noreferrer">찾기쉬운 생활법령정보: 청소년 근로시간</a> · <a href="https://m.easylaw.go.kr/MOB/CsmInfoRetrieve.laf?ccfNo=3&amp;cciNo=1&amp;cnpClsNo=2&amp;csmSeq=1381" target="_blank" rel="noopener noreferrer">휴게시간·휴일 기준</a></p>
 <p class="small">2026년 기준 간편 점검입니다. 업종·사업장·근로 형태, 실제 휴게시간의 자유로운 이용 여부, 연장근로 합의·인가, 임금 산입 항목 등에 따라 판단이 달라질 수 있습니다. 이 도구는 법률 자문이나 위법 판정이 아닙니다.</p></section>
-<section class="panel full" id="payCalculator"><h2>④ 예상 급여 계산기</h2><p class="sub">시급과 근무 일정을 입력하면 휴게시간을 제외한 유급 근로시간을 기준으로 주급·월평균 급여를 추정합니다. 공고의 급여 조건을 이해하고 비교할 때 사용하세요.</p>
+<section class="panel full" id="payCalculator"><h2>⑤ 예상 급여 계산기</h2><p class="sub">시급과 근무 일정을 입력하면 휴게시간을 제외한 유급 근로시간을 기준으로 주급·월평균 급여를 추정합니다. 공고의 급여 조건을 이해하고 비교할 때 사용하세요.</p>
 <div class="layout" style="grid-template-columns:repeat(2,minmax(0,1fr))">
 <div><label for="calcWage">시급 (원)</label><input id="calcWage" type="number" min="0" placeholder="예: 12000" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit">
 <label for="calcStart">하루 근무 시작 시각</label><input id="calcStart" type="time" value="17:00" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit">
 <label for="calcEnd">하루 근무 종료 시각</label><input id="calcEnd" type="time" value="22:00" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit"></div>
 <div><label for="calcBreak">하루 휴게시간 (분)</label><input id="calcBreak" type="number" min="0" value="30" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit">
 <label for="calcDays">주당 근무 일수</label><input id="calcDays" type="number" min="1" max="7" value="3" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit">
-<label for="calcWeeks">월 환산 방식</label><select id="calcWeeks" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit"><option value="4.345">월평균 4.345주로 환산</option><option value="4">간단히 4주로 환산</option></select></div></div>
+<label for="calcWeeks">월 환산 방식</label><select id="calcWeeks" style="width:100%;padding:11px;border:1px solid #cbd5e5;border-radius:10px;font:inherit"><option value="4.345">월평균 4.345주로 환산</option><option value="4">간단히 4주로 환산</option></select><label style="display:flex;gap:9px;align-items:flex-start;margin-top:15px;font-family:inherit;font-weight:400"><input id="weeklyHolidayAssumption" type="checkbox" style="width:auto;min-height:auto;margin-top:5px"> 주 15시간 이상이며, 정해진 근무일에 모두 출근하고 해당 주의 근로관계가 유지된다고 가정</label></div></div>
 <div class="btnrow"><button class="btn primary" id="calcPay">예상 급여 계산하기</button><button class="btn secondary" id="useLawWage">법적 기준 점검의 시급 가져오기</button><button class="btn ghost" id="clearPay">계산기 초기화</button></div><div id="payResult" aria-live="polite"></div>
-<p class="small">계산식: 시급 × (하루 근무시간 − 휴게시간) × 주당 근무일 수. 월평균은 선택한 주 수로 단순 환산합니다. 주휴수당, 연장·야간·휴일근로 가산수당, 세금·공제, 실제 근무일 변동은 포함하지 않으므로 실제 지급액과 다를 수 있습니다. 휴게시간은 실제로 자유롭게 이용할 수 있는 시간만 입력하세요.</p></section>
-<section class="panel full" id="publicDataEvidence"><h2>⑥ 공공데이터·연구 근거 확인</h2><p class="sub">이 통계는 채용공고 전체가 아니라 한국청소년정책연구원이 실시한 전국 청소년 조사 결과입니다. 앱이 어떤 자료를 근거로 안내하는지 조사 범위와 원문 링크를 함께 표시합니다.</p>
+<p class="small">계산식: 시급 × (하루 근무시간 − 휴게시간) × 주당 근무일 수. 월평균은 선택한 주 수로 단순 환산합니다. 주휴수당은 아래 조건 확인 결과에 따라 별도로 추정합니다. 연장·야간·휴일근로 가산수당, 세금·공제, 실제 근무일 변동은 포함하지 않으므로 실제 지급액과 다를 수 있습니다. 휴게시간은 실제로 자유롭게 이용할 수 있는 시간만 입력하세요.</p></section>
+<section class="panel full" id="contractChecklist">
+<h2>⑥ 근로계약서 체크리스트</h2>
+<p class="sub">아르바이트를 시작하기 전, 근로계약서에 꼭 확인할 내용을 점검해 보세요. 체크는 이 화면에서만 표시되며 계약서의 법적 적합성을 자동 판정하지 않습니다.</p>
+<div class="resources">
+<article class="resource"><label><input type="checkbox"> 임금 확인</label><p>시급·급여 계산 방식, 지급일과 지급 방법이 구체적으로 적혀 있나요?</p></article>
+<article class="resource"><label><input type="checkbox"> 근로시간 확인</label><p>출근·퇴근 시각, 하루 및 주간 근로시간이 적혀 있나요?</p></article>
+<article class="resource"><label><input type="checkbox"> 휴게시간 확인</label><p>휴게시간의 길이와 시간이 정해져 있고 자유롭게 이용할 수 있나요?</p></article>
+<article class="resource"><label><input type="checkbox"> 업무 내용 확인</label><p>맡게 될 업무와 근무 장소가 실제 안내받은 내용과 일치하나요?</p></article>
+<article class="resource"><label><input type="checkbox"> 휴일·휴무 확인</label><p>정기적으로 쉬는 날과 주휴일 등 적용 조건을 확인했나요?</p></article>
+<article class="resource"><label><input type="checkbox"> 계약서 사본 받기</label><p>근로계약서를 작성한 뒤 본인도 내용을 확인하고 사본을 받았나요?</p></article>
+</div>
+<p class="evidence-note">체크하지 못한 항목은 서명 전에 사업주에게 질문하세요. 근로계약서 내용을 충분히 읽고 이해한 뒤 작성하고, 빈칸이 있거나 구두 설명과 다른 내용은 확인하는 것이 좋습니다.</p>
+</section>
+<section class="panel full" id="workProblemGuide">
+<h2>⑨ 근로 문제 발생 시 도움받기</h2>
+<p class="sub">임금 지급, 근로시간, 계약 내용 등에서 문제가 생겼다면 혼자 결론 내리지 말고 기록을 정리해 공식 상담을 이용하세요.</p>
+<div class="resources">
+<article class="resource"><span class="tag">1단계 · 기록</span><h3>근무 조건과 대화 내용 보관</h3><p>근로계약서, 근무 일정, 출퇴근 기록, 급여 명세와 사업주와 주고받은 안내를 안전하게 보관하세요.</p></article>
+<article class="resource"><span class="tag">2단계 · 확인</span><h3>무엇이 약속과 다른지 정리</h3><p>약속한 시급·근무시간·지급일과 실제 상황을 날짜와 함께 정리하고, 확인이 필요한 내용을 구체적으로 적어 보세요.</p></article>
+<article class="resource"><span class="tag">3단계 · 상담</span><h3>공식 기관에 문의</h3><p>상황에 맞는 절차와 필요한 자료를 안내받으세요. 청소년은 보호자나 신뢰할 수 있는 어른과 함께 상담해도 좋습니다.</p><a href="https://1350.moel.go.kr/" target="_blank" rel="noopener noreferrer">고용노동부 고객상담센터 1350 ↗</a></article>
+<article class="resource"><span class="tag">청소년 지원</span><h3>청소년 근로권익 상담 확인</h3><p>청소년 근로 관련 상담과 권리 안내가 필요하면 공식 청소년 노동권익 지원 정보를 확인하세요.</p><a href="https://www.youthlabor.co.kr/" target="_blank" rel="noopener noreferrer">청소년근로권익센터 ↗</a></article>
+</div>
+<p class="small">이 안내는 일반적인 정보이며 개별 사건의 법률 판단을 대신하지 않습니다. 긴급하거나 안전이 우려되는 상황에서는 신뢰할 수 있는 어른과 관계 기관에 도움을 요청하세요.</p>
+</section>
+<section class="panel full" id="publicDataEvidence"><h2>⑦ 공공데이터·연구 근거 확인</h2><p class="sub">이 통계는 채용공고 전체가 아니라 한국청소년정책연구원이 실시한 전국 청소년 조사 결과입니다. 앱이 어떤 자료를 근거로 안내하는지 조사 범위와 원문 링크를 함께 표시합니다.</p>
 <div class="stats"><div class="stat"><strong>39.6%</strong><span>일할 때 근로계약서를 작성하고 교부받았다고 응답</span><p class="small">출처: NYPI 2024 연구 요약 · <a href="https://www.nypi.re.kr/lib/10120/contents/7139208" target="_blank" rel="noopener noreferrer">원문·결과</a></p></div><div class="stat"><strong>15.2%</strong><span>계약서를 작성했지만 교부받지 못했다고 응답</span><p class="small">출처: NYPI 2024 연구 요약 · <a href="https://www.nypi.re.kr/lib/10120/contents/7139208" target="_blank" rel="noopener noreferrer">원문·결과</a></p></div><div class="stat"><strong>45.2%</strong><span>계약서를 작성하지 않았다고 응답</span><p class="small">출처: NYPI 2024 연구 요약 · <a href="https://www.nypi.re.kr/lib/10120/contents/7139208" target="_blank" rel="noopener noreferrer">원문·결과</a></p></div></div>
 <h3>근로계약서 관련 응답 비율</h3><p class="small">단위: 응답 비율(%) · 조사연도: 2024 · 조사대상: 전국 중1~고3 재학생 중 해당 근로경험·문항에 응답한 대상. 문항별 분모는 원문 표에서 확인하세요. <a href="https://www.nypi.re.kr/repository/handle/2022.oak/6395" target="_blank" rel="noopener noreferrer">보고서 원문 열기</a></p><div class="barrow"><span>작성·교부 받음</span><div class="barbg"><div class="bar" style="width:39.6%"></div></div><strong>39.6%</strong></div><div class="barrow"><span>작성했으나 미교부</span><div class="barbg"><div class="bar" style="width:15.2%"></div></div><strong>15.2%</strong></div><div class="barrow"><span>작성하지 않음</span><div class="barbg"><div class="bar" style="width:45.2%"></div></div><strong>45.2%</strong></div>
 <h3 style="margin-top:24px">연구 요약에 보고된 근로 문제 경험</h3><p class="small">단위: 응답 비율(%) · 조사연도: 2024 · 조사대상 및 문항별 분모: 원문에서 확인 필요. 아래 각 수치는 연구 요약에 제시된 값입니다. <a href="https://www.nypi.re.kr/lib/10120/contents/7139208" target="_blank" rel="noopener noreferrer">해당 연구 결과 확인</a></p><div class="barrow"><span>임금체불 경험</span><div class="barbg"><div class="bar" style="width:17.4%"></div></div><strong>17.4%</strong></div><div class="barrow"><span>휴게시간 미보장 경험</span><div class="barbg"><div class="bar" style="width:17.1%"></div></div><strong>17.1%</strong></div>
 <div class="resource" style="margin-top:18px"><span class="tag">원자료 메타데이터</span><h3>조사 정보</h3><div class="tablewrap"><table><tbody><tr><th>자료명</th><td>「청소년 근로 실태 및 정책방안 연구」</td></tr><tr><th>수행 기관·발행 연도</th><td>한국청소년정책연구원(NYPI), 2024년</td></tr><tr><th>조사 대상</th><td>전국 중학교 1학년~고등학교 3학년 재학생</td></tr><tr><th>조사 기간</th><td>2024년 5월 13일~7월 8일</td></tr><tr><th>표본 규모</th><td>조사 개요 페이지 기준 총 7,500명</td></tr><tr><th>조사 방법</th><td>자기기입식 설문조사</td></tr><tr><th>수치 단위</th><td>응답 비율(%)</td></tr><tr><th>원문에서 찾아볼 부분</th><td>보고서 Ⅴ장 「청소년 근로 실태 설문조사 결과」, 특히 ‘근로 환경’ 절(본문 p.154 이후). 정확한 표 번호·해당 문항별 분모는 원문 PDF에서 다시 확인해야 함.</td></tr></tbody></table></div>
 <p class="source"><strong>원문·조사 개요:</strong> <a href="https://www.nypi.re.kr/repository/handle/2022.oak/6395" target="_blank" rel="noopener noreferrer">연구보고서 원문 및 서지정보</a> · <a href="https://www.nypi.re.kr/lib/10120/contents/7139208" target="_blank" rel="noopener noreferrer">NYPI 연구자료 요약(결과 수치 확인)</a> · <a href="https://www.nypi.re.kr/archive/board?menuId=MENU00502" target="_blank" rel="noopener noreferrer">2024년 조사 개요(대상·기간·표본)</a></p></div>
 <p class="small"><strong>해석 주의:</strong> 위 수치는 연구기관이 공개한 연구 요약에 제시된 값입니다. 조사 문항마다 응답 대상과 분모가 다를 수 있으므로 서로 다른 비율을 합산하거나 같은 응답자 집단의 결과라고 단정하지 마세요. 정확한 원문 표 번호와 분모를 확인하기 전에는 보고서 본문을 직접 인용하는 과제에서 표 번호를 임의로 적지 마세요. 이는 채용공고 자체를 조사한 통계가 아니며, 현재 앱은 공공데이터 API를 실시간 호출하지 않습니다.</p></section>
-<section class="panel full"><h2>⑦ 알아두면 좋은 근로 상식</h2><p class="sub">아래 내용은 기본 확인사항입니다. 개인의 근로조건과 적용 법령에 따라 달라질 수 있으므로 공식 자료에서 최신 내용을 확인하세요.</p><div class="resources"><article class="resource"><span class="tag">계약서</span><h3>근로계약서 내용을 확인하세요</h3><p>임금, 근로시간, 업무, 휴일 등 핵심 조건이 서면에 적혀 있는지 확인하고, 작성한 계약서 사본을 받아 보관하세요.</p><a href="https://www.moel.go.kr/mainpop2.do" target="_blank" rel="noopener noreferrer">고용노동부 근로계약서 안내 ↗</a></article><article class="resource"><span class="tag">최저임금</span><h3>시급과 임금 지급일을 물어보세요</h3><p>시급·급여 계산 방식·지급일을 구체적으로 확인하세요. 연도별 최저임금과 적용 기준은 공식 안내에서 확인할 수 있습니다.</p><a href="https://www.moel.go.kr/" target="_blank" rel="noopener noreferrer">고용노동부 공식 홈페이지 ↗</a></article><article class="resource"><span class="tag">휴게시간</span><h3>쉬는 시간과 실제 근무시간을 확인하세요</h3><p>근무 시작·종료 시각뿐 아니라 휴게시간이 언제인지, 임금 계산에 어떻게 반영되는지 확인하세요.</p><a href="https://www.moel.go.kr/" target="_blank" rel="noopener noreferrer">근로기준 관련 공식 안내 ↗</a></article><article class="resource"><span class="tag">청소년 보호</span><h3>나이별 근로 제한도 확인하세요</h3><p>청소년은 연령에 따라 필요한 서류와 근로시간·야간근로 관련 제한이 적용될 수 있습니다. 본인 상황에 맞는 기준을 공식 자료에서 확인하세요.</p><a href="https://www.moel.go.kr/news/cardinfo/view.do?bbs_seq=20230701364" target="_blank" rel="noopener noreferrer">고용노동부 청소년 근로자 권익보호 ↗</a></article><article class="resource"><span class="tag">상담</span><h3>혼자 판단하기 어려우면 상담하세요</h3><p>임금이나 근로조건 관련 문제가 생기면 공식 상담기관에 상황을 설명하고 도움을 요청할 수 있습니다.</p><a href="https://www.moel.go.kr/" target="_blank" rel="noopener noreferrer">고용노동부 상담·민원 안내 ↗</a></article><article class="resource"><span class="tag">연구 자료</span><h3>통계의 조사 범위를 확인하세요</h3><p>통계를 인용할 때는 조사 연도, 대상, 질문, 비율의 기준을 함께 기록해야 오해를 줄일 수 있습니다.</p><a href="https://www.nypi.re.kr/archive/board?menuId=MENU00502" target="_blank" rel="noopener noreferrer">한국청소년정책연구원 조사 개요 ↗</a></article></div></section>
+<section class="panel full"><h2>⑧ 알아두면 좋은 근로 상식</h2><p class="sub">아래 내용은 기본 확인사항입니다. 개인의 근로조건과 적용 법령에 따라 달라질 수 있으므로 공식 자료에서 최신 내용을 확인하세요.</p><div class="resources"><article class="resource"><span class="tag">계약서</span><h3>근로계약서 내용을 확인하세요</h3><p>임금, 근로시간, 업무, 휴일 등 핵심 조건이 서면에 적혀 있는지 확인하고, 작성한 계약서 사본을 받아 보관하세요.</p><a href="https://www.moel.go.kr/mainpop2.do" target="_blank" rel="noopener noreferrer">고용노동부 근로계약서 안내 ↗</a></article><article class="resource"><span class="tag">최저임금</span><h3>시급과 임금 지급일을 물어보세요</h3><p>시급·급여 계산 방식·지급일을 구체적으로 확인하세요. 연도별 최저임금과 적용 기준은 공식 안내에서 확인할 수 있습니다.</p><a href="https://www.moel.go.kr/" target="_blank" rel="noopener noreferrer">고용노동부 공식 홈페이지 ↗</a></article><article class="resource"><span class="tag">휴게시간</span><h3>쉬는 시간과 실제 근무시간을 확인하세요</h3><p>근무 시작·종료 시각뿐 아니라 휴게시간이 언제인지, 임금 계산에 어떻게 반영되는지 확인하세요.</p><a href="https://www.moel.go.kr/" target="_blank" rel="noopener noreferrer">근로기준 관련 공식 안내 ↗</a></article><article class="resource"><span class="tag">청소년 보호</span><h3>나이별 근로 제한도 확인하세요</h3><p>청소년은 연령에 따라 필요한 서류와 근로시간·야간근로 관련 제한이 적용될 수 있습니다. 본인 상황에 맞는 기준을 공식 자료에서 확인하세요.</p><a href="https://www.moel.go.kr/news/cardinfo/view.do?bbs_seq=20230701364" target="_blank" rel="noopener noreferrer">고용노동부 청소년 근로자 권익보호 ↗</a></article><article class="resource"><span class="tag">상담</span><h3>혼자 판단하기 어려우면 상담하세요</h3><p>임금이나 근로조건 관련 문제가 생기면 공식 상담기관에 상황을 설명하고 도움을 요청할 수 있습니다.</p><a href="https://www.moel.go.kr/" target="_blank" rel="noopener noreferrer">고용노동부 상담·민원 안내 ↗</a></article><article class="resource"><span class="tag">연구 자료</span><h3>통계의 조사 범위를 확인하세요</h3><p>통계를 인용할 때는 조사 연도, 대상, 질문, 비율의 기준을 함께 기록해야 오해를 줄일 수 있습니다.</p><a href="https://www.nypi.re.kr/archive/board?menuId=MENU00502" target="_blank" rel="noopener noreferrer">한국청소년정책연구원 조사 개요 ↗</a></article></div></section>
 
 
 
@@ -776,20 +800,42 @@ function timeMinutes(v){if(!v)return null;const [h,m]=v.split(':').map(Number);r
 function lawItem(kind,title,body){return `<article class="item"><h3>${title}</h3><span class="status ${kind}">${kind==='confirmed'?'기준상 문제 신호 없음':kind==='ambiguous'?'추가 확인 필요':'주의 필요'}</span><p>${body}</p></article>`}
 function parseClock(id){const v=document.getElementById(id).value;if(!v)return null;const [h,m]=v.split(':').map(Number);return h*60+m}
 function calculatePay(){
- const wage=Number(document.getElementById('calcWage').value),start=parseClock('calcStart'),end0=parseClock('calcEnd'),br=Number(document.getElementById('calcBreak').value),days=Number(document.getElementById('calcDays').value),weeks=Number(document.getElementById('calcWeeks').value),out=document.getElementById('payResult');
+ const wage=Number(document.getElementById('calcWage').value),start=parseClock('calcStart'),end0=parseClock('calcEnd'),br=Number(document.getElementById('calcBreak').value),days=Number(document.getElementById('calcDays').value),weeks=Number(document.getElementById('calcWeeks').value),assume=document.getElementById('weeklyHolidayAssumption').checked,out=document.getElementById('payResult');
  if(document.getElementById('calcWage').value===''||!Number.isFinite(wage)||wage<=0){out.innerHTML='<p class="empty">0보다 큰 시급을 입력하세요.</p>';return}
  if(start===null||end0===null){out.innerHTML='<p class="empty">근무 시작·종료 시각을 입력하세요.</p>';return}
  if(!Number.isFinite(br)||br<0||!Number.isFinite(days)||days<1||days>7||!Number.isInteger(days)){out.innerHTML='<p class="empty">휴게시간은 0분 이상, 주당 근무일은 1~7일의 정수로 입력하세요.</p>';return}
  let end=end0;if(end<=start)end+=1440;const gross=end-start,paid=gross-br;
  if(br>gross||paid<=0){out.innerHTML='<p class="empty">휴게시간이 전체 근무시간보다 길거나 유급 근로시간이 0 이하입니다. 입력을 확인하세요.</p>';return}
- const daily=paid/60,weeklyHours=daily*days,weekly=wage*weeklyHours,monthly=weekly*weeks,minWage=10320;
- let wageNote=wage<minWage?`<p><span class="status missing">최저임금 확인 필요</span> 입력한 시급은 2026년 최저임금 시간급 ${moneyFmt(minWage)}보다 낮습니다. 임금 항목과 적용 기준을 공식 자료에서 확인하세요.</p>`:`<p><span class="status confirmed">최저임금과 단순 비교</span> 입력 시급은 2026년 시간급 최저임금 ${moneyFmt(minWage)} 이상입니다. 이 비교만으로 모든 수당·임금 요건을 확인한 것은 아닙니다.</p>`;
- out.innerHTML=`<div class="result-title"><h3>예상 급여 결과</h3><span class="small">세전 단순 추정</span></div><div class="stats"><div class="stat"><span>하루 유급 근로시간</span><strong>${daily.toFixed(2)}시간</strong></div><div class="stat"><span>예상 주급</span><strong>${moneyFmt(weekly)}</strong></div><div class="stat"><span>월평균 예상 급여</span><strong>${moneyFmt(monthly)}</strong></div></div><p>하루 총 체류시간 ${ (gross/60).toFixed(2) }시간 − 휴게시간 ${br}분 = 유급 근로시간 ${daily.toFixed(2)}시간</p><p>주간 추정 근로시간: ${weeklyHours.toFixed(2)}시간 · 월 환산: ${weeks}주</p>${wageNote}<p class="small">주휴수당 적용 여부는 실제 근로시간, 소정근로일 개근 여부 등 추가 조건을 확인해야 하므로 위 금액에 자동으로 더하지 않았습니다.</p>`;
+ const daily=paid/60,weeklyHours=daily*days,baseWeekly=wage*weeklyHours;
+ const weeklyEligible=weeklyHours>=15&&assume;
+ const weeklyHolidayHours=Math.min(8,weeklyHours/40*8);
+ const weeklyHolidayPay=weeklyEligible?wage*weeklyHolidayHours:0;
+ const weeklyTotal=baseWeekly+weeklyHolidayPay,monthly=weeklyTotal*weeks,minWage=10320;
+ let holidayNote='';
+ if(weeklyHours<15) holidayNote='<p class="small">입력한 주간 소정근로시간 추정치가 15시간 미만이므로 주휴수당을 계산에 포함하지 않았습니다. 법적 판단은 4주 평균 소정근로시간 등 실제 계약 내용을 기준으로 합니다.</p>';
+ else if(!assume) holidayNote='<p class="small">주 15시간 이상으로 계산되지만, 정해진 근무일 개근 여부와 해당 주 근로관계 유지 여부를 확인하지 않아 주휴수당은 포함하지 않았습니다. 조건을 확인한 뒤 체크하면 별도 추정됩니다.</p>';
+ else holidayNote='<p class="small">주 15시간 이상, 정해진 소정근로일 개근 및 해당 주 근로관계 유지 조건을 충족한다고 가정해 주휴수당을 별도 추정했습니다. 실제 지급 여부와 산정은 4주 평균 소정근로시간, 근로계약, 사업장 상황 등 세부 사실에 따라 달라질 수 있습니다.</p>';
+ const wageNote=wage<minWage?'<p><span class="status missing">최저임금 확인 필요</span> 입력한 시급은 2026년 시간급 최저임금 '+moneyFmt(minWage)+'보다 낮습니다. 임금 항목과 적용 기준을 공식 자료에서 확인하세요.</p>':'<p><span class="status confirmed">최저임금과 단순 비교</span> 입력 시급은 2026년 시간급 최저임금 '+moneyFmt(minWage)+' 이상입니다. 이 비교만으로 모든 수당·임금 요건을 확인한 것은 아닙니다.</p>';
+ out.innerHTML='<div class="result-title"><h3>예상 급여 결과</h3><span class="small">세전 단순 추정</span></div><div class="stats"><div class="stat"><span>하루 유급 근로시간</span><strong>'+daily.toFixed(2)+'시간</strong></div><div class="stat"><span>기본 예상 주급</span><strong>'+moneyFmt(baseWeekly)+'</strong></div><div class="stat"><span>주휴수당 추정액</span><strong>'+moneyFmt(weeklyHolidayPay)+'</strong></div></div><div class="evidence-note"><strong>주휴수당 포함 예상 주급: '+moneyFmt(weeklyTotal)+'</strong><br>월평균 예상 급여: '+moneyFmt(monthly)+'</div><p>하루 총 체류시간 '+(gross/60).toFixed(2)+'시간 − 휴게시간 '+br+'분 = 유급 근로시간 '+daily.toFixed(2)+'시간</p><p>주간 추정 근로시간: '+weeklyHours.toFixed(2)+'시간 · 월 환산: '+weeks+'주</p>'+wageNote+holidayNote+'<p class="small">주휴수당 추정식은 주간 소정근로시간 ÷ 40 × 8시간 × 시급(최대 8시간)을 참고한 단순 계산입니다. 이 도구는 4주 평균, 근로계약상 소정근로시간, 근로관계가 유지되는 기간, 예외 적용 등을 모두 판단하지 못하므로 실제 지급액을 보장하지 않습니다.</p>';
 }
 document.getElementById('calcPay').addEventListener('click',calculatePay);
 document.getElementById('useLawWage').addEventListener('click',()=>{document.getElementById('calcWage').value=document.getElementById('hourlyWage').value;document.getElementById('payCalculator').scrollIntoView({behavior:'smooth',block:'start'});if(document.getElementById('calcWage').value)calculatePay()});
-document.getElementById('clearPay').addEventListener('click',()=>{document.getElementById('calcWage').value='';document.getElementById('calcStart').value='17:00';document.getElementById('calcEnd').value='22:00';document.getElementById('calcBreak').value='30';document.getElementById('calcDays').value='3';document.getElementById('calcWeeks').value='4.345';document.getElementById('payResult').innerHTML=''});
+document.getElementById('clearPay').addEventListener('click',()=>{document.getElementById('calcWage').value='';document.getElementById('calcStart').value='17:00';document.getElementById('calcEnd').value='22:00';document.getElementById('calcBreak').value='30';document.getElementById('calcDays').value='3';document.getElementById('calcWeeks').value='4.345';document.getElementById('weeklyHolidayAssumption').checked=false;document.getElementById('payResult').innerHTML=''});
 
+document.getElementById('importAdToLaw').addEventListener('click',()=>{
+ const ad=document.getElementById('ad1').value;
+ const status=document.getElementById('lawImportStatus');
+ if(!ad.trim()){status.textContent='먼저 ① 공고 분석하기에 공고 내용을 입력하세요.';return;}
+ const v=extractComparable(ad);
+ let filled=[];
+ if(v.wage!==null){document.getElementById('hourlyWage').value=v.wage;filled.push('시급');}
+ const timeMatch=ad.match(/(\\d{1,2}):(\\d{2})\\s*[~～\\-–]\\s*(\\d{1,2}):(\\d{2})/);
+ if(timeMatch){document.getElementById('startTime').value=String(timeMatch[1]).padStart(2,'0')+':'+timeMatch[2];document.getElementById('endTime').value=String(timeMatch[3]).padStart(2,'0')+':'+timeMatch[4];filled.push('근무 시각');}
+ const breakMatch=ad.match(/휴게시간\\s*[:：]?\\s*(\\d+)\\s*분/);
+ if(breakMatch){document.getElementById('breakMinutes').value=breakMatch[1];filled.push('휴게시간');}
+ if(v.days!==null){document.getElementById('daysWeek').value=v.days;filled.push('주당 근무일');}
+ status.textContent=filled.length?'공고에서 확인 가능한 '+filled.join(', ')+' 정보를 가져왔습니다. 비어 있는 항목은 직접 확인해 입력하세요.':'공고에서 자동으로 읽을 수 있는 숫자 정보를 찾지 못했습니다. 항목을 직접 입력해 주세요.';
+});
 document.getElementById('checkLaw').addEventListener('click',()=>{
  const age=document.getElementById('workerAge').value,wageRaw=document.getElementById('hourlyWage').value;
  const start=timeMinutes(document.getElementById('startTime').value),end0=timeMinutes(document.getElementById('endTime').value);
@@ -825,8 +871,40 @@ function questionFor(k){return {wage:'정확한 시급 또는 급여 계산 방�
 const sample='카페 아르바이트 모집\n시급 12,000원\n주 3일 근무, 오후 5시~10시\n업무: 음료 제조, 고객 응대, 매장 정리\n휴게시간 및 급여 지급일은 면접 시 협의\n근로계약서는 첫 출근 때 작성';
 document.getElementById('analyze1').addEventListener('click',()=>analyze(document.getElementById('ad1').value,document.getElementById('result1')));document.getElementById('sample1').addEventListener('click',()=>{document.getElementById('ad1').value=sample;analyze(sample,document.getElementById('result1'))});document.getElementById('clear1').addEventListener('click',()=>{document.getElementById('ad1').value='';document.getElementById('result1').innerHTML=''});
 document.getElementById('sample2').addEventListener('click',()=>{document.getElementById('ad2a').value=sample;document.getElementById('ad2b').value='편의점 아르바이트 모집\n시급은 면접 시 안내\n주말 근무, 근무시간은 협의\n업무: 계산 및 매장 정리\n근로계약서 작성\n급여 지급일은 매월 10일';});
-document.getElementById('compare').addEventListener('click',()=>{let a=document.getElementById('ad2a').value,b=document.getElementById('ad2b').value,out=document.getElementById('compareResult');if(!a.trim()||!b.trim()){out.innerHTML='<p class="empty">공고 A와 공고 B를 모두 입력하세요.</p>';return}let da=fields.map(f=>({...f,...classify(a,f)})),db=fields.map(f=>({...f,...classify(b,f)}));out.innerHTML='<div class="result-title"><h3>조건별 비교표</h3></div><div class="tablewrap"><table><thead><tr><th>확인 항목</th><th>공고 A</th><th>공고 B</th></tr></thead><tbody>'+fields.map((f,i)=>`<tr><th>${f.name}</th><td><span class="status ${da[i].status}">${da[i].label}</span><br>${da[i].status==='confirmed'?'구체적인 문구 발견':da[i].status==='ambiguous'?'추가 확인 필요':'문구를 찾지 못함'}</td><td><span class="status ${db[i].status}">${db[i].label}</span><br>${db[i].status==='confirmed'?'구체적인 문구 발견':db[i].status==='ambiguous'?'추가 확인 필요':'문구를 찾지 못함'}</td></tr>`).join('')+'</tbody></table></div><p class="small">비교 결과는 공고에 쓰인 표현만 확인합니다. 정보가 적다고 일자리 자체가 나쁘거나 위법하다고 단정할 수 없습니다. 지원 전에 두 공고 모두 정확한 조건을 확인하세요.</p>'});
-
+function extractComparable(text){
+ const wageMatch=text.match(/(?:시급|시간당)\\s*[:：]?\\s*([\\d,]+)\\s*원/);
+ const weeklyMatch=text.match(/주\\s*([\\d.]+)\\s*시간/);
+ const daysMatch=text.match(/주\\s*(\\d+)\\s*일/);
+ const dayHoursMatch=text.match(/하루\\s*([\\d.]+)\\s*시간/);
+ const timeMatch=text.match(/(\\d{1,2}):(\\d{2})\\s*[~～\\-–]\\s*(\\d{1,2}):(\\d{2})/);
+ let dailyHours=null;
+ if(timeMatch){
+  let st=Number(timeMatch[1])*60+Number(timeMatch[2]),en=Number(timeMatch[3])*60+Number(timeMatch[4]);
+  if(en<=st)en+=1440;
+  dailyHours=(en-st)/60;
+ }else if(dayHoursMatch){dailyHours=Number(dayHoursMatch[1]);}
+ const days=daysMatch?Number(daysMatch[1]):null;
+ const weeklyHours=weeklyMatch?Number(weeklyMatch[1]):(dailyHours!==null&&days!==null?dailyHours*days:null);
+ return {wage:wageMatch?Number(wageMatch[1].replace(/,/g,'')):null,weeklyHours,days,dailyHours};
+}
+function displayExtracted(v){
+ return [v.wage!==null?'시급 '+moneyFmt(v.wage):'시급 확인 필요',
+  v.weeklyHours!==null?'주 '+v.weeklyHours+'시간':'주간 근로시간 확인 필요',
+  v.days!==null?'주 '+v.days+'일':'근무일 수 확인 필요'].join(' · ');
+}
+document.getElementById('compare').addEventListener('click',()=>{
+ const a=document.getElementById('ad2a').value,b=document.getElementById('ad2b').value,out=document.getElementById('compareResult');
+ if(!a.trim()||!b.trim()){out.innerHTML='<p class="empty">공고 A와 공고 B를 모두 입력하세요.</p>';return}
+ const da=fields.map(f=>({...f,...classify(a,f)})),db=fields.map(f=>({...f,...classify(b,f)}));
+ const va=extractComparable(a),vb=extractComparable(b);
+ const payA=va.wage!==null&&va.weeklyHours!==null?va.wage*va.weeklyHours:null;
+ const payB=vb.wage!==null&&vb.weeklyHours!==null?vb.wage*vb.weeklyHours:null;
+ out.innerHTML='<div class="result-title"><h3>조건별 비교표</h3></div><div class="tablewrap"><table><thead><tr><th>확인 항목</th><th>공고 A</th><th>공고 B</th></tr></thead><tbody>'+
+ fields.map((f,i)=>'<tr><th>'+f.name+'</th><td><span class="status '+da[i].status+'">'+da[i].label+'</span><br>'+(da[i].status==='confirmed'?'구체적인 문구 발견':da[i].status==='ambiguous'?'추가 확인 필요':'문구를 찾지 못함')+'</td><td><span class="status '+db[i].status+'">'+db[i].label+'</span><br>'+(db[i].status==='confirmed'?'구체적인 문구 발견':db[i].status==='ambiguous'?'추가 확인 필요':'문구를 찾지 못함')+'</td></tr>').join('')+
+ '<tr><th>추출한 급여·시간</th><td>'+displayExtracted(va)+'</td><td>'+displayExtracted(vb)+'</td></tr>'+
+ '<tr><th>예상 기본 주급</th><td>'+(payA!==null?moneyFmt(payA):'시급 또는 주간 시간이 부족해 계산할 수 없음')+'</td><td>'+(payB!==null?moneyFmt(payB):'시급 또는 주간 시간이 부족해 계산할 수 없음')+'</td></tr>'+
+ '</tbody></table></div><p class="small">예상 기본 주급은 공고에서 숫자로 확인된 시급과 주간 근로시간을 곱한 단순 추정치입니다. 휴게시간, 주휴수당, 세금·공제, 연장·야간·휴일수당은 반영하지 않습니다. 시간이나 요일을 정확히 추출하지 못하면 계산하지 않으므로 공고 원문과 계약 조건을 직접 확인하세요. 비교 결과만으로 어느 일자리가 더 적합한지 자동 판정하지 않습니다.</p>';
+});
 // 면접 전 질문 목록: 현재 공고 분석 결과에서 확인이 필요한 항목만 추립니다.
 let latestAnalysisData = null;
 let latestQuestionText = '';
