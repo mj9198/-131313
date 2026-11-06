@@ -76,6 +76,7 @@ th{background:#fff0e6;color:#805b4b}td{font-size:.94rem}
 footer{text-align:center;color:#a17e70;font-size:.9rem;padding:28px 18px;background:linear-gradient(120deg,#fff0dc,#f9e4e5);border-top:2px solid #f1d9ca}
 .empty{color:var(--muted);background:#fff5ee;border-radius:14px;padding:14px}
 .question-output{background:#fff8f2;border:1px solid var(--line);border-radius:15px;padding:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+.recommendation{margin:16px 0;padding:17px 19px;border:2px solid #b9c79e;border-radius:18px;background:linear-gradient(135deg,#f4f6e9,#fff8e9);color:#5b6044}.recommendation h3{margin:0 0 7px;color:#52664c}.recommendation p{margin:6px 0}
 .evidence-note{border-left:4px solid #d99a7c;padding:10px 13px;background:#fff4eb;border-radius:8px}
 .result-title{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px}
 .bubble-decor{position:fixed;z-index:0;pointer-events:none;border-radius:50%;border:2px solid #fff9;background:radial-gradient(circle at 30% 25%,#fff 0 5%,#ffffffa8 6% 15%,#f4dce866 48%,#dcecf266 100%);box-shadow:inset 4px 4px 10px #fff9,0 7px 20px #cba9a522;opacity:.45}
@@ -720,7 +721,7 @@ input::placeholder,textarea::placeholder{font-family:'Jua',sans-serif!important;
 <div class="notice"><strong>프로토타입 안내</strong> 이 페이지는 실제 생성형 AI API에 연결되어 있지 않습니다. 키워드와 규칙으로 공고 문구를 분류하므로 결과를 참고용으로만 사용하고, 최종 조건은 사업주와 근로계약서로 확인하세요. 정보가 없다는 사실만으로 위법이라고 판단하지 않습니다.</div>
 <div class="layout">
 <section class="panel"><h2>① 공고 분석하기</h2><p class="sub">공고 문구를 붙여 넣고 확인이 필요한 항목을 살펴보세요.</p><label for="ad1">아르바이트 공고</label><textarea id="ad1" placeholder="예: 시급 12,000원, 주 3일 근무... 공고 내용을 붙여 넣으세요."></textarea><div class="btnrow"><button class="btn primary" id="analyze1">근로조건 분석하기</button><button class="btn secondary" id="sample1">예시 공고 넣기</button><button class="btn ghost" id="clear1">초기화</button></div><div id="result1" aria-live="polite"></div></section>
-<section class="panel"><h2>② 공고 2개 비교하기</h2><p class="sub">두 공고의 조건별 명시 여부를 나란히 비교합니다. 더 좋은 일자리를 자동 판정하지 않습니다.</p><label for="ad2a">공고 A</label><textarea id="ad2a" placeholder="첫 번째 공고 내용을 입력하세요." style="min-height:135px"></textarea><label for="ad2b">공고 B</label><textarea id="ad2b" placeholder="두 번째 공고 내용을 입력하세요." style="min-height:135px"></textarea><div class="btnrow"><button class="btn primary" id="compare">조건별 비교표 만들기</button><button class="btn secondary" id="sample2">비교 예시 넣기</button></div><div id="compareResult" aria-live="polite"></div></section>
+<section class="panel"><h2>② 공고 2개 비교하기</h2><p class="sub">시급·주당 근무시간·예상 기본 주급을 나란히 비교하고, 공고에 적힌 정보만으로 유리한 조건과 추가 확인 사항을 안내합니다.</p><label for="ad2a">공고 A</label><textarea id="ad2a" placeholder="첫 번째 공고 내용을 입력하세요." style="min-height:135px"></textarea><label for="ad2b">공고 B</label><textarea id="ad2b" placeholder="두 번째 공고 내용을 입력하세요." style="min-height:135px"></textarea><div class="btnrow"><button class="btn primary" id="compare">두 공고 비교하고 추천받기</button><button class="btn secondary" id="sample2">비교 예시 넣기</button></div><div id="compareResult" aria-live="polite"></div></section>
 <section class="panel full" id="interviewQuestions"><h2>③ 면접 전 질문 목록 만들기</h2><p class="sub">공고 분석 결과에서 ‘불명확함’ 또는 ‘정보 없음’인 조건을 골라 질문 목록으로 만들고 복사할 수 있습니다. 분석 결과를 근거로 질문을 만들 뿐, 공고만으로 위법 여부를 판정하지 않습니다.</p><div class="btnrow"><button class="btn primary" id="makeQuestions">현재 공고에서 질문 목록 만들기</button><button class="btn secondary" id="copyQuestions">질문 목록 복사하기</button><button class="btn ghost" id="downloadQuestions">텍스트 파일로 저장</button></div><div id="interviewResult" aria-live="polite"><p class="empty">먼저 ‘① 공고 분석하기’에서 공고를 분석한 뒤 이 버튼을 눌러 주세요.</p></div><p id="copyStatus" class="small" aria-live="polite"></p></section>
 <section class="panel full" id="legalCheck"><h2>④ 법적 기준 간편 점검</h2><p class="sub">공고에 적힌 임금·시간·휴게시간을 기준과 비교해 확인합니다. 입력 정보만으로 위법 여부를 확정하지는 않습니다.</p>
 <div class="layout" style="grid-template-columns:repeat(2,minmax(0,1fr))">
@@ -871,11 +872,11 @@ const sample='카페 아르바이트 모집\n시급 12,000원\n주 3일 근무, 
 document.getElementById('analyze1').addEventListener('click',()=>analyze(document.getElementById('ad1').value,document.getElementById('result1')));document.getElementById('sample1').addEventListener('click',()=>{document.getElementById('ad1').value=sample;analyze(sample,document.getElementById('result1'))});document.getElementById('clear1').addEventListener('click',()=>{document.getElementById('ad1').value='';document.getElementById('result1').innerHTML=''});
 document.getElementById('sample2').addEventListener('click',()=>{document.getElementById('ad2a').value=sample;document.getElementById('ad2b').value='편의점 아르바이트 모집\n시급은 면접 시 안내\n주말 근무, 근무시간은 협의\n업무: 계산 및 매장 정리\n근로계약서 작성\n급여 지급일은 매월 10일';});
 function extractComparable(text){
- const wageMatch=text.match(/(?:시급|시간당)\\s*[:：]?\\s*([\\d,]+)\\s*원/);
- const weeklyMatch=text.match(/주\\s*([\\d.]+)\\s*시간/);
- const daysMatch=text.match(/주\\s*(\\d+)\\s*일/);
- const dayHoursMatch=text.match(/하루\\s*([\\d.]+)\\s*시간/);
- const timeMatch=text.match(/(\\d{1,2}):(\\d{2})\\s*[~～\\-–]\\s*(\\d{1,2}):(\\d{2})/);
+ const wageMatch=text.match(/(?:시급|시간당)\s*[:：]?\s*([\d,]+)\s*원/);
+ const weeklyMatch=text.match(/주\s*([\d.]+)\s*시간/);
+ const daysMatch=text.match(/주\s*(\d+)\s*일/);
+ const dayHoursMatch=text.match(/하루\s*([\d.]+)\s*시간/);
+ const timeMatch=text.match(/(\d{1,2}):(\d{2})\s*[~～\-–]\s*(\d{1,2}):(\d{2})/);
  let dailyHours=null;
  if(timeMatch){
   let st=Number(timeMatch[1])*60+Number(timeMatch[2]),en=Number(timeMatch[3])*60+Number(timeMatch[4]);
@@ -883,15 +884,46 @@ function extractComparable(text){
   dailyHours=(en-st)/60;
  }else if(dayHoursMatch){dailyHours=Number(dayHoursMatch[1]);}
  const days=daysMatch?Number(daysMatch[1]):null;
- const breakMatch=text.match(/휴게시간\\s*[:：]?\\s*(\\d+)\\s*분/);
+ const breakMatch=text.match(/휴게시간\s*[:：]?\s*(\d+)\s*분/);
  const breakHours=breakMatch?Number(breakMatch[1])/60:0;
  const weeklyHours=weeklyMatch?Number(weeklyMatch[1]):(dailyHours!==null&&days!==null?Math.max(0,dailyHours-breakHours)*days:null);
- return {wage:wageMatch?Number(wageMatch[1].replace(/,/g,'')):null,weeklyHours,days,dailyHours};
+ return {wage:wageMatch?Number(wageMatch[1].replace(/,/g,'')):null,weeklyHours,days,dailyHours,breakKnown:!!breakMatch};
 }
 function displayExtracted(v){
  return [v.wage!==null?'시급 '+moneyFmt(v.wage):'시급 확인 필요',
   v.weeklyHours!==null?'주 '+v.weeklyHours+'시간':'주간 근로시간 확인 필요',
   v.days!==null?'주 '+v.days+'일':'근무일 수 확인 필요'].join(' · ');
+}
+function comparisonRecommendation(va,vb,payA,payB,da,db){
+ const minWage=10320;
+ if(va.wage===null||vb.wage===null||va.weeklyHours===null||vb.weeklyHours===null){
+  return '<div class="recommendation"><h3>🐭 추천 결과: 아직 판단하기 어려워요</h3><p>두 공고 모두 시급과 주당 근무시간이 확인되어야 예상 주급과 조건을 공정하게 비교할 수 있어요. 현재는 한쪽 또는 양쪽의 핵심 정보가 부족합니다.</p><p class="small">시급, 주당 근무시간, 근무 요일을 사업주에게 확인한 뒤 다시 비교해 보세요.</p></div>';
+ }
+ const metrics=[
+  {name:'시급',a:va.wage,b:vb.wage,weight:2},
+  {name:'예상 기본 주급',a:payA,b:payB,weight:1}
+ ];
+ let scoreA=0,scoreB=0,reasonA=[],reasonB=[];
+ metrics.forEach(m=>{
+  if(m.a>m.b){scoreA+=m.weight;reasonA.push(m.name+'이(가) 더 높음');}
+  else if(m.b>m.a){scoreB+=m.weight;reasonB.push(m.name+'이(가) 더 높음');}
+ });
+ const clarityA=da.filter(x=>x.status==='confirmed').length;
+ const clarityB=db.filter(x=>x.status==='confirmed').length;
+ if(clarityA>clarityB){scoreA++;reasonA.push('공고에 구체적으로 적힌 조건이 더 많음');}
+ else if(clarityB>clarityA){scoreB++;reasonB.push('공고에 구체적으로 적힌 조건이 더 많음');}
+ const belowA=va.wage<minWage,belowB=vb.wage<minWage;
+ if(belowA||belowB){
+  let warning='<p class="small">주의: '+(belowA?'공고 A의 시급이 2026년 최저임금(10,320원)보다 낮게 추출되었습니다. ':'')+(belowB?'공고 B의 시급이 2026년 최저임금(10,320원)보다 낮게 추출되었습니다. ':'')+'공고 문구와 임금 산입 항목을 다시 확인하고, 필요하면 고용노동부 1350에 문의하세요.</p>';
+  if(belowA&&!belowB)scoreB+=2;
+  if(belowB&&!belowA)scoreA+=2;
+  var minWarning=warning;
+ }else{var minWarning='';}
+ let title,detail;
+ if(scoreA>scoreB){title='공고 A를 우선 확인해 보세요';detail='비교 가능한 항목에서 '+(reasonA.length?reasonA.join(', '):'상대적으로 나은 조건')+'이 확인되었습니다.';}
+ else if(scoreB>scoreA){title='공고 B를 우선 확인해 보세요';detail='비교 가능한 항목에서 '+(reasonB.length?reasonB.join(', '):'상대적으로 나은 조건')+'이 확인되었습니다.';}
+ else{title='뚜렷하게 더 유리한 공고를 고르기 어려워요';detail='시급·예상 주급·공고 정보의 구체성이 비슷하거나 서로 장단점이 다릅니다. 본인의 가능한 근무시간과 업무 내용도 함께 비교하세요.';}
+ return '<div class="recommendation"><h3>🐭 추천 결과: '+title+'</h3><p>'+detail+'</p><p class="small">추천 기준은 시급(가중치 2), 예상 기본 주급(가중치 1), 공고에 구체적으로 명시된 조건 수(가중치 1)입니다. 주당 근무시간이 길다는 이유만으로 더 좋은 일자리라고 평가하지 않습니다.</p>'+minWarning+'</div>';
 }
 document.getElementById('compare').addEventListener('click',()=>{
  const a=document.getElementById('ad2a').value,b=document.getElementById('ad2b').value,out=document.getElementById('compareResult');
@@ -900,11 +932,18 @@ document.getElementById('compare').addEventListener('click',()=>{
  const va=extractComparable(a),vb=extractComparable(b);
  const payA=va.wage!==null&&va.weeklyHours!==null?va.wage*va.weeklyHours:null;
  const payB=vb.wage!==null&&vb.weeklyHours!==null?vb.wage*vb.weeklyHours:null;
- out.innerHTML='<div class="result-title"><h3>조건별 비교표</h3></div><div class="tablewrap"><table><thead><tr><th>확인 항목</th><th>공고 A</th><th>공고 B</th></tr></thead><tbody>'+
- fields.map((f,i)=>'<tr><th>'+f.name+'</th><td><span class="status '+da[i].status+'">'+da[i].label+'</span><br>'+(da[i].status==='confirmed'?'구체적인 문구 발견':da[i].status==='ambiguous'?'추가 확인 필요':'문구를 찾지 못함')+'</td><td><span class="status '+db[i].status+'">'+db[i].label+'</span><br>'+(db[i].status==='confirmed'?'구체적인 문구 발견':db[i].status==='ambiguous'?'추가 확인 필요':'문구를 찾지 못함')+'</td></tr>').join('')+
- '<tr><th>추출한 급여·시간</th><td>'+displayExtracted(va)+'</td><td>'+displayExtracted(vb)+'</td></tr>'+
- '<tr><th>예상 기본 주급</th><td>'+(payA!==null?moneyFmt(payA):'시급 또는 주간 시간이 부족해 계산할 수 없음')+'</td><td>'+(payB!==null?moneyFmt(payB):'시급 또는 주간 시간이 부족해 계산할 수 없음')+'</td></tr>'+
- '</tbody></table></div><p class="small">예상 기본 주급은 공고에서 숫자로 확인된 시급과 주간 근로시간을 곱한 단순 추정치입니다. 휴게시간, 주휴수당, 세금·공제, 연장·야간·휴일수당은 반영하지 않습니다. 시간이나 요일을 정확히 추출하지 못하면 계산하지 않으므로 공고 원문과 계약 조건을 직접 확인하세요. 비교 결과만으로 어느 일자리가 더 적합한지 자동 판정하지 않습니다.</p>';
+ const fmt=v=>v===null?'계산할 수 없음':moneyFmt(v);
+ out.innerHTML='<div class="result-title"><h3>두 공고 핵심 조건 비교</h3></div><div class="tablewrap"><table><thead><tr><th>비교 항목</th><th>공고 A</th><th>공고 B</th></tr></thead><tbody>'+
+ '<tr><th>시급</th><td>'+(va.wage!==null?moneyFmt(va.wage):'공고에서 확인되지 않음')+'</td><td>'+(vb.wage!==null?moneyFmt(vb.wage):'공고에서 확인되지 않음')+'</td></tr>'+
+ '<tr><th>주당 근무시간</th><td>'+(va.weeklyHours!==null?va.weeklyHours+'시간':'공고에서 확인되지 않음')+'</td><td>'+(vb.weeklyHours!==null?vb.weeklyHours+'시간':'공고에서 확인되지 않음')+'</td></tr>'+
+ '<tr><th>예상 기본 주급</th><td>'+fmt(payA)+'</td><td>'+fmt(payB)+'</td></tr>'+
+ '<tr><th>주당 근무일</th><td>'+(va.days!==null?va.days+'일':'확인 필요')+'</td><td>'+(vb.days!==null?vb.days+'일':'확인 필요')+'</td></tr>'+
+ '<tr><th>조건 명시 정도</th><td>'+da.filter(x=>x.status==='confirmed').length+'/'+fields.length+'개 항목 구체적으로 확인</td><td>'+db.filter(x=>x.status==='confirmed').length+'/'+fields.length+'개 항목 구체적으로 확인</td></tr>'+
+ '</tbody></table></div>'+
+ comparisonRecommendation(va,vb,payA,payB,da,db)+
+ '<div class="result-title"><h3>조건별 명시 여부</h3></div><div class="tablewrap"><table><thead><tr><th>확인 항목</th><th>공고 A</th><th>공고 B</th></tr></thead><tbody>'+
+ fields.map((f,i)=>'<tr><th>'+f.name+'</th><td><span class="status '+da[i].status+'">'+da[i].label+'</span></td><td><span class="status '+db[i].status+'">'+db[i].label+'</span></td></tr>').join('')+
+ '</tbody></table></div><p class="small">예상 기본 주급은 공고에서 추출한 시급 × 주당 근무시간으로 계산한 세전 단순 추정치입니다. 주휴수당, 세금·공제, 연장·야간·휴일수당은 포함하지 않습니다. 시간 범위만 적혀 있고 휴게시간이 확인되지 않으면 근무시간이 실제보다 크게 계산될 수 있으니 반드시 확인하세요. 추천은 공고 문구에 따른 참고 결과이며, 통근 거리·업무 강도·개인 일정·실제 계약 조건은 반영하지 않습니다.</p>';
 });
 // 면접 전 질문 목록: 현재 공고 분석 결과에서 확인이 필요한 항목만 추립니다.
 let latestAnalysisData = null;
