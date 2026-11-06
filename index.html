@@ -881,27 +881,55 @@ function questionFor(k){return {wage:'정확한 시급 또는 급여 계산 방�
 const sample='카페 아르바이트 모집\n시급 12,000원\n주 3일 근무, 오후 5시~10시\n업무: 음료 제조, 고객 응대, 매장 정리\n휴게시간 및 급여 지급일은 면접 시 협의\n근로계약서는 첫 출근 때 작성';
 document.getElementById('analyze1').addEventListener('click',()=>analyze(document.getElementById('ad1').value,document.getElementById('result1')));document.getElementById('sample1').addEventListener('click',()=>{document.getElementById('ad1').value=sample;analyze(sample,document.getElementById('result1'))});document.getElementById('clear1').addEventListener('click',()=>{document.getElementById('ad1').value='';document.getElementById('result1').innerHTML=''});
 document.getElementById('sample2').addEventListener('click',()=>{document.getElementById('ad2a').value=sample;document.getElementById('ad2b').value='편의점 아르바이트 모집\n시급은 면접 시 안내\n주말 근무, 근무시간은 협의\n업무: 계산 및 매장 정리\n근로계약서 작성\n급여 지급일은 매월 10일';});
+function parseKoreanClockRange(text){
+ const re=/(오전|오후)?\s*(\d{1,2})(?:시\s*(\d{1,2})분?|:\s*(\d{2}))?\s*(?:부터|[~～\-–])\s*(오전|오후)?\s*(\d{1,2})(?:시\s*(\d{1,2})분?|:\s*(\d{2}))?\s*(?:까지)?/g;
+ let match;
+ while((match=re.exec(text))!==null){
+  const [,ampm1,h1,m1a,m1b,ampm2,h2,m2a,m2b]=match;
+  const toMinutes=(hour,minute,ampm)=>{
+   let h=Number(hour),m=Number(minute||0);
+   if(m>59||h>24||h<0)return null;
+   if(ampm==='오후'&&h<12)h+=12;
+   if(ampm==='오전'&&h===12)h=0;
+   return h*60+m;
+  };
+  let startAmpm=ampm1||ampm2||null,endAmpm=ampm2||ampm1||null;
+  let st=toMinutes(h1,m1a||m1b,startAmpm),en=toMinutes(h2,m2a||m2b,endAmpm);
+  if(st===null||en===null)continue;
+  // "오후 5시~10시"처럼 끝 시각의 오전/오후가 생략된 경우 같은 오후로 해석
+  if(ampm1&&!ampm2){
+   if(ampm1==='오후'&&Number(h2)<12)en+=12*60;
+   if(ampm1==='오전'&&Number(h2)===12)en=0;
+  }
+  if(en<=st)en+=24*60;
+  const hours=(en-st)/60;
+  if(hours>0&&hours<=24)return hours;
+ }
+ const digital=text.match(/(\d{1,2}):(\d{2})\s*[~～\-–]\s*(\d{1,2}):(\d{2})/);
+ if(digital){
+  let st=Number(digital[1])*60+Number(digital[2]),en=Number(digital[3])*60+Number(digital[4]);
+  if(en<=st)en+=1440;
+  const hours=(en-st)/60;
+  if(hours>0&&hours<=24)return hours;
+ }
+ return null;
+}
 function extractComparable(text){
  const wageMatch=text.match(/(?:시급|시간당)\s*[:：]?\s*([\d,]+)\s*원/);
  const weeklyMatch=text.match(/주\s*([\d.]+)\s*시간/);
- const daysMatch=text.match(/주\s*(\d+)\s*일/);
+ const daysMatch=text.match(/주\s*(\d+)\s*(?:일|회)/);
  const dayHoursMatch=text.match(/하루\s*([\d.]+)\s*시간/);
- const timeMatch=text.match(/(\d{1,2}):(\d{2})\s*[~～\-–]\s*(\d{1,2}):(\d{2})/);
- let dailyHours=null;
- if(timeMatch){
-  let st=Number(timeMatch[1])*60+Number(timeMatch[2]),en=Number(timeMatch[3])*60+Number(timeMatch[4]);
-  if(en<=st)en+=1440;
-  dailyHours=(en-st)/60;
- }else if(dayHoursMatch){dailyHours=Number(dayHoursMatch[1]);}
+ const dailyHours=parseKoreanClockRange(text)??(dayHoursMatch?Number(dayHoursMatch[1]):null);
  const days=daysMatch?Number(daysMatch[1]):null;
  const breakMatch=text.match(/휴게시간\s*[:：]?\s*(\d+)\s*분/);
  const breakHours=breakMatch?Number(breakMatch[1])/60:0;
- const weeklyHours=weeklyMatch?Number(weeklyMatch[1]):(dailyHours!==null&&days!==null?Math.max(0,dailyHours-breakHours)*days:null);
- return {wage:wageMatch?Number(wageMatch[1].replace(/,/g,'')):null,weeklyHours,days,dailyHours,breakKnown:!!breakMatch};
+ const calculatedWeeklyHours= dailyHours!==null&&days!==null?Math.max(0,dailyHours-breakHours)*days:null;
+ const weeklyHours=weeklyMatch?Number(weeklyMatch[1]):calculatedWeeklyHours;
+ return {wage:wageMatch?Number(wageMatch[1].replace(/,/g,'')):null,weeklyHours,days,dailyHours,breakKnown:!!breakMatch,weeklyHoursEstimated:!weeklyMatch&&calculatedWeeklyHours!==null};
 }
 function displayExtracted(v){
  return [v.wage!==null?'시급 '+moneyFmt(v.wage):'시급 확인 필요',
-  v.weeklyHours!==null?'주 '+v.weeklyHours+'시간':'주간 근로시간 확인 필요',
+  v.weeklyHours!==null?'주 '+v.weeklyHours+'시간'+(v.weeklyHoursEstimated?' (시간대에서 추정)':''):'주간 근로시간 확인 필요',
   v.days!==null?'주 '+v.days+'일':'근무일 수 확인 필요'].join(' · ');
 }
 function compareAdvantage(a,b,preferLower){
