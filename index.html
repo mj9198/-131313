@@ -77,6 +77,14 @@ footer{text-align:center;color:#a17e70;font-size:.9rem;padding:28px 18px;backgro
 .empty{color:var(--muted);background:#fff5ee;border-radius:14px;padding:14px}
 .question-output{background:#fff8f2;border:1px solid var(--line);border-radius:15px;padding:14px;white-space:pre-wrap;overflow-wrap:anywhere}
 .priority-picker{margin:16px 0;padding:16px 18px;border:1px solid #d8bd91;border-radius:17px;background:#fff9eb}.priority-picker h3{margin:0 0 4px;color:#694a32}.priority-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px;margin-top:10px}.priority-options label{display:flex;align-items:center;gap:8px;margin:0;font-family:'Gowun Dodum',sans-serif;font-weight:600}.priority-options input{width:18px;height:18px;min-height:0;accent-color:#60794e}.advantage{display:inline-block;padding:3px 8px;margin-top:4px;border-radius:99px;background:#e5efdc;color:#4e7047;font-size:.82rem;font-weight:700}.tie{background:#f1eadc;color:#806b4e}.unknown{background:#f8e6e1;color:#a45f52}.priority-summary{margin:10px 0;padding:12px 14px;border-radius:14px;background:#f5f1e5;color:#68533e}.comparison-note{margin-top:12px;padding:11px 14px;border-left:4px solid #c49a62;background:#fff4df;border-radius:8px}
+.comparison-note{margin-top:16px;padding:17px 19px;border:1px solid #ddc99f;border-left:5px solid #b68a54;border-radius:17px;background:#fff8e9;color:#68533e}
+.comparison-note h4{margin:0 0 12px;color:#735338;font-size:1.08rem}
+.comparison-caveats{display:grid;gap:10px}
+.caveat{display:grid;grid-template-columns:34px minmax(0,1fr);gap:9px;align-items:start;padding:10px 12px;border-radius:12px;background:#fffdf7}
+.caveat-icon{font-size:1.25rem;line-height:1.5}
+.caveat strong{display:block;margin-bottom:2px;color:#71543a;font-size:.98rem}
+.caveat p{margin:0;color:#756653;font-size:.93rem;line-height:1.65;overflow-wrap:anywhere}
+@media(max-width:600px){.comparison-note{padding:14px}.caveat{padding:9px 10px;grid-template-columns:28px minmax(0,1fr)}.caveat p{font-size:.9rem}}
 .recommendation{margin:16px 0;padding:17px 19px;border:2px solid #b9c79e;border-radius:18px;background:linear-gradient(135deg,#f4f6e9,#fff8e9);color:#5b6044}.recommendation h3{margin:0 0 7px;color:#52664c}.recommendation p{margin:6px 0}
 .evidence-note{border-left:4px solid #d99a7c;padding:10px 13px;background:#fff4eb;border-radius:8px}
 .result-title{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px}
@@ -982,7 +990,7 @@ document.getElementById('compare').addEventListener('click',()=>{
  comparisonRecommendation(va,vb,payA,payB,da,db)+
  '<div class="result-title"><h3>조건별 명시 여부와 확인 필요 항목</h3></div><div class="tablewrap"><table><thead><tr><th>확인 항목</th><th>공고 A</th><th>공고 B</th></tr></thead><tbody>'+
  fields.map((f,i)=>'<tr><th>'+f.name+'</th><td><span class="status '+da[i].status+'">'+da[i].label+'</span></td><td><span class="status '+db[i].status+'">'+db[i].label+'</span></td></tr>').join('')+
- '</tbody></table></div><div class="comparison-note"><strong>비교할 때 주의하세요</strong><br>예상 기본 주급은 시급 × 주당 근무시간으로 계산한 세전 단순 추정치이며 주휴수당, 세금·공제, 연장·야간·휴일수당은 포함하지 않습니다. 주당 근무시간에 휴게시간이 포함되어 있는지 공고만으로 확인되지 않으면 실제 근로시간과 차이가 날 수 있습니다. 조건 명시 정도는 공고 문구만 평가하며, 실제 근로환경이나 안전성을 보증하지 않습니다.</div>';
+ '</tbody></table></div><section class="comparison-note" aria-label="비교 결과를 볼 때 주의할 점"><h4>🐭 비교 결과를 볼 때 참고해 주세요</h4><div class="comparison-caveats"><div class="caveat"><span class="caveat-icon">💰</span><div><strong>예상 기본 주급</strong><p>시급 × 주당 근무시간으로 계산한 <b>세전 추정 금액</b>이에요. 주휴수당과 세금·공제, 연장·야간·휴일수당은 포함하지 않아요.</p></div></div><div class="caveat"><span class="caveat-icon">⏰</span><div><strong>휴게시간</strong><p>공고에 휴게시간이 적혀 있지 않다면 실제 근로시간과 계산 결과가 다를 수 있어요. 휴게시간이 근무시간에 포함되는지 사업주에게 확인해 주세요.</p></div></div><div class="caveat"><span class="caveat-icon">🔎</span><div><strong>조건 명시 정도</strong><p>공고에 적힌 문구가 얼마나 구체적인지만 확인해요. 실제 근로환경이나 사업장의 안전성을 보증하는 평가는 아니에요.</p></div></div></div></section>';
 });
 // 면접 전 질문 목록: 현재 공고 분석 결과에서 확인이 필요한 항목만 추립니다.
 let latestAnalysisData = null;
