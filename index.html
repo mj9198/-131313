@@ -904,11 +904,11 @@ function displayExtracted(v){
   v.weeklyHours!==null?'주 '+v.weeklyHours+'시간':'주간 근로시간 확인 필요',
   v.days!==null?'주 '+v.days+'일':'근무일 수 확인 필요'].join(' · ');
 }
-function compareAdvantage(a,b,format){
+function compareAdvantage(a,b,preferLower){
  if(a===null||b===null)return '<span class="advantage unknown">정보 부족</span>';
- if(a>b)return '<span class="advantage">공고 A 우세</span>';
- if(b>a)return '<span class="advantage">공고 B 우세</span>';
- return '<span class="advantage tie">차이 없음</span>';
+ if(a===b)return '<span class="advantage tie">차이 없음</span>';
+ const aWins=preferLower?a<b:a>b;
+ return '<span class="advantage">'+(aWins?'공고 A 우세':'공고 B 우세')+'</span>';
 }
 function comparisonRecommendation(va,vb,payA,payB,da,db){
  const chosen=[...document.querySelectorAll('[data-priority]:checked')].map(x=>x.dataset.priority);
@@ -946,11 +946,11 @@ document.getElementById('compare').addEventListener('click',()=>{
  const payA=va.wage!==null&&va.weeklyHours!==null?va.wage*va.weeklyHours:null;
  const payB=vb.wage!==null&&vb.weeklyHours!==null?vb.wage*vb.weeklyHours:null;
  const fmt=v=>v===null?'계산할 수 없음':moneyFmt(v);
- const adv=(x,y)=>compareAdvantage(x,y);
- const clarityA=da.filter(x=>x.status==='confirmed').length,clarityB=db.filter(x=>x.status==='confirmed').length;
+ const adv=(x,y,lower=false)=>compareAdvantage(x,y,lower);
+ const clarityA=da.reduce((n,x)=>n+(x.status==='confirmed'?1:x.status==='ambiguous'?.5:0),0),clarityB=db.reduce((n,x)=>n+(x.status==='confirmed'?1:x.status==='ambiguous'?.5:0),0);
  out.innerHTML='<div class="result-title"><h3>두 공고 핵심 조건 비교</h3></div><div class="tablewrap"><table><thead><tr><th>비교 항목</th><th>공고 A</th><th>공고 B</th></tr></thead><tbody>'+
  '<tr><th>시급</th><td>'+(va.wage!==null?moneyFmt(va.wage):'공고에서 확인되지 않음')+'<br>'+adv(va.wage,vb.wage)+'</td><td>'+(vb.wage!==null?moneyFmt(vb.wage):'공고에서 확인되지 않음')+'</td></tr>'+
- '<tr><th>주당 근무시간</th><td>'+(va.weeklyHours!==null?va.weeklyHours+'시간':'공고에서 확인되지 않음')+'<br>'+adv(vb.weeklyHours,va.weeklyHours)+'</td><td>'+(vb.weeklyHours!==null?vb.weeklyHours+'시간':'공고에서 확인되지 않음')+'</td></tr>'+
+ '<tr><th>주당 근무시간</th><td>'+(va.weeklyHours!==null?va.weeklyHours+'시간':'공고에서 확인되지 않음')+'<br>'+adv(va.weeklyHours,vb.weeklyHours,true)+'</td><td>'+(vb.weeklyHours!==null?vb.weeklyHours+'시간':'공고에서 확인되지 않음')+'</td></tr>'+
  '<tr><th>예상 기본 주급</th><td>'+fmt(payA)+'<br>'+adv(payA,payB)+'</td><td>'+fmt(payB)+'</td></tr>'+
  '<tr><th>주당 근무일</th><td>'+(va.days!==null?va.days+'일':'확인 필요')+'</td><td>'+(vb.days!==null?vb.days+'일':'확인 필요')+'</td></tr>'+
  '<tr><th>조건 명시 정도</th><td>'+clarityA+'/'+fields.length+'개 항목 확인<br>'+adv(clarityA,clarityB)+'</td><td>'+clarityB+'/'+fields.length+'개 항목 확인</td></tr>'+
