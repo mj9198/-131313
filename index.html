@@ -898,10 +898,6 @@ function parseKoreanClockRange(text){
   let st=toMinutes(h1,colonMin1||koreanMin1,startAmpm);
   let en=toMinutes(h2,colonMin2||koreanMin2,endAmpm);
   if(st===null||en===null)continue;
-  if(ampm1&&!ampm2){
-   if(ampm1==='오후'&&Number(h2)<12)en+=12*60;
-   if(ampm1==='오전'&&Number(h2)===12)en=0;
-  }
   if(en<=st)en+=24*60;
   const hours=(en-st)/60;
   if(hours>0&&hours<=24)return hours;
